@@ -198,7 +198,7 @@ npm i -D nodemon
 mkdir src\config src\routes src\controllers src\services src\middlewares src\utils public\teacher_image
 
 # วางไฟล์ทั้งหมดตามส่วน "โค้ดทุกไฟล์" ด้านล่าง
-npm run dev   # เริ่ม dev server ที่ http://localhost:3000
+npm start   # เริ่ม dev server ที่ http://localhost:3000
 </code></pre>
         </div>
 
@@ -593,7 +593,7 @@ module.exports={ listTeachers,getTeacherById,createTeacher,updateTeacher,deleteT
             <h3 class="h5 fw-bold mb-0">สร้างโปรเจกต์ & วิธีรัน (Frontend)</h3>
             <button class="btn btn-sm copy-btn" onclick="copyBlock('fe-setup', this)">คัดลอก</button>
           </div>
-<pre><code id="fe-setup" class="language-bash">npm create vite@latest frontend -- --template vue
+<pre><code id="fe-setup" class="language-bash">npm create vite@latest client -- --template vue
 cd frontend
 npm i
 npm i axios bootstrap bootstrap-icons pinia vue-router
