@@ -105,28 +105,39 @@
 <pre><code id="sql" class="language-sql">CREATE DATABASE IF NOT EXISTS `workshop_3` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `workshop_3`;
 
-CREATE TABLE IF NOT EXISTS `position` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB;
+CREATE TABLE `position` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-CREATE TABLE IF NOT EXISTS `teacher` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(50) NOT NULL,
-  `address` VARCHAR(100) NULL,
-  `telephone` VARCHAR(30) NULL,
-  `img` VARCHAR(255) NULL,
-  `position_id` INT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `fk_teacher_position`
-    FOREIGN KEY (`position_id`) REFERENCES `position`(`id`)
-    ON UPDATE CASCADE
-    ON DELETE SET NULL
-) ENGINE=InnoDB;
+CREATE TABLE `teacher` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(100) NOT NULL,
+  `address` text DEFAULT NULL,
+  `telephone` varchar(20) DEFAULT NULL,
+  `img` varchar(255) DEFAULT NULL,
+  `position_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-INSERT INTO `position` (`name`) VALUES ('อาจารย์'), ('หัวหน้ากลุ่มสาระ')
-ON DUPLICATE KEY UPDATE `name`=VALUES(`name`);
+INSERT INTO `position` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'ผู้จัดการโรงเรียน', '2025-09-02 03:58:37', '2025-09-02 04:17:01'),
+(2, 'อาจารย์ประจำ', '2025-09-02 03:58:37', '2025-09-02 03:58:37'),
+(3, 'อาจารย์ฝึกหัด', '2025-09-02 03:58:37', '2025-09-02 03:58:37'),
+(4, 'ผู้ช่วยครู', '2025-09-02 03:58:37', '2025-09-02 03:58:37'),
+(5, 'ที่ปรึกษาการศึกษา', '2025-09-02 03:58:37', '2025-09-02 03:58:37'),
+(6, 'อาจารย์ศิลปศึกษา', '2025-09-02 03:58:37', '2025-09-02 03:58:37'),
+(7, 'อาจารย์ดนตรี', '2025-09-02 03:58:37', '2025-09-02 03:58:37'),
+(8, 'อาจารย์เทคโนโลยี', '2025-09-02 03:58:37', '2025-09-02 03:58:37');
+
+INSERT INTO `teacher` (`id`, `name`, `address`, `telephone`, `img`, `position_id`, `created_at`, `updated_at`) VALUES
+(12, 'วิชัย สุวรรณ', '123/1 ม.1 ต.ในเมือง อ.เมือง จ.เพชรบูรณ์', '012-3456789', '', 1, '2025-09-02 04:17:33', '2025-09-02 04:17:33'),
+(14, 'ประสงค์ ไพรวัลย์', '123/3 ม.1 ต.ในเมือง อ.เมือง จ.เพชรบูรณ์', '012-3456789', '', 3, '2025-09-02 04:17:33', '2025-09-02 04:17:33'),
+(15, 'จันทิมา ดวงเด่น', '123/4 ม.1 ต.ในเมือง อ.เมือง จ.เพชรบูรณ์', '012-3456789', '', 2, '2025-09-02 04:17:33', '2025-09-02 04:17:33'),
+(16, 'สมพงษ์ สุขสวัสดิ์', '123/5 ม.1 ต.ในเมือง อ.เมือง จ.เพชรบูรณ์', '012-3456789', '', 4, '2025-09-02 04:17:33', '2025-09-02 04:17:33');
 </code></pre>
           <details class="explain" open><summary>คำอธิบายไฟล์นี้</summary><div class="body">
             <ul class="mb-0">
