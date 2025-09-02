@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="th" data-bs-theme="light">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fullstack Workshop — Server & Frontend</title>
+  <title>WorkShop - Group3</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css">
@@ -19,74 +20,53 @@
     .toc a:hover { text-decoration:underline; }
   </style>
 </head>
+
 <body>
-<nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top shadow-sm">
-  <div class="container">
-    <a class="navbar-brand fw-semibold" href="#">Fullstack Workshop</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNav">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title">เมนู</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-      </div>
-      <div class="offcanvas-body">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#overview">ภาพรวมระบบ</a></li>
-          <li class="nav-item"><a class="nav-link" href="#server">Server</a></li>
-          <li class="nav-item"><a class="nav-link" href="#frontend">Frontend</a></li>
-          <li class="nav-item"><a class="nav-link" href="#api-test">API Test</a></li>
-          <li class="nav-item"><a class="nav-link" href="#tips">Tips</a></li>
-        </ul>
-      </div>
+  <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="#">Fullstack Workshop</a>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<header id="overview" class="hero py-5">
-  <div class="container py-4">
-    <h1 class="display-6 fw-bold mb-2">Positions & Teachers — Server × Frontend</h1>
-    <p class="lead text-secondary mb-0">Vue 3 + Bootstrap (Frontend) × Node.js + Express + MySQL (Server) พร้อมอัปโหลดรูปครู</p>
-  </div>
-</header>
+  <header id="overview" class="hero py-5">
+    <div class="container py-4">
+      <h1 class="display-6 fw-bold mb-2">Positions & Teachers — Server × Frontend</h1>
+      <p class="lead text-secondary mb-0">Grouped UI + เนื้อหาล่าสุด • แผนผังโฟลเดอร์ไม่ทำสี</p>
+    </div>
+  </header>
 
-<main class="container my-4">
-  <div class="row g-4">
-    <aside class="col-lg-3 d-none d-lg-block">
-      <div class="sidebar toc">
-        <h6>ภาพรวมระบบ</h6>
-        <ol>
-          <li><a href="#overview">Overview</a></li>
-          <li><a href="#database">Database</a></li>
-        </ol>
-        <h6 id="toc-server">SERVER</h6>
-        <ol>
-          <li><a href="#server-setup">Setup Server</a></li>
-          <li><a href="#server-structure">โครงสร้าง Server</a></li>
-          <li><a href="#server-services">Services Layer</a></li>
-          <li><a href="#server-controllers">Controllers Layer</a></li>
-          <li><a href="#server-routes">Routes Layer</a></li>
-          <li><a href="#server-middleware">Middleware</a></li>
-          <li><a href="#server-code">โค้ด Server</a></li>
-        </ol>
-        <h6 id="toc-frontend">FRONTEND</h6>
-        <ol>
-          <li><a href="#frontend-setup">Setup Client</a></li>
-          <li><a href="#frontend-structure">โครงสร้าง Client</a></li>
-          <li><a href="#frontend-pages">Pages & Components</a></li>
-          <li><a href="#frontend-code">โค้ด Frontend</a></li>
-        </ol>
-      </div>
-    </aside>
-
-    <section class="col-lg-9">
-      <div id="database" class="mb-5">
-        <div class="d-flex justify-content-between align-items-center section-title mb-2">
-          <h2 class="h4 fw-bold mb-0">Database (MySQL)</h2>
-          <button class="btn btn-sm btn-outline-secondary" onclick="copyBlock('db-sql', this)">คัดลอก SQL</button>
+  <main class="container my-4">
+    <div class="row g-4">
+      <aside class="col-lg-3 d-none d-lg-block">
+        <div class="sidebar toc">
+          <h6>ภาพรวมระบบ</h6>
+          <ol>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#database">Database</a></li>
+          </ol>
+          <h6 id="toc-server">SERVER</h6>
+          <ol>
+            <li><a href="#server-setup">Setup Server</a></li>
+            <li><a href="#server-structure">โครงสร้าง Server</a></li>
+            <li><a href="#server-code">โค้ด Server</a></li>
+          </ol>
+          <h6 id="toc-frontend">FRONTEND</h6>
+          <ol>
+            <li><a href="#frontend-setup">Setup Client</a></li>
+            <li><a href="#frontend-structure">โครงสร้าง Client</a></li>
+            <li><a href="#frontend-code">โค้ด Frontend</a></li>
+          </ol>
         </div>
-        <pre class="mb-3"><code id="db-sql" class="language-sql">CREATE DATABASE IF NOT EXISTS `workshop_3` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+      </aside>
+
+      <section class="col-lg-9">
+
+        <div id="database" class="mb-5">
+          <div class="d-flex justify-content-between align-items-center section-title mb-2">
+            <h2 class="h4 fw-bold mb-0">Database (MySQL)</h2>
+            <button class="btn btn-sm btn-outline-secondary" onclick="copyBlock('db-sql', this)">คัดลอก SQL</button>
+          </div>
+          <pre class="mb-3"><code id="db-sql" class="language-sql">CREATE DATABASE IF NOT EXISTS `workshop_3` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `workshop_3`;
 CREATE TABLE IF NOT EXISTS `position` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -109,19 +89,19 @@ CREATE TABLE IF NOT EXISTS `teacher` (
 INSERT INTO `position` (`name`) VALUES (&#x27;อาจารย์&#x27;), (&#x27;หัวหน้ากลุ่มสาระ&#x27;)
 ON DUPLICATE KEY UPDATE `name`=VALUES(`name`);
 </code></pre>
-      </div>
-
-      <!-- SERVER -->
-      <div id="server" class="mb-5">
-        <h2 class="h4 fw-bold">Server</h2>
-      </div>
-
-      <div id="server-setup" class="mb-4">
-        <div class="d-flex justify-content-between align-items-center">
-          <h3 class="h5 fw-bold mb-2">1) Setup Server</h3>
-          <button class="btn btn-sm btn-outline-secondary" onclick="copyBlock('setup-server', this)">คัดลอก</button>
         </div>
-        <pre class="mb-3"><code id="setup-server" class="language-bash">mkdir server &amp;&amp; cd server
+
+        <!-- SERVER -->
+        <div id="server" class="mb-5">
+          <h2 class="h4 fw-bold">Server</h2>
+        </div>
+
+        <div id="server-setup" class="mb-4">
+          <div class="d-flex justify-content-between align-items-center">
+            <h3 class="h5 fw-bold mb-2">1) Setup Server</h3>
+            <button class="btn btn-sm btn-outline-secondary" onclick="copyBlock('setup-server', this)">คัดลอก</button>
+          </div>
+          <pre class="mb-3"><code id="setup-server" class="language-bash">mkdir server &amp;&amp; cd server
 npm init -y
 npm i express mysql2 dotenv multer cors
 npm i -D nodemon
@@ -129,113 +109,116 @@ mkdir -p src/{config,routes,controllers,services,middlewares,utils} public/teach
 # เพิ่มไฟล์ตามตัวอย่าง แล้วแก้ package.json ให้มีสคริปต์ dev/start
 npm run dev
 </code></pre>
-      </div>
+        </div>
 
-      <div id="server-structure" class="mb-4">
-        <h3 class="h5 fw-bold mb-2">2) โครงสร้าง Server</h3>
-        <pre class="mb-3"><code class="language-bash">server/
+        <div id="server-structure" class="mb-4">
+          <h3 class="h5 fw-bold mb-2">2) โครงสร้าง Server</h3>
+          <pre class="mb-3"><code class="language-bash">server/
 |-- src/
 |   |-- config/
+|   |   -- db.js
 |   |-- controllers/
+|   |   |-- position.controller.js
+|   |   |-- teacher.controller.js
 |   |-- middlewares/
+|   |   |-- asyncHandler.js
+|   |   |-- errorHandler.js
+|   |   |-- uploadImage.js
 |   |-- routes/
+|   |   |-- index.js
+|   |   |-- position.routes.js
+|   |   |-- teacher.routes.js
 |   |-- services/
-|   `-- utils/
-`-- public/teacher_image
+|   |   |-- position.service.js
+|   |   |-- teacher.service.js
+|   |-- utils/
+|       |-- file.js
+|-- public/teacher_image/
+|-- app.js
+|-- .env
 </code></pre>
-      </div>
+        </div>
 
-      <div id="server-services" class="mb-4">
-        <h3 class="h5 fw-bold mb-2">3) Services Layer</h3>
-        <p class="small text-secondary">ติดต่อฐานข้อมูลโดยตรง, ไม่มี logic ของ HTTP</p>
-      </div>
+        <div id="server-code" class="mb-5">
+          <h3 class="h5 fw-bold mb-3">3) โค้ด Server</h3>
 
-      <div id="server-controllers" class="mb-4">
-        <h3 class="h5 fw-bold mb-2">4) Controllers Layer</h3>
-        <p class="small text-secondary">รับ/ตรวจ input จาก request แล้วเรียก Services</p>
-      </div>
-
-      <div id="server-routes" class="mb-4">
-        <h3 class="h5 fw-bold mb-2">5) Routes Layer</h3>
-        <p class="small text-secondary">กำหนด endpoint และ mapping ไปยัง Controllers</p>
-      </div>
-
-      <div id="server-middleware" class="mb-4">
-        <h3 class="h5 fw-bold mb-2">6) Middleware</h3>
-        <p class="small text-secondary">จัดการ upload, error, not found และ async handler</p>
-      </div>
-
-      <div id="server-code" class="mb-5">
-        <h3 class="h5 fw-bold mb-3">7) โค้ด Server</h3>
-        
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <div><strong>server/package.json</strong></div>
-            <button class="btn btn-sm btn-outline-secondary" onclick="copyCode('code-1790341789790907767', this)">คัดลอก</button>
-          </div>
-          <div class="card-body p-0">
-            <pre class="m-0"><code id="code-1790341789790907767" class="language-json">{
-  &quot;name&quot;: &quot;workshop-3&quot;,
-  &quot;private&quot;: true,
-  &quot;version&quot;: &quot;0.0.0&quot;,
-  &quot;type&quot;: &quot;module&quot;,
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div><strong>server/package.json</strong></div>
+              <button class="btn btn-sm btn-outline-secondary"
+                onclick="copyCode('code-1790341789790907767', this)">คัดลอก</button>
+            </div>
+            <div class="card-body p-0">
+              <pre class="m-0"><code id="code-1790341789790907767" class="language-json">{
+  &quot;name&quot;: &quot;server&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
   &quot;scripts&quot;: {
-    &quot;dev&quot;: &quot;vite&quot;,
-    &quot;build&quot;: &quot;vite build&quot;,
-    &quot;preview&quot;: &quot;vite preview&quot;
+    &quot;dev&quot;: &quot;nodemon src/app.js&quot;,
+    &quot;start&quot;: &quot;node src/app.js&quot;
   },
+  &quot;keywords&quot;: [],
+  &quot;author&quot;: &quot;&quot;,
+  &quot;license&quot;: &quot;ISC&quot;,
+  &quot;type&quot;: &quot;commonjs&quot;,
   &quot;dependencies&quot;: {
-    &quot;axios&quot;: &quot;^1.11.0&quot;,
-    &quot;bootstrap&quot;: &quot;^5.3.8&quot;,
-    &quot;bootstrap-icons&quot;: &quot;^1.13.1&quot;,
-    &quot;pinia&quot;: &quot;^3.0.3&quot;,
-    &quot;vue&quot;: &quot;^3.5.18&quot;,
-    &quot;vue-router&quot;: &quot;^4.5.1&quot;
+    &quot;cors&quot;: &quot;^2.8.5&quot;,
+    &quot;dotenv&quot;: &quot;^17.2.1&quot;,
+    &quot;express&quot;: &quot;^5.1.0&quot;,
+    &quot;multer&quot;: &quot;^2.0.2&quot;,
+    &quot;mysql2&quot;: &quot;^3.14.4&quot;
   },
   &quot;devDependencies&quot;: {
-    &quot;@vitejs/plugin-vue&quot;: &quot;^6.0.1&quot;,
-    &quot;vite&quot;: &quot;^7.1.2&quot;
+    &quot;nodemon&quot;: &quot;^3.1.10&quot;
   }
 }
 </code></pre>
-            <div class="border-top p-3 small bg-body-tertiary">
-              <details open>
-                <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
-                <ul class="mt-2 mb-0"><li>ชื่อโปรเจกต์ server, scripts dev/start และ dependencies (express, mysql2, multer, cors)</li></ul>
-              </details>
+              <div class="border-top p-3 small bg-body-tertiary">
+                <details open>
+                  <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
+                  <ul class="mt-2 mb-0">
+                    <li>ชื่อโปรเจกต์และสคริปต์ run (dev/start)</li>
+                    <li>dependencies หลัก: express, mysql2, multer, cors</li>
+                  </ul>
+                </details>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <div><strong>server/.env</strong></div>
-            <button class="btn btn-sm btn-outline-secondary" onclick="copyCode('code-1247730865379112467', this)">คัดลอก</button>
-          </div>
-          <div class="card-body p-0">
-            <pre class="m-0"><code id="code-1247730865379112467" class="language-bash">PORT=3000
+
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div><strong>server/.env</strong></div>
+              <button class="btn btn-sm btn-outline-secondary"
+                onclick="copyCode('code-1247730865379112467', this)">คัดลอก</button>
+            </div>
+            <div class="card-body p-0">
+              <pre class="m-0"><code id="code-1247730865379112467" class="language-bash">PORT=3000
 DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=
 DB_NAME=workshop_3
 FRONTEND_ORIGIN=http://localhost:5173
 </code></pre>
-            <div class="border-top p-3 small bg-body-tertiary">
-              <details open>
-                <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
-                <ul class="mt-2 mb-0"><li>ตั้งค่า PORT/DB_* และ FRONTEND_ORIGIN=http://localhost:5173</li></ul>
-              </details>
+              <div class="border-top p-3 small bg-body-tertiary">
+                <details open>
+                  <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
+                  <ul class="mt-2 mb-0">
+                    <li>ตั้งค่า PORT และ MySQL + FRONTEND_ORIGIN สำหรับ CORS</li>
+                  </ul>
+                </details>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <div><strong>server/src/config/db.js</strong></div>
-            <button class="btn btn-sm btn-outline-secondary" onclick="copyCode('code-5108514231112370818', this)">คัดลอก</button>
-          </div>
-          <div class="card-body p-0">
-            <pre class="m-0"><code id="code-5108514231112370818" class="language-javascript">const mysql = require(&#x27;mysql2/promise&#x27;);
+
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div><strong>server/src/config/db.js</strong></div>
+              <button class="btn btn-sm btn-outline-secondary"
+                onclick="copyCode('code-5108514231112370818', this)">คัดลอก</button>
+            </div>
+            <div class="card-body p-0">
+              <pre class="m-0"><code id="code-5108514231112370818" class="language-javascript">const mysql = require(&#x27;mysql2/promise&#x27;);
 
 const pool = mysql.createPool({
   host: process.env.DB_HOST,
@@ -248,22 +231,25 @@ const pool = mysql.createPool({
 
 module.exports = { pool };
 </code></pre>
-            <div class="border-top p-3 small bg-body-tertiary">
-              <details open>
-                <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
-                <ul class="mt-2 mb-0"><li>ตั้ง MySQL pool (mysql2/promise) และ export `pool` ให้ services ใช้</li></ul>
-              </details>
+              <div class="border-top p-3 small bg-body-tertiary">
+                <details open>
+                  <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
+                  <ul class="mt-2 mb-0">
+                    <li>สร้าง MySQL pool (mysql2/promise) และ export ให้ services ใช้</li>
+                  </ul>
+                </details>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <div><strong>server/src/app.js</strong></div>
-            <button class="btn btn-sm btn-outline-secondary" onclick="copyCode('code-6038135747500391200', this)">คัดลอก</button>
-          </div>
-          <div class="card-body p-0">
-            <pre class="m-0"><code id="code-6038135747500391200" class="language-javascript">require(&#x27;dotenv&#x27;).config();
+
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div><strong>server/src/app.js</strong></div>
+              <button class="btn btn-sm btn-outline-secondary"
+                onclick="copyCode('code-6038135747500391200', this)">คัดลอก</button>
+            </div>
+            <div class="card-body p-0">
+              <pre class="m-0"><code id="code-6038135747500391200" class="language-javascript">require(&#x27;dotenv&#x27;).config();
 const path = require(&#x27;path&#x27;);
 const fs = require(&#x27;fs&#x27;);
 const express = require(&#x27;express&#x27;);
@@ -304,22 +290,54 @@ app.use(errorHandler);
 const port = process.env.PORT || 3000;
 app.listen(port, () =&gt; console.log(`API running at http://localhost:${port}`));
 </code></pre>
-            <div class="border-top p-3 small bg-body-tertiary">
-              <details open>
-                <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
-                <ul class="mt-2 mb-0"><li>ตั้งค่า express, CORS, body, static /teacher_image, รวม routes /api, ใช้ error handlers</li></ul>
-              </details>
+              <div class="border-top p-3 small bg-body-tertiary">
+                <details open>
+                  <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
+                  <ul class="mt-2 mb-0">
+                    <li>ตั้งค่า Express, CORS, body parser, static /teacher_image, ผูก routes /api, ใช้ error handler
+                    </li>
+                  </ul>
+                </details>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <div><strong>server/src/routes/position.routes.js</strong></div>
-            <button class="btn btn-sm btn-outline-secondary" onclick="copyCode('code-1224690805507874632', this)">คัดลอก</button>
+
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div><strong>server/src/routes/index.js</strong></div>
+              <button class="btn btn-sm btn-outline-secondary"
+                onclick="copyCode('code-1462144772581685870', this)">คัดลอก</button>
+            </div>
+            <div class="card-body p-0">
+              <pre class="m-0"><code id="code-1462144772581685870" class="language-javascript">const express = require(&#x27;express&#x27;);
+const teacherRoutes = require(&#x27;./teacher.routes&#x27;);
+const positionRoutes = require(&#x27;./position.routes&#x27;);
+
+const router = express.Router();
+router.use(&#x27;/teachers&#x27;, teacherRoutes);
+router.use(&#x27;/positions&#x27;, positionRoutes);
+
+module.exports = router;
+</code></pre>
+              <div class="border-top p-3 small bg-body-tertiary">
+                <details open>
+                  <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
+                  <ul class="mt-2 mb-0">
+                    <li>รวม router ของตำแหน่งและครู -&gt; export เป็น router หลัก</li>
+                  </ul>
+                </details>
+              </div>
+            </div>
           </div>
-          <div class="card-body p-0">
-            <pre class="m-0"><code id="code-1224690805507874632" class="language-javascript">const express = require(&#x27;express&#x27;);
+
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div><strong>server/src/routes/position.routes.js</strong></div>
+              <button class="btn btn-sm btn-outline-secondary"
+                onclick="copyCode('code-1224690805507874632', this)">คัดลอก</button>
+            </div>
+            <div class="card-body p-0">
+              <pre class="m-0"><code id="code-1224690805507874632" class="language-javascript">const express = require(&#x27;express&#x27;);
 const ctrl = require(&#x27;../controllers/position.controller&#x27;);
 
 const router = express.Router();
@@ -332,22 +350,25 @@ router.delete(&#x27;/:id&#x27;, ctrl.remove);
 
 module.exports = router;
 </code></pre>
-            <div class="border-top p-3 small bg-body-tertiary">
-              <details open>
-                <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
-                <ul class="mt-2 mb-0"><li>กำหนด REST CRUD ตำแหน่ง → controller</li></ul>
-              </details>
+              <div class="border-top p-3 small bg-body-tertiary">
+                <details open>
+                  <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
+                  <ul class="mt-2 mb-0">
+                    <li>กำหนด REST: GET/POST/PUT/DELETE /positions</li>
+                  </ul>
+                </details>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <div><strong>server/src/routes/teacher.routes.js</strong></div>
-            <button class="btn btn-sm btn-outline-secondary" onclick="copyCode('code-8441629626353728948', this)">คัดลอก</button>
-          </div>
-          <div class="card-body p-0">
-            <pre class="m-0"><code id="code-8441629626353728948" class="language-javascript">const express = require(&#x27;express&#x27;);
+
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div><strong>server/src/routes/teacher.routes.js</strong></div>
+              <button class="btn btn-sm btn-outline-secondary"
+                onclick="copyCode('code-8441629626353728948', this)">คัดลอก</button>
+            </div>
+            <div class="card-body p-0">
+              <pre class="m-0"><code id="code-8441629626353728948" class="language-javascript">const express = require(&#x27;express&#x27;);
 const ctrl = require(&#x27;../controllers/teacher.controller&#x27;);
 const { uploadSingleImage } = require(&#x27;../middlewares/uploadImage&#x27;);
 
@@ -361,22 +382,25 @@ router.delete(&#x27;/:id&#x27;, ctrl.remove);
 
 module.exports = router;
 </code></pre>
-            <div class="border-top p-3 small bg-body-tertiary">
-              <details open>
-                <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
-                <ul class="mt-2 mb-0"><li>กำหนด REST CRUD ครู + Multer ฟิลด์ `image` → controller</li></ul>
-              </details>
+              <div class="border-top p-3 small bg-body-tertiary">
+                <details open>
+                  <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
+                  <ul class="mt-2 mb-0">
+                    <li>กำหนด REST: /teachers + Multer field &#x27;image&#x27; สำหรับอัปโหลด</li>
+                  </ul>
+                </details>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <div><strong>server/src/controllers/position.controller.js</strong></div>
-            <button class="btn btn-sm btn-outline-secondary" onclick="copyCode('code-6717504045195257', this)">คัดลอก</button>
-          </div>
-          <div class="card-body p-0">
-            <pre class="m-0"><code id="code-6717504045195257" class="language-javascript">const asyncHandler = require(&#x27;../middlewares/asyncHandler&#x27;);
+
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div><strong>server/src/controllers/position.controller.js</strong></div>
+              <button class="btn btn-sm btn-outline-secondary"
+                onclick="copyCode('code-6717504045195257', this)">คัดลอก</button>
+            </div>
+            <div class="card-body p-0">
+              <pre class="m-0"><code id="code-6717504045195257" class="language-javascript">const asyncHandler = require(&#x27;../middlewares/asyncHandler&#x27;);
 const svc = require(&#x27;../services/position.service&#x27;);
 
 // ภาษาง่าย ๆ: ดึง-เพิ่ม-แก้-ลบ ตำแหน่ง
@@ -411,22 +435,25 @@ exports.remove = asyncHandler(async (req, res) =&gt; {
   res.status(204).send();
 });
 </code></pre>
-            <div class="border-top p-3 small bg-body-tertiary">
-              <details open>
-                <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
-                <ul class="mt-2 mb-0"><li>ตรวจ input, เรียก service, ตอบ JSON และสถานะที่เหมาะสม</li></ul>
-              </details>
+              <div class="border-top p-3 small bg-body-tertiary">
+                <details open>
+                  <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
+                  <ul class="mt-2 mb-0">
+                    <li>รับ req ตรวจ input แล้วเรียก service, ส่ง status โค้ดเหมาะสม</li>
+                  </ul>
+                </details>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <div><strong>server/src/controllers/teacher.controller.js</strong></div>
-            <button class="btn btn-sm btn-outline-secondary" onclick="copyCode('code-1285966501118603972', this)">คัดลอก</button>
-          </div>
-          <div class="card-body p-0">
-            <pre class="m-0"><code id="code-1285966501118603972" class="language-javascript">const asyncHandler = require(&#x27;../middlewares/asyncHandler&#x27;);
+
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div><strong>server/src/controllers/teacher.controller.js</strong></div>
+              <button class="btn btn-sm btn-outline-secondary"
+                onclick="copyCode('code-1285966501118603972', this)">คัดลอก</button>
+            </div>
+            <div class="card-body p-0">
+              <pre class="m-0"><code id="code-1285966501118603972" class="language-javascript">const asyncHandler = require(&#x27;../middlewares/asyncHandler&#x27;);
 const svc = require(&#x27;../services/teacher.service&#x27;);
 const fs = require(&#x27;fs&#x27;);
 const path = require(&#x27;path&#x27;);
@@ -491,22 +518,25 @@ exports.remove = asyncHandler(async (req, res) =&gt; {
   res.status(204).send();
 });
 </code></pre>
-            <div class="border-top p-3 small bg-body-tertiary">
-              <details open>
-                <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
-                <ul class="mt-2 mb-0"><li>สร้าง/แก้/ลบ ครู, แนบ image_url, ใช้ req.file เมื่อมีรูป</li></ul>
-              </details>
+              <div class="border-top p-3 small bg-body-tertiary">
+                <details open>
+                  <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
+                  <ul class="mt-2 mb-0">
+                    <li>แนบ URL รูปจาก req.file, ลบรูปเก่าเมื่อแก้ไข, validate position_id</li>
+                  </ul>
+                </details>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <div><strong>server/src/services/position.service.js</strong></div>
-            <button class="btn btn-sm btn-outline-secondary" onclick="copyCode('code-2620333031151936185', this)">คัดลอก</button>
-          </div>
-          <div class="card-body p-0">
-            <pre class="m-0"><code id="code-2620333031151936185" class="language-javascript">const { pool } = require(&#x27;../config/db&#x27;);
+
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div><strong>server/src/services/position.service.js</strong></div>
+              <button class="btn btn-sm btn-outline-secondary"
+                onclick="copyCode('code-2620333031151936185', this)">คัดลอก</button>
+            </div>
+            <div class="card-body p-0">
+              <pre class="m-0"><code id="code-2620333031151936185" class="language-javascript">const { pool } = require(&#x27;../config/db&#x27;);
 
 async function listPositions() {
   const [rows] = await pool.query(&#x27;SELECT id, name FROM `position` ORDER BY id ASC&#x27;);
@@ -541,22 +571,25 @@ module.exports = {
   listPositions, getPositionById, createPosition, updatePosition, deletePosition
 };
 </code></pre>
-            <div class="border-top p-3 small bg-body-tertiary">
-              <details open>
-                <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
-                <ul class="mt-2 mb-0"><li>ติดต่อ DB กับตาราง position (SELECT/INSERT/UPDATE/DELETE)</li></ul>
-              </details>
+              <div class="border-top p-3 small bg-body-tertiary">
+                <details open>
+                  <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
+                  <ul class="mt-2 mb-0">
+                    <li>ติดต่อ DB โดยตรง (SELECT/INSERT/UPDATE/DELETE)</li>
+                  </ul>
+                </details>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <div><strong>server/src/services/teacher.service.js</strong></div>
-            <button class="btn btn-sm btn-outline-secondary" onclick="copyCode('code-4088468895897042605', this)">คัดลอก</button>
-          </div>
-          <div class="card-body p-0">
-            <pre class="m-0"><code id="code-4088468895897042605" class="language-javascript">const { pool } = require(&#x27;../config/db&#x27;);
+
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div><strong>server/src/services/teacher.service.js</strong></div>
+              <button class="btn btn-sm btn-outline-secondary"
+                onclick="copyCode('code-4088468895897042605', this)">คัดลอก</button>
+            </div>
+            <div class="card-body p-0">
+              <pre class="m-0"><code id="code-4088468895897042605" class="language-javascript">const { pool } = require(&#x27;../config/db&#x27;);
 const { getPositionById } = require(&#x27;./position.service&#x27;);
 const { unlinkSafe } = require(&#x27;../utils/file&#x27;);
 
@@ -633,41 +666,47 @@ async function deleteTeacher(id) {
 
 module.exports = { listTeachers, getTeacherById, createTeacher, updateTeacher, deleteTeacher };
 </code></pre>
-            <div class="border-top p-3 small bg-body-tertiary">
-              <details open>
-                <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
-                <ul class="mt-2 mb-0"><li>ติดต่อ DB ตาราง teacher (คอลัมน์รูป `img`) + JOIN position, ลบไฟล์เก่าเมื่ออัปเดตรูป</li></ul>
-              </details>
+              <div class="border-top p-3 small bg-body-tertiary">
+                <details open>
+                  <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
+                  <ul class="mt-2 mb-0">
+                    <li>ติดต่อ DB teacher + JOIN position, ลบไฟล์เก่าเมื่ออัปเดตรูป</li>
+                  </ul>
+                </details>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <div><strong>server/src/middlewares/asyncHandler.js</strong></div>
-            <button class="btn btn-sm btn-outline-secondary" onclick="copyCode('code-7193967559327310255', this)">คัดลอก</button>
-          </div>
-          <div class="card-body p-0">
-            <pre class="m-0"><code id="code-7193967559327310255" class="language-javascript">// ช่วยจับ error ในฟังก์ชัน async แบบสั้น ๆ
+
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div><strong>server/src/middlewares/asyncHandler.js</strong></div>
+              <button class="btn btn-sm btn-outline-secondary"
+                onclick="copyCode('code-7193967559327310255', this)">คัดลอก</button>
+            </div>
+            <div class="card-body p-0">
+              <pre class="m-0"><code id="code-7193967559327310255" class="language-javascript">// ช่วยจับ error ในฟังก์ชัน async แบบสั้น ๆ
 module.exports = (fn) =&gt; (req, res, next) =&gt;
     Promise.resolve(fn(req, res, next)).catch(next);
 </code></pre>
-            <div class="border-top p-3 small bg-body-tertiary">
-              <details open>
-                <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
-                <ul class="mt-2 mb-0"><li>wrap async แล้วโยน error ไป errorHandler</li></ul>
-              </details>
+              <div class="border-top p-3 small bg-body-tertiary">
+                <details open>
+                  <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
+                  <ul class="mt-2 mb-0">
+                    <li>ห่อ async fn แล้วส่ง error ไป errorHandler</li>
+                  </ul>
+                </details>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <div><strong>server/src/middlewares/errorHandler.js</strong></div>
-            <button class="btn btn-sm btn-outline-secondary" onclick="copyCode('code-4124401909988162566', this)">คัดลอก</button>
-          </div>
-          <div class="card-body p-0">
-            <pre class="m-0"><code id="code-4124401909988162566" class="language-javascript">const notFound = (req, res, next) =&gt; {
+
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div><strong>server/src/middlewares/errorHandler.js</strong></div>
+              <button class="btn btn-sm btn-outline-secondary"
+                onclick="copyCode('code-4124401909988162566', this)">คัดลอก</button>
+            </div>
+            <div class="card-body p-0">
+              <pre class="m-0"><code id="code-4124401909988162566" class="language-javascript">const notFound = (req, res, next) =&gt; {
     const err = new Error(`Not Found - ${req.originalUrl}`);
     err.status = 404;
     next(err);
@@ -681,22 +720,25 @@ const errorHandler = (err, req, res, next) =&gt; {
 
 module.exports = { notFound, errorHandler };
 </code></pre>
-            <div class="border-top p-3 small bg-body-tertiary">
-              <details open>
-                <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
-                <ul class="mt-2 mb-0"><li>notFound/500 handler + log error</li></ul>
-              </details>
+              <div class="border-top p-3 small bg-body-tertiary">
+                <details open>
+                  <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
+                  <ul class="mt-2 mb-0">
+                    <li>notFound และ errorHandler รวมศูนย์</li>
+                  </ul>
+                </details>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <div><strong>server/src/middlewares/uploadImage.js</strong></div>
-            <button class="btn btn-sm btn-outline-secondary" onclick="copyCode('code-6098155362999173521', this)">คัดลอก</button>
-          </div>
-          <div class="card-body p-0">
-            <pre class="m-0"><code id="code-6098155362999173521" class="language-javascript">const multer = require(&#x27;multer&#x27;);
+
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div><strong>server/src/middlewares/uploadImage.js</strong></div>
+              <button class="btn btn-sm btn-outline-secondary"
+                onclick="copyCode('code-6098155362999173521', this)">คัดลอก</button>
+            </div>
+            <div class="card-body p-0">
+              <pre class="m-0"><code id="code-6098155362999173521" class="language-javascript">const multer = require(&#x27;multer&#x27;);
 const path = require(&#x27;path&#x27;);
 const fs = require(&#x27;fs&#x27;);
 
@@ -725,22 +767,25 @@ const uploadSingleImage = multer({
 
 module.exports = { uploadSingleImage };
 </code></pre>
-            <div class="border-top p-3 small bg-body-tertiary">
-              <details open>
-                <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
-                <ul class="mt-2 mb-0"><li>ตั้งค่า Multer: โฟลเดอร์/ชนิด/ขนาดไฟล์ + สร้างชื่อใหม่</li></ul>
-              </details>
+              <div class="border-top p-3 small bg-body-tertiary">
+                <details open>
+                  <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
+                  <ul class="mt-2 mb-0">
+                    <li>กำหนด storage/filer/limit ของ Multer ให้รับเฉพาะภาพ</li>
+                  </ul>
+                </details>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <div><strong>server/src/utils/file.js</strong></div>
-            <button class="btn btn-sm btn-outline-secondary" onclick="copyCode('code-534520182782855317', this)">คัดลอก</button>
-          </div>
-          <div class="card-body p-0">
-            <pre class="m-0"><code id="code-534520182782855317" class="language-javascript">const fs = require(&#x27;fs&#x27;);
+
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div><strong>server/src/utils/file.js</strong></div>
+              <button class="btn btn-sm btn-outline-secondary"
+                onclick="copyCode('code-534520182782855317', this)">คัดลอก</button>
+            </div>
+            <div class="card-body p-0">
+              <pre class="m-0"><code id="code-534520182782855317" class="language-javascript">const fs = require(&#x27;fs&#x27;);
 const path = require(&#x27;path&#x27;);
 
 function unlinkSafe(relativePath) {
@@ -753,92 +798,45 @@ function unlinkSafe(relativePath) {
 
 module.exports = { unlinkSafe };
 </code></pre>
-            <div class="border-top p-3 small bg-body-tertiary">
-              <details open>
-                <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
-                <ul class="mt-2 mb-0"><li>`unlinkSafe` ลบไฟล์จาก public แบบปลอดภัย</li></ul>
-              </details>
+              <div class="border-top p-3 small bg-body-tertiary">
+                <details open>
+                  <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
+                  <ul class="mt-2 mb-0">
+                    <li>unlinkSafe(path) ลบไฟล์แบบไม่ throw ถ้าไม่พบ</li>
+                  </ul>
+                </details>
+              </div>
             </div>
           </div>
-        </div>
-        
-      </div>
 
-      <!-- FRONTEND -->
-      <div id="frontend" class="mb-5">
-        <h2 class="h4 fw-bold">Frontend</h2>
-      </div>
-
-      <div id="frontend-setup" class="mb-4">
-        <div class="d-flex justify-content-between align-items-center">
-          <h3 class="h5 fw-bold mb-2">1) Setup Client</h3>
-          <button class="btn btn-sm btn-outline-secondary" onclick="copyBlock('setup-frontend', this)">คัดลอก</button>
         </div>
-        <pre class="mb-3"><code id="setup-frontend" class="language-bash"># สร้างโปรเจกต์ด้วย Vite + Vue
+
+        <!-- FRONTEND -->
+        <div id="frontend" class="mb-5">
+          <h2 class="h4 fw-bold">Frontend</h2>
+        </div>
+
+        <div id="frontend-setup" class="mb-4">
+          <div class="d-flex justify-content-between align-items-center">
+            <h3 class="h5 fw-bold mb-2">1) Setup Client</h3>
+            <button class="btn btn-sm btn-outline-secondary" onclick="copyBlock('setup-frontend', this)">คัดลอก</button>
+          </div>
+          <pre class="mb-3"><code id="setup-frontend" class="language-bash"># สร้างโปรเจกต์ด้วย Vite + Vue
 npm create vite@latest frontend -- --template vue
 cd frontend
 
-# ติดตั้ง dependencies
+# ติดตั้ง dependencies ที่ใช้จริง
 npm install
-npm install axios bootstrap
+npm install axios bootstrap bootstrap-icons pinia vue-router
 
 # รัน dev server
 npm run dev
 </code></pre>
-        <div class="d-flex justify-content-between align-items-center">
-          <h4 class="h6 fw-bold mb-2">Dependencies (package.json)</h4>
-          <button class="btn btn-sm btn-outline-secondary" onclick="copyBlock('frontend-deps', this)">คัดลอก</button>
-        </div>
-        <pre class="mb-3"><code id="frontend-deps" class="language-json">{
-  &quot;dependencies&quot;: {
-    &quot;axios&quot;: &quot;^1.6.2&quot;,
-    &quot;bootstrap&quot;: &quot;^5.3.2&quot;,
-    &quot;vue&quot;: &quot;^3.3.4&quot;
-  },
-  &quot;devDependencies&quot;: {
-    &quot;@vitejs/plugin-vue&quot;: &quot;^4.2.3&quot;,
-    &quot;vite&quot;: &quot;^4.4.9&quot;
-  }
-}
-</code></pre>
-      </div>
-
-      <div id="frontend-structure" class="mb-4">
-        <h3 class="h5 fw-bold mb-2">2) โครงสร้าง Client</h3>
-        <pre class="mb-3"><code class="language-bash">frontend/
-|-- src/
-|   |-- components/
-|   |-- pages/
-|   |-- api/ (หรือ router/)
-|   |-- App.vue
-|   `-- main.js
-</code></pre>
-      </div>
-
-      <div id="frontend-pages" class="mb-4">
-        <h3 class="h5 fw-bold mb-2">3) Pages & Components</h3>
-        <p class="small text-secondary">TeachersPage / PositionsPage / DashboardPage + ConfirmModal / ImageUploader</p>
-      </div>
-
-      <div id="frontend-code" class="mb-5">
-        <h3 class="h5 fw-bold mb-3">4) โค้ด Frontend</h3>
-        
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <div><strong>frontend/package.json</strong></div>
-            <button class="btn btn-sm btn-outline-secondary" onclick="copyCode('code-8735005248656263635', this)">คัดลอก</button>
+          <div class="d-flex justify-content-between align-items-center">
+            <h4 class="h6 fw-bold mb-2">Dependencies (package.json)</h4>
+            <button class="btn btn-sm btn-outline-secondary" onclick="copyBlock('frontend-deps', this)">คัดลอก</button>
           </div>
-          <div class="card-body p-0">
-            <pre class="m-0"><code id="code-8735005248656263635" class="language-json">{
-  &quot;name&quot;: &quot;workshop-3&quot;,
-  &quot;private&quot;: true,
-  &quot;version&quot;: &quot;0.0.0&quot;,
-  &quot;type&quot;: &quot;module&quot;,
-  &quot;scripts&quot;: {
-    &quot;dev&quot;: &quot;vite&quot;,
-    &quot;build&quot;: &quot;vite build&quot;,
-    &quot;preview&quot;: &quot;vite preview&quot;
-  },
+          <pre class="mb-3"><code id="frontend-deps" class="language-json">{
   &quot;dependencies&quot;: {
     &quot;axios&quot;: &quot;^1.11.0&quot;,
     &quot;bootstrap&quot;: &quot;^5.3.8&quot;,
@@ -846,29 +844,91 @@ npm run dev
     &quot;pinia&quot;: &quot;^3.0.3&quot;,
     &quot;vue&quot;: &quot;^3.5.18&quot;,
     &quot;vue-router&quot;: &quot;^4.5.1&quot;
-  },
-  &quot;devDependencies&quot;: {
-    &quot;@vitejs/plugin-vue&quot;: &quot;^6.0.1&quot;,
-    &quot;vite&quot;: &quot;^7.1.2&quot;
   }
 }
 </code></pre>
-            <div class="border-top p-3 small bg-body-tertiary">
-              <details open>
-                <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
-                <ul class="mt-2 mb-0"><li>Vite + Vue 3, scripts dev/build/preview, dependencies: vue/axios/bootstrap</li></ul>
-              </details>
+        </div>
+
+        <div id="frontend-structure" class="mb-4">
+          <h3 class="h5 fw-bold mb-2">2) โครงสร้าง Client</h3>
+          <pre class="mb-3"><code class="language-bash">frontend/
+|-- src/
+|   |-- api/
+|   |   |-- index.js
+|   |-- assets/
+|   |-- components/
+|   |   |-- ConfirmModal.vue
+|   |   |-- ImageUploader.vue
+|   |-- pages/
+|   |   |-- DashboardPage.vue
+|   |   |-- PositionsPage.vue
+|   |   |-- TeachersPage.vue
+|   |-- router/
+|   |   |-- index.js
+|   |-- App.vue
+|   |-- main.js
+|   |-- style.css
+|-- .env
+|-- vite.config.js
+|-- package.json
+</code></pre>
+        </div>
+
+        <div id="frontend-code" class="mb-5">
+          <h3 class="h5 fw-bold mb-3">3) โค้ด Frontend</h3>
+
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div><strong>frontend/package.json</strong></div>
+              <button class="btn btn-sm btn-outline-secondary"
+                onclick="copyCode('code-8735005248656263635', this)">คัดลอก</button>
+            </div>
+            <div class="card-body p-0">
+              <pre class="m-0"><code id="code-8735005248656263635" class="language-json">{
+  &quot;name&quot;: &quot;server&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;dev&quot;: &quot;nodemon src/app.js&quot;,
+    &quot;start&quot;: &quot;node src/app.js&quot;
+  },
+  &quot;keywords&quot;: [],
+  &quot;author&quot;: &quot;&quot;,
+  &quot;license&quot;: &quot;ISC&quot;,
+  &quot;type&quot;: &quot;commonjs&quot;,
+  &quot;dependencies&quot;: {
+    &quot;cors&quot;: &quot;^2.8.5&quot;,
+    &quot;dotenv&quot;: &quot;^17.2.1&quot;,
+    &quot;express&quot;: &quot;^5.1.0&quot;,
+    &quot;multer&quot;: &quot;^2.0.2&quot;,
+    &quot;mysql2&quot;: &quot;^3.14.4&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;nodemon&quot;: &quot;^3.1.10&quot;
+  }
+}
+</code></pre>
+              <div class="border-top p-3 small bg-body-tertiary">
+                <details open>
+                  <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
+                  <ul class="mt-2 mb-0">
+                    <li>Vite + Vue 3 + Scripts (dev/build/preview)</li>
+                    <li>deps: axios, bootstrap, icons, pinia, vue-router</li>
+                  </ul>
+                </details>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <div><strong>frontend/vite.config.js</strong></div>
-            <button class="btn btn-sm btn-outline-secondary" onclick="copyCode('code-7214863525748021072', this)">คัดลอก</button>
-          </div>
-          <div class="card-body p-0">
-            <pre class="m-0"><code id="code-7214863525748021072" class="language-javascript">import { defineConfig } from &#x27;vite&#x27;
+
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div><strong>frontend/vite.config.js</strong></div>
+              <button class="btn btn-sm btn-outline-secondary"
+                onclick="copyCode('code-7214863525748021072', this)">คัดลอก</button>
+            </div>
+            <div class="card-body p-0">
+              <pre class="m-0"><code id="code-7214863525748021072" class="language-javascript">import { defineConfig } from &#x27;vite&#x27;
 import vue from &#x27;@vitejs/plugin-vue&#x27;
 import { fileURLToPath, URL } from &#x27;node:url&#x27;
 
@@ -881,39 +941,50 @@ export default defineConfig({
   }
 })
 </code></pre>
-            <div class="border-top p-3 small bg-body-tertiary">
-              <details open>
-                <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
-                <ul class="mt-2 mb-0"><li>ตั้ง alias `@` ไปโฟลเดอร์ `src/`</li></ul>
-              </details>
+              <div class="border-top p-3 small bg-body-tertiary">
+                <details open>
+                  <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
+                  <ul class="mt-2 mb-0">
+                    <li>ตั้ง alias &#x27;@&#x27; → src/ สำหรับ import สั้น</li>
+                  </ul>
+                </details>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <div><strong>frontend/.env</strong></div>
-            <button class="btn btn-sm btn-outline-secondary" onclick="copyCode('code-3069148127277271527', this)">คัดลอก</button>
-          </div>
-          <div class="card-body p-0">
-            <pre class="m-0"><code id="code-3069148127277271527" class="language-bash">VITE_API_BASE=http://localhost:3000/api
+
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div><strong>frontend/.env</strong></div>
+              <button class="btn btn-sm btn-outline-secondary"
+                onclick="copyCode('code-3069148127277271527', this)">คัดลอก</button>
+            </div>
+            <div class="card-body p-0">
+              <pre class="m-0"><code id="code-3069148127277271527" class="language-bash">PORT=3000
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=
+DB_NAME=workshop_3
+FRONTEND_ORIGIN=http://localhost:5173
 </code></pre>
-            <div class="border-top p-3 small bg-body-tertiary">
-              <details open>
-                <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
-                <ul class="mt-2 mb-0"><li>กำหนด VITE_API_BASE = http://localhost:3000/api เพื่อชี้ไปที่ server</li></ul>
-              </details>
+              <div class="border-top p-3 small bg-body-tertiary">
+                <details open>
+                  <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
+                  <ul class="mt-2 mb-0">
+                    <li>กำหนด VITE_API_BASE=http://localhost:3000/api เพื่อเรียก server</li>
+                  </ul>
+                </details>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <div><strong>frontend/src/main.js</strong></div>
-            <button class="btn btn-sm btn-outline-secondary" onclick="copyCode('code-8711509733664347310', this)">คัดลอก</button>
-          </div>
-          <div class="card-body p-0">
-            <pre class="m-0"><code id="code-8711509733664347310" class="language-javascript">import { createApp } from &#x27;vue&#x27;;
+
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div><strong>frontend/src/main.js</strong></div>
+              <button class="btn btn-sm btn-outline-secondary"
+                onclick="copyCode('code-8711509733664347310', this)">คัดลอก</button>
+            </div>
+            <div class="card-body p-0">
+              <pre class="m-0"><code id="code-8711509733664347310" class="language-javascript">import { createApp } from &#x27;vue&#x27;;
 import { createPinia } from &#x27;pinia&#x27;;
 import &#x27;bootstrap/dist/css/bootstrap.min.css&#x27;;
 import &#x27;bootstrap-icons/font/bootstrap-icons.css&#x27;;
@@ -924,22 +995,25 @@ import router from &#x27;./router&#x27;;
 
 createApp(App).use(createPinia()).use(router).mount(&#x27;#app&#x27;);
 </code></pre>
-            <div class="border-top p-3 small bg-body-tertiary">
-              <details open>
-                <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
-                <ul class="mt-2 mb-0"><li>สร้างแอป Vue, import Bootstrap, mount แอป</li></ul>
-              </details>
+              <div class="border-top p-3 small bg-body-tertiary">
+                <details open>
+                  <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
+                  <ul class="mt-2 mb-0">
+                    <li>bootstrap CSS/JS, createApp(App).use(router).mount</li>
+                  </ul>
+                </details>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <div><strong>frontend/src/App.vue</strong></div>
-            <button class="btn btn-sm btn-outline-secondary" onclick="copyCode('code-777036047376154279', this)">คัดลอก</button>
-          </div>
-          <div class="card-body p-0">
-            <pre class="m-0"><code id="code-777036047376154279" class="language-markup">&lt;template&gt;
+
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div><strong>frontend/src/App.vue</strong></div>
+              <button class="btn btn-sm btn-outline-secondary"
+                onclick="copyCode('code-777036047376154279', this)">คัดลอก</button>
+            </div>
+            <div class="card-body p-0">
+              <pre class="m-0"><code id="code-777036047376154279" class="language-markup">&lt;template&gt;
   &lt;div class=&quot;min-vh-100 bg-light&quot;&gt;
     &lt;nav class=&quot;navbar navbar-expand-lg bg-white border-bottom sticky-top&quot;&gt;
       &lt;div class=&quot;container&quot;&gt;
@@ -963,22 +1037,81 @@ createApp(App).use(createPinia()).use(router).mount(&#x27;#app&#x27;);
   &lt;/div&gt;
 &lt;/template&gt;
 </code></pre>
-            <div class="border-top p-3 small bg-body-tertiary">
-              <details open>
-                <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
-                <ul class="mt-2 mb-0"><li>หน้าหลัก (Navbar + &lt;router-view/&gt;)</li></ul>
-              </details>
+              <div class="border-top p-3 small bg-body-tertiary">
+                <details open>
+                  <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
+                  <ul class="mt-2 mb-0">
+                    <li>Layout หลัก + Navbar + &lt;router-view/&gt;</li>
+                  </ul>
+                </details>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <div><strong>frontend/src/components/ConfirmModal.vue</strong></div>
-            <button class="btn btn-sm btn-outline-secondary" onclick="copyCode('code-6264175705161745610', this)">คัดลอก</button>
+
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div><strong>frontend/src/api/index.js</strong></div>
+              <button class="btn btn-sm btn-outline-secondary"
+                onclick="copyCode('code-6683514992682281037', this)">คัดลอก</button>
+            </div>
+            <div class="card-body p-0">
+              <pre class="m-0"><code id="code-6683514992682281037" class="language-javascript">const express = require(&#x27;express&#x27;);
+const teacherRoutes = require(&#x27;./teacher.routes&#x27;);
+const positionRoutes = require(&#x27;./position.routes&#x27;);
+
+const router = express.Router();
+router.use(&#x27;/teachers&#x27;, teacherRoutes);
+router.use(&#x27;/positions&#x27;, positionRoutes);
+
+module.exports = router;
+</code></pre>
+              <div class="border-top p-3 small bg-body-tertiary">
+                <details open>
+                  <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
+                  <ul class="mt-2 mb-0">
+                    <li>สร้าง axios instance baseURL จาก .env + helper toFormData</li>
+                  </ul>
+                </details>
+              </div>
+            </div>
           </div>
-          <div class="card-body p-0">
-            <pre class="m-0"><code id="code-6264175705161745610" class="language-markup">&lt;template&gt;
+
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div><strong>frontend/src/router/index.js</strong></div>
+              <button class="btn btn-sm btn-outline-secondary"
+                onclick="copyCode('code-2618895791565560159', this)">คัดลอก</button>
+            </div>
+            <div class="card-body p-0">
+              <pre class="m-0"><code id="code-2618895791565560159" class="language-javascript">const express = require(&#x27;express&#x27;);
+const teacherRoutes = require(&#x27;./teacher.routes&#x27;);
+const positionRoutes = require(&#x27;./position.routes&#x27;);
+
+const router = express.Router();
+router.use(&#x27;/teachers&#x27;, teacherRoutes);
+router.use(&#x27;/positions&#x27;, positionRoutes);
+
+module.exports = router;
+</code></pre>
+              <div class="border-top p-3 small bg-body-tertiary">
+                <details open>
+                  <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
+                  <ul class="mt-2 mb-0">
+                    <li>ประกาศเส้นทาง / (Dashboard), /teachers, /positions</li>
+                  </ul>
+                </details>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div><strong>frontend/src/components/ConfirmModal.vue</strong></div>
+              <button class="btn btn-sm btn-outline-secondary"
+                onclick="copyCode('code-6264175705161745610', this)">คัดลอก</button>
+            </div>
+            <div class="card-body p-0">
+              <pre class="m-0"><code id="code-6264175705161745610" class="language-markup">&lt;template&gt;
   &lt;div class=&quot;modal fade show&quot; tabindex=&quot;-1&quot; style=&quot;display:block;&quot; v-if=&quot;open&quot;&gt;
     &lt;div class=&quot;modal-dialog&quot;&gt;
       &lt;div class=&quot;modal-content&quot;&gt;
@@ -1008,22 +1141,25 @@ defineProps({
 defineEmits([&#x27;confirm&#x27;,&#x27;cancel&#x27;]);
 &lt;/script&gt;
 </code></pre>
-            <div class="border-top p-3 small bg-body-tertiary">
-              <details open>
-                <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
-                <ul class="mt-2 mb-0"><li>Modal ยืนยันการลบ/การทำงานสำคัญ</li></ul>
-              </details>
+              <div class="border-top p-3 small bg-body-tertiary">
+                <details open>
+                  <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
+                  <ul class="mt-2 mb-0">
+                    <li>Modal ยืนยันลบ/คำสั่งสำคัญ - แบบ reusable</li>
+                  </ul>
+                </details>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <div><strong>frontend/src/components/ImageUploader.vue</strong></div>
-            <button class="btn btn-sm btn-outline-secondary" onclick="copyCode('code-371018714345974096', this)">คัดลอก</button>
-          </div>
-          <div class="card-body p-0">
-            <pre class="m-0"><code id="code-371018714345974096" class="language-markup">&lt;template&gt;
+
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div><strong>frontend/src/components/ImageUploader.vue</strong></div>
+              <button class="btn btn-sm btn-outline-secondary"
+                onclick="copyCode('code-371018714345974096', this)">คัดลอก</button>
+            </div>
+            <div class="card-body p-0">
+              <pre class="m-0"><code id="code-371018714345974096" class="language-markup">&lt;template&gt;
   &lt;div class=&quot;mb-3&quot;&gt;
     &lt;label class=&quot;form-label&quot;&gt;{{ label }}&lt;/label&gt;
     &lt;div class=&quot;d-flex align-items-center gap-3&quot;&gt;
@@ -1066,51 +1202,164 @@ function clearFile() {
 }
 &lt;/script&gt;
 </code></pre>
-            <div class="border-top p-3 small bg-body-tertiary">
-              <details open>
-                <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
-                <ul class="mt-2 mb-0"><li>อัปโหลดรูป ครู (ฟิลด์ `image`)</li></ul>
-              </details>
+              <div class="border-top p-3 small bg-body-tertiary">
+                <details open>
+                  <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
+                  <ul class="mt-2 mb-0">
+                    <li>preview รูป + ส่งไฟล์ชื่อ field &#x27;image&#x27;</li>
+                  </ul>
+                </details>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <div><strong>frontend/src/router/index.js</strong></div>
-            <button class="btn btn-sm btn-outline-secondary" onclick="copyCode('code-2618895791565560159', this)">คัดลอก</button>
-          </div>
-          <div class="card-body p-0">
-            <pre class="m-0"><code id="code-2618895791565560159" class="language-javascript">import { createRouter, createWebHistory } from &#x27;vue-router&#x27;;
-import DashboardPage from &#x27;@/pages/DashboardPage.vue&#x27;;
-import TeachersPage from &#x27;@/pages/TeachersPage.vue&#x27;;
-import PositionsPage from &#x27;@/pages/PositionsPage.vue&#x27;;
 
-export default createRouter({
-  history: createWebHistory(),
-  routes: [
-    { path: &#x27;/&#x27;, component: DashboardPage },
-    { path: &#x27;/teachers&#x27;, component: TeachersPage },
-    { path: &#x27;/positions&#x27;, component: PositionsPage },
-  ]
-});
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div><strong>frontend/src/pages/DashboardPage.vue</strong></div>
+              <button class="btn btn-sm btn-outline-secondary"
+                onclick="copyCode('code-8971578118938693708', this)">คัดลอก</button>
+            </div>
+            <div class="card-body p-0">
+              <pre class="m-0"><code id="code-8971578118938693708" class="language-markup">&lt;template&gt;
+  &lt;div class=&quot;row g-3&quot;&gt;
+    &lt;div class=&quot;col-md-4&quot;&gt;
+      &lt;div class=&quot;card&quot;&gt;
+        &lt;div class=&quot;card-body&quot;&gt;
+          &lt;h6 class=&quot;card-title&quot;&gt;สรุป&lt;/h6&gt;
+          &lt;p class=&quot;text-muted mb-0&quot;&gt;เริ่มจากเมนูด้านบนเพื่อจัดการข้อมูล&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
 </code></pre>
-            <div class="border-top p-3 small bg-body-tertiary">
-              <details open>
-                <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
-                <ul class="mt-2 mb-0"><li>ประกาศ routes: Dashboard/Teachers/Positions</li></ul>
-              </details>
+              <div class="border-top p-3 small bg-body-tertiary">
+                <details open>
+                  <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
+                  <ul class="mt-2 mb-0">
+                    <li>หน้าแรก สรุปสั้น ๆ หรือนับจำนวนข้อมูล</li>
+                  </ul>
+                </details>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <div><strong>frontend/src/pages/TeachersPage.vue</strong></div>
-            <button class="btn btn-sm btn-outline-secondary" onclick="copyCode('code-8660925212029973492', this)">คัดลอก</button>
+
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div><strong>frontend/src/pages/PositionsPage.vue</strong></div>
+              <button class="btn btn-sm btn-outline-secondary"
+                onclick="copyCode('code-6105059156506647764', this)">คัดลอก</button>
+            </div>
+            <div class="card-body p-0">
+              <pre class="m-0"><code id="code-6105059156506647764" class="language-markup">&lt;template&gt;
+  &lt;section&gt;
+    &lt;div class=&quot;d-flex justify-content-between align-items-center mb-3&quot;&gt;
+      &lt;h2 class=&quot;h5 mb-0&quot;&gt;Positions&lt;/h2&gt;
+      &lt;form class=&quot;d-flex gap-2&quot; @submit.prevent=&quot;create&quot;&gt;
+        &lt;input v-model=&quot;newName&quot; class=&quot;form-control&quot; placeholder=&quot;ชื่อตำแหน่ง&quot;&gt;
+        &lt;button class=&quot;btn btn-primary&quot;&gt;เพิ่ม&lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;card&quot;&gt;
+      &lt;div class=&quot;table-responsive&quot;&gt;
+        &lt;table class=&quot;table align-middle mb-0&quot;&gt;
+          &lt;thead class=&quot;table-light&quot;&gt;
+            &lt;tr&gt;
+              &lt;th&gt;ID&lt;/th&gt;
+              &lt;th&gt;Name&lt;/th&gt;
+              &lt;th class=&quot;text-end&quot;&gt;Actions&lt;/th&gt;
+            &lt;/tr&gt;
+          &lt;/thead&gt;
+          &lt;tbody&gt;
+            &lt;tr v-for=&quot;p in positions&quot; :key=&quot;p.id&quot;&gt;
+              &lt;td&gt;{{ p.id }}&lt;/td&gt;
+              &lt;td&gt;
+                &lt;input v-if=&quot;editId===p.id&quot; v-model=&quot;editName&quot; class=&quot;form-control&quot; /&gt;
+                &lt;span v-else&gt;{{ p.name }}&lt;/span&gt;
+              &lt;/td&gt;
+              &lt;td class=&quot;text-end&quot;&gt;
+                &lt;template v-if=&quot;editId===p.id&quot;&gt;
+                  &lt;button class=&quot;btn btn-sm btn-outline-secondary me-2&quot; @click=&quot;cancelEdit&quot;&gt;ยกเลิก&lt;/button&gt;
+                  &lt;button class=&quot;btn btn-sm btn-success&quot; @click=&quot;saveEdit(p.id)&quot;&gt;บันทึก&lt;/button&gt;
+                &lt;/template&gt;
+                &lt;template v-else&gt;
+                  &lt;button class=&quot;btn btn-sm btn-outline-primary me-2&quot; @click=&quot;startEdit(p)&quot;&gt;แก้ไข&lt;/button&gt;
+                  &lt;button class=&quot;btn btn-sm btn-danger&quot; @click=&quot;confirmDelete(p)&quot;&gt;ลบ&lt;/button&gt;
+                &lt;/template&gt;
+              &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr v-if=&quot;!positions.length&quot;&gt;
+              &lt;td colspan=&quot;3&quot; class=&quot;text-center text-muted py-4&quot;&gt;ไม่มีข้อมูล&lt;/td&gt;
+            &lt;/tr&gt;
+          &lt;/tbody&gt;
+        &lt;/table&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;ConfirmModal
+      :open=&quot;modal.open&quot;
+      title=&quot;ลบตำแหน่ง&quot;
+      :message=&quot;&#x27;คุณต้องการลบ “&#x27; + (modal.name || &#x27;&#x27;) + &#x27;” ใช่ไหม?&#x27;&quot;
+      @confirm=&quot;remove(modal.id)&quot;
+      @cancel=&quot;modal.open=false&quot;
+    /&gt;
+  &lt;/section&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref, onMounted } from &#x27;vue&#x27;;
+import { api } from &#x27;@/api&#x27;;
+import ConfirmModal from &#x27;@/components/ConfirmModal.vue&#x27;;
+
+const positions = ref([]);
+const newName = ref(&#x27;&#x27;);
+const editId = ref(null);
+const editName = ref(&#x27;&#x27;);
+const modal = ref({ open:false, id:null, name:&#x27;&#x27; });
+
+async function load() {
+  const { data } = await api.get(&#x27;/positions&#x27;);
+  positions.value = data;
+}
+onMounted(load);
+
+async function create() {
+  if (!newName.value.trim()) return;
+  await api.post(&#x27;/positions&#x27;, { name: newName.value.trim() });
+  newName.value = &#x27;&#x27;;
+  await load();
+}
+function startEdit(p) { editId.value = p.id; editName.value = p.name; }
+function cancelEdit() { editId.value = null; editName.value = &#x27;&#x27;; }
+async function saveEdit(id) {
+  if (!editName.value.trim()) return;
+  await api.put(`/positions/${id}`, { name: editName.value.trim() });
+  cancelEdit(); await load();
+}
+function confirmDelete(p) { modal.value = { open:true, id:p.id, name:p.name }; }
+async function remove(id) { await api.delete(`/positions/${id}`); modal.value.open=false; await load(); }
+&lt;/script&gt;
+</code></pre>
+              <div class="border-top p-3 small bg-body-tertiary">
+                <details open>
+                  <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
+                  <ul class="mt-2 mb-0">
+                    <li>CRUD ตำแหน่ง + ค้นหา</li>
+                  </ul>
+                </details>
+              </div>
+            </div>
           </div>
-          <div class="card-body p-0">
-            <pre class="m-0"><code id="code-8660925212029973492" class="language-markup">&lt;template&gt;
+
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div><strong>frontend/src/pages/TeachersPage.vue</strong></div>
+              <button class="btn btn-sm btn-outline-secondary"
+                onclick="copyCode('code-8660925212029973492', this)">คัดลอก</button>
+            </div>
+            <div class="card-body p-0">
+              <pre class="m-0"><code id="code-8660925212029973492" class="language-markup">&lt;template&gt;
   &lt;section&gt;
     &lt;div class=&quot;d-flex justify-content-between align-items-center mb-3&quot;&gt;
       &lt;h2 class=&quot;h5 mb-0&quot;&gt;Teachers&lt;/h2&gt;
@@ -1309,202 +1558,47 @@ async function remove(id) {
 }
 &lt;/script&gt;
 </code></pre>
-            <div class="border-top p-3 small bg-body-tertiary">
-              <details open>
-                <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
-                <ul class="mt-2 mb-0"><li>ตารางรายชื่อ + ฟอร์มเพิ่ม/แก้ไขครู + อัปโหลดรูป + ลบ</li></ul>
-              </details>
+              <div class="border-top p-3 small bg-body-tertiary">
+                <details open>
+                  <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
+                  <ul class="mt-2 mb-0">
+                    <li>CRUD ครู + เลือกตำแหน่ง + อัปโหลดรูป</li>
+                  </ul>
+                </details>
+              </div>
             </div>
           </div>
+
         </div>
-        
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <div><strong>frontend/src/pages/PositionsPage.vue</strong></div>
-            <button class="btn btn-sm btn-outline-secondary" onclick="copyCode('code-6105059156506647764', this)">คัดลอก</button>
-          </div>
-          <div class="card-body p-0">
-            <pre class="m-0"><code id="code-6105059156506647764" class="language-markup">&lt;template&gt;
-  &lt;section&gt;
-    &lt;div class=&quot;d-flex justify-content-between align-items-center mb-3&quot;&gt;
-      &lt;h2 class=&quot;h5 mb-0&quot;&gt;Positions&lt;/h2&gt;
-      &lt;form class=&quot;d-flex gap-2&quot; @submit.prevent=&quot;create&quot;&gt;
-        &lt;input v-model=&quot;newName&quot; class=&quot;form-control&quot; placeholder=&quot;ชื่อตำแหน่ง&quot;&gt;
-        &lt;button class=&quot;btn btn-primary&quot;&gt;เพิ่ม&lt;/button&gt;
-      &lt;/form&gt;
-    &lt;/div&gt;
 
-    &lt;div class=&quot;card&quot;&gt;
-      &lt;div class=&quot;table-responsive&quot;&gt;
-        &lt;table class=&quot;table align-middle mb-0&quot;&gt;
-          &lt;thead class=&quot;table-light&quot;&gt;
-            &lt;tr&gt;
-              &lt;th&gt;ID&lt;/th&gt;
-              &lt;th&gt;Name&lt;/th&gt;
-              &lt;th class=&quot;text-end&quot;&gt;Actions&lt;/th&gt;
-            &lt;/tr&gt;
-          &lt;/thead&gt;
-          &lt;tbody&gt;
-            &lt;tr v-for=&quot;p in positions&quot; :key=&quot;p.id&quot;&gt;
-              &lt;td&gt;{{ p.id }}&lt;/td&gt;
-              &lt;td&gt;
-                &lt;input v-if=&quot;editId===p.id&quot; v-model=&quot;editName&quot; class=&quot;form-control&quot; /&gt;
-                &lt;span v-else&gt;{{ p.name }}&lt;/span&gt;
-              &lt;/td&gt;
-              &lt;td class=&quot;text-end&quot;&gt;
-                &lt;template v-if=&quot;editId===p.id&quot;&gt;
-                  &lt;button class=&quot;btn btn-sm btn-outline-secondary me-2&quot; @click=&quot;cancelEdit&quot;&gt;ยกเลิก&lt;/button&gt;
-                  &lt;button class=&quot;btn btn-sm btn-success&quot; @click=&quot;saveEdit(p.id)&quot;&gt;บันทึก&lt;/button&gt;
-                &lt;/template&gt;
-                &lt;template v-else&gt;
-                  &lt;button class=&quot;btn btn-sm btn-outline-primary me-2&quot; @click=&quot;startEdit(p)&quot;&gt;แก้ไข&lt;/button&gt;
-                  &lt;button class=&quot;btn btn-sm btn-danger&quot; @click=&quot;confirmDelete(p)&quot;&gt;ลบ&lt;/button&gt;
-                &lt;/template&gt;
-              &lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr v-if=&quot;!positions.length&quot;&gt;
-              &lt;td colspan=&quot;3&quot; class=&quot;text-center text-muted py-4&quot;&gt;ไม่มีข้อมูล&lt;/td&gt;
-            &lt;/tr&gt;
-          &lt;/tbody&gt;
-        &lt;/table&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
+      </section>
+    </div>
+  </main>
 
-    &lt;ConfirmModal
-      :open=&quot;modal.open&quot;
-      title=&quot;ลบตำแหน่ง&quot;
-      :message=&quot;&#x27;คุณต้องการลบ “&#x27; + (modal.name || &#x27;&#x27;) + &#x27;” ใช่ไหม?&#x27;&quot;
-      @confirm=&quot;remove(modal.id)&quot;
-      @cancel=&quot;modal.open=false&quot;
-    /&gt;
-  &lt;/section&gt;
-&lt;/template&gt;
+  <footer class="py-4 border-top">
+    <div class="container small text-secondary">
+      ปรับแล้ว: แผนผังโฟลเดอร์ไม่ทำสี + เพิ่มคำอธิบายใต้แต่ละไฟล์ครบ
+    </div>
+  </footer>
 
-&lt;script setup&gt;
-import { ref, onMounted } from &#x27;vue&#x27;;
-import { api } from &#x27;@/api&#x27;;
-import ConfirmModal from &#x27;@/components/ConfirmModal.vue&#x27;;
-
-const positions = ref([]);
-const newName = ref(&#x27;&#x27;);
-const editId = ref(null);
-const editName = ref(&#x27;&#x27;);
-const modal = ref({ open:false, id:null, name:&#x27;&#x27; });
-
-async function load() {
-  const { data } = await api.get(&#x27;/positions&#x27;);
-  positions.value = data;
-}
-onMounted(load);
-
-async function create() {
-  if (!newName.value.trim()) return;
-  await api.post(&#x27;/positions&#x27;, { name: newName.value.trim() });
-  newName.value = &#x27;&#x27;;
-  await load();
-}
-function startEdit(p) { editId.value = p.id; editName.value = p.name; }
-function cancelEdit() { editId.value = null; editName.value = &#x27;&#x27;; }
-async function saveEdit(id) {
-  if (!editName.value.trim()) return;
-  await api.put(`/positions/${id}`, { name: editName.value.trim() });
-  cancelEdit(); await load();
-}
-function confirmDelete(p) { modal.value = { open:true, id:p.id, name:p.name }; }
-async function remove(id) { await api.delete(`/positions/${id}`); modal.value.open=false; await load(); }
-&lt;/script&gt;
-</code></pre>
-            <div class="border-top p-3 small bg-body-tertiary">
-              <details open>
-                <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
-                <ul class="mt-2 mb-0"><li>ตารางตำแหน่ง + เพิ่ม/แก้ไข/ลบ</li></ul>
-              </details>
-            </div>
-          </div>
-        </div>
-        
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <div><strong>frontend/src/pages/DashboardPage.vue</strong></div>
-            <button class="btn btn-sm btn-outline-secondary" onclick="copyCode('code-8971578118938693708', this)">คัดลอก</button>
-          </div>
-          <div class="card-body p-0">
-            <pre class="m-0"><code id="code-8971578118938693708" class="language-markup">&lt;template&gt;
-  &lt;div class=&quot;row g-3&quot;&gt;
-    &lt;div class=&quot;col-md-4&quot;&gt;
-      &lt;div class=&quot;card&quot;&gt;
-        &lt;div class=&quot;card-body&quot;&gt;
-          &lt;h6 class=&quot;card-title&quot;&gt;สรุป&lt;/h6&gt;
-          &lt;p class=&quot;text-muted mb-0&quot;&gt;เริ่มจากเมนูด้านบนเพื่อจัดการข้อมูล&lt;/p&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/template&gt;
-</code></pre>
-            <div class="border-top p-3 small bg-body-tertiary">
-              <details open>
-                <summary class="fw-semibold">คำอธิบายไฟล์นี้</summary>
-                <ul class="mt-2 mb-0"><li>หน้า Dashboard/สรุป</li></ul>
-              </details>
-            </div>
-          </div>
-        </div>
-        
-      </div>
-
-      <div id="api-test" class="mb-5">
-        <div class="d-flex justify-content-between align-items-center section-title mb-2">
-          <h2 class="h4 fw-bold mb-0">API Testing (curl)</h2>
-          <button class="btn btn-sm btn-outline-secondary" onclick="copyBlock('api-examples', this)">คัดลอก</button>
-        </div>
-        <pre class="mb-3"><code id="api-examples" class="language-bash"># Positions
-curl http://localhost:3000/api/positions
-curl -X POST http://localhost:3000/api/positions -H &quot;Content-Type: application/json&quot; -d &#x27;{&quot;name&quot;:&quot;ที่ปรึกษา&quot;}&#x27;
-# Teachers (with image)
-curl -X POST http://localhost:3000/api/teachers   -F &quot;name=ครูทดสอบ&quot;   -F &quot;position_id=1&quot;   -F &quot;telephone=0812345678&quot;   -F &quot;address=กรุงเทพฯ&quot;   -F &quot;image=@./photo.png&quot;
-</code></pre>
-      </div>
-
-      <div id="tips" class="mb-5">
-        <h2 class="h4 fw-bold mb-2">Tips & Troubleshoot</h2>
-        <ul class="small">
-          <li><strong>CORS</strong> – ตั้งค่า FRONTEND_ORIGIN=http://localhost:5173 ใน server/.env</li>
-          <li><strong>404 ตอนลบ</strong> – URL ต้องเป็น /api/teachers/&lt;id&gt;</li>
-          <li><strong>500 ตอนเพิ่มครู</strong> – ตรวจคอลัมน์รูปชื่อ img ให้ตรงกับ DB</li>
-          <li><strong>รูป</strong> – จำกัด 2MB รองรับ jpeg/png/webp (ตั้งใน Multer)</li>
-        </ul>
-      </div>
-    </section>
-  </div>
-</main>
-
-<footer class="py-4 border-top">
-  <div class="container small text-secondary">
-    สร้างเพื่อสอนและทดลองใช้งาน — ปรับโลโก้/สี/ข้อความได้ตามงานของคุณ
-  </div>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-sql.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js"></script>
-<script>
-function copyCode(id, btn) {
-  const el = document.getElementById(id);
-  const text = el ? el.textContent : '';
-  navigator.clipboard.writeText(text).then(() => {
-    const old = btn.innerHTML;
-    btn.innerHTML = 'คัดลอกแล้ว';
-    btn.classList.remove('btn-outline-secondary');
-    btn.classList.add('btn-success');
-    setTimeout(() => { btn.innerHTML = 'คัดลอก'; btn.classList.remove('btn-success'); btn.classList.add('btn-outline-secondary'); }, 1200);
-  });
-}
-function copyBlock(id, btn) { return copyCode(id, btn); }
-</script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js"></script>
+  <script>
+    function copyCode(id, btn) {
+      const el = document.getElementById(id);
+      const text = el ? el.textContent : '';
+      navigator.clipboard.writeText(text).then(() => {
+        const old = btn.innerText;
+        btn.innerText = 'คัดลอกแล้ว';
+        btn.classList.add('btn-success');
+        setTimeout(() => { btn.innerText = 'คัดลอก'; btn.classList.remove('btn-success'); }, 1200);
+      });
+    }
+    function copyBlock(id, btn) { return copyCode(id, btn); }
+  </script>
 </body>
+
 </html>
