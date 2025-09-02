@@ -14,8 +14,10 @@
 
   <style>
     :root{
-      --bg:#ffffff; --text:#111827; --border:#e5e7eb; --border-strong:#d1d5db;
+      --bg:#ffffff; --text:#111827; --muted:#6b7280;
+      --border:#e5e7eb; --border-strong:#d1d5db;
       --code-bg:#f6f6f6; --code-fg:#0f172a;
+      --chip:#eef2ff; --chip-text:#3730a3;
     }
     html{scroll-behavior:smooth}
     body{background:var(--bg);color:var(--text)}
@@ -28,18 +30,22 @@
     .card{border:1px solid var(--border);border-radius:12px}
     .card-header{background:#f8fafc;border-bottom:1px solid var(--border-strong)}
     .copy-btn{border:1px solid var(--border-strong)!important}
+    .chip{display:inline-block;padding:.2rem .55rem;border-radius:999px;background:var(--chip);color:var(--chip-text);font-size:.75rem}
+
     pre[class*="language-"], code[class*="language-"]{
       background:var(--code-bg)!important;color:var(--code-fg)!important;
       border:1px solid var(--border);border-radius:10px;font-size:.93rem;line-height:1.5
     }
 
-    /* กล่องคำอธิบาย: ไม่มีเส้นปะ, เปิดค่าเริ่มต้น */
+    /* กล่องคำอธิบาย: เปิดค่าเริ่มต้น และเขียนให้อ่านง่าย */
     details.explain{background:#f8fafc;border:0;border-radius:12px;margin-top:.5rem;box-shadow: inset 0 1px 0 rgba(0,0,0,.03)}
     details.explain > summary{list-style:none;cursor:pointer;padding:.75rem .95rem;font-weight:700}
     details.explain > summary::marker, details.explain > summary::-webkit-details-marker{display:none}
     details.explain > summary::before{content:'▾';display:inline-block;margin-right:.4rem;color:#64748b;transition:transform .2s}
     details.explain[open] > summary::before{transform:rotate(180deg)}
     details.explain .body{padding:.1rem .95rem .9rem}
+    details.explain .body p{margin-bottom:.4rem}
+    details.explain .body ul{margin-bottom:0}
   </style>
 </head>
 <body>
@@ -64,7 +70,15 @@
   <header class="hero">
     <div class="container">
       <h1 class="h3 fw-bold mb-2">SystemSchool — Vue 3 + Node.js + MySQL</h1>
-      <p class="mb-0 text-secondary">โครงสร้างแยกชัดเจน: <b>Backend</b> (middlewares / routes / services / controllers / utils) | <b>Frontend</b> (components / pages / router / api)</p>
+      <p class="mb-1 text-secondary">
+        โครงสร้างแยกชัดเจน: <b>Backend</b> (middlewares / routes / services / controllers / utils) |
+        <b>Frontend</b> (components / pages / router / api)
+      </p>
+      <div class="d-flex gap-2 mt-2">
+        <span class="chip">CRUD ครบ</span>
+        <span class="chip">อัปโหลดรูปครู</span>
+        <span class="chip">JOIN ตำแหน่ง</span>
+      </div>
     </div>
   </header>
 
@@ -123,6 +137,13 @@ CREATE TABLE `teacher` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+/* 👉 ถ้าต้องการบังคับความถูกต้องของตำแหน่ง ให้เพิ่ม FK ด้านล่างนี้ (ตัวเลือกเสริม)
+ALTER TABLE `teacher`
+  ADD CONSTRAINT `fk_teacher_position`
+  FOREIGN KEY (`position_id`) REFERENCES `position`(`id`)
+  ON UPDATE CASCADE ON DELETE SET NULL;
+*/
+
 INSERT INTO `position` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, 'ผู้จัดการโรงเรียน', '2025-09-02 03:58:37', '2025-09-02 04:17:01'),
 (2, 'อาจารย์ประจำ', '2025-09-02 03:58:37', '2025-09-02 03:58:37'),
@@ -139,11 +160,11 @@ INSERT INTO `teacher` (`id`, `name`, `address`, `telephone`, `img`, `position_id
 (15, 'จันทิมา ดวงเด่น', '123/4 ม.1 ต.ในเมือง อ.เมือง จ.เพชรบูรณ์', '012-3456789', '', 2, '2025-09-02 04:17:33', '2025-09-02 04:17:33'),
 (16, 'สมพงษ์ สุขสวัสดิ์', '123/5 ม.1 ต.ในเมือง อ.เมือง จ.เพชรบูรณ์', '012-3456789', '', 4, '2025-09-02 04:17:33', '2025-09-02 04:17:33');
 </code></pre>
-          <details class="explain" open><summary>คำอธิบายไฟล์นี้</summary><div class="body">
+          <details class="explain" open><summary>คำอธิบายสั้น กระชับ และตรงประเด็น</summary><div class="body">
             <ul class="mb-0">
-              <li>มีตาราง <code>position</code> กับ <code>teacher</code> และข้อมูลตัวอย่าง (seed)</li>
-              <li>คอลัมน์ <code>img</code> เก็บพาธรูปแบบสัมพัทธ์ เช่น <code>teacher_image/xxx.png</code></li>
-              <li><b>หมายเหตุ</b>: สคีมาเวอร์ชันนี้ <u>ยังไม่มี Foreign key</u> ถ้าต้องการบังคับความถูกต้องสามารถเพิ่ม FK <code>teacher.position_id</code> → <code>position.id</code> ภายหลังได้</li>
+              <li>สร้าง DB <code>workshop_3</code> + ตาราง <code>position</code> และ <code>teacher</code> พร้อม seed</li>
+              <li>คอลัมน์ <code>img</code> เก็บพาธแบบสัมพัทธ์ เช่น <code>teacher_image/xxx.png</code> เพื่อเสิร์ฟเป็น Static</li>
+              <li>ถ้าต้อง “บังคับ” ว่าครูต้องอ้างอิงตำแหน่งที่มีอยู่จริง ให้เพิ่ม Foreign Key (ดูคอมเมนต์ใน SQL)</li>
             </ul>
           </div></details>
         </div>
@@ -177,12 +198,12 @@ INSERT INTO `teacher` (`id`, `name`, `address`, `telephone`, `img`, `position_id
 |-- .env
 |-- package.json
 </code></pre>
-          <details class="explain" open><summary>คำอธิบายโครงสร้าง</summary><div class="body">
+          <details class="explain" open><summary>อธิบายภาพรวมแบบเข้าใจง่าย</summary><div class="body">
             <ul class="mb-0">
-              <li><b>controllers</b> รับ/ตรวจ <code>req</code> และเรียก <b>services</b></li>
-              <li><b>services</b> คุย DB ล้วนเพื่อแยก logic ออกจาก HTTP</li>
-              <li><b>middlewares</b> async/error และอัปโหลดรูป</li>
-              <li><b>public/teacher_image</b> โฟลเดอร์เก็บไฟล์รูป</li>
+              <li><b>controllers</b> ตรวจ/รับค่า <code>req</code> → เรียก <b>services</b> → ตอบ <code>res</code></li>
+              <li><b>services</b> คุย DB ล้วน (ไม่มี HTTP) → โค้ดสะอาด แก้ทีหลังง่าย</li>
+              <li><b>middlewares</b> ใช้ซ้ำได้ เช่น async/error, อัปโหลดรูป</li>
+              <li><b>public/teacher_image</b> ที่เก็บไฟล์รูปของครู (เสิร์ฟเป็น static)</li>
             </ul>
           </div></details>
         </div>
@@ -201,10 +222,10 @@ mkdir src\config src\routes src\controllers src\services src\middlewares src\uti
 # วางไฟล์ทั้งหมดตามส่วน "โค้ดทุกไฟล์" ด้านล่าง
 npm start   # เริ่ม dev server ที่ http://localhost:3000
 </code></pre>
-          <details class="explain" open><summary>คำอธิบาย</summary><div class="body">
+          <details class="explain" open><summary>จุดที่มักสับสน (เคลียร์ๆ)</summary><div class="body">
             <ul class="mb-0">
-              <li>ใช้ <code>nodemon</code> เฝ้าไฟล์สำหรับ dev</li>
-              <li>โครงสร้างโฟลเดอร์แยกตามหน้าที่ ลดโค้ดพันกัน</li>
+              <li>ใช้ <code>npm dev</code> ในช่วงพัฒนา (มี <code>nodemon</code>) / ใช้ <code>npm start</code> ตอนรันจริง</li>
+              <li><code>FRONTEND_ORIGIN</code> ใน <code>.env</code> ต้องตรงกับพอร์ตของ Vite (ปกติ <code>5173</code>) เพื่อให้ CORS ผ่าน</li>
             </ul>
           </div></details>
         </div>
@@ -222,10 +243,10 @@ DB_PASSWORD=
 DB_NAME=workshop_3
 FRONTEND_ORIGIN=http://localhost:5173
 </code></pre>
-<details class="explain" open><summary>คำอธิบายไฟล์นี้</summary><div class="body">
+<details class="explain" open><summary>อธิบาย .env แบบสั้นๆ</summary><div class="body">
   <ul class="mb-0">
-    <li><code>FRONTEND_ORIGIN</code> เอาไว้เปิด CORS เฉพาะ dev ของ Vite</li>
-    <li>ตั้งค่าฐานข้อมูลให้ตรงเครื่องก่อนรัน</li>
+    <li><code>FRONTEND_ORIGIN</code> เปิด CORS สำหรับเว็บฝั่ง Vite ขณะ dev</li>
+    <li>ปรับข้อมูล DB ให้ตรงเครื่องก่อนรัน</li>
   </ul>
 </div></details></div>
 
@@ -247,9 +268,9 @@ FRONTEND_ORIGIN=http://localhost:5173
   "devDependencies": { "nodemon": "^3.1.10" }
 }
 </code></pre>
-<details class="explain" open><summary>คำอธิบายไฟล์นี้</summary><div class="body"><ul class="mb-0">
-  <li><code>type: commonjs</code> เพื่อใช้ <code>require()</code></li>
-  <li><code>dev</code> = โหมดพัฒนา, <code>start</code> = โหมดจริง</li>
+<details class="explain" open><summary>สรุปให้ชัด</summary><div class="body"><ul class="mb-0">
+  <li><code>type: commonjs</code> → ใช้ <code>require()</code> ได้</li>
+  <li><code>dev</code> = โหมดพัฒนา (auto-restart), <code>start</code> = โหมดจริง</li>
 </ul></div></details></div>
 
           <!-- server/src/config/db.js -->
@@ -266,9 +287,9 @@ const pool = mysql.createPool({
 });
 module.exports = { pool };
 </code></pre>
-<details class="explain" open><summary>คำอธิบายไฟล์นี้</summary><div class="body"><ul class="mb-0">
-  <li>สร้าง <b>connection pool</b> เพื่อ reuse และคุมปริมาณการเชื่อมต่อ</li>
-  <li>ทุก service เรียก <code>pool.query(sql, params)</code> ได้เลย</li>
+<details class="explain" open><summary>เข้าใจใน 2 บรรทัด</summary><div class="body"><ul class="mb-0">
+  <li>ใช้ <b>connection pool</b> เพื่อประสิทธิภาพและความเสถียร</li>
+  <li>ทุก service เรียก <code>pool.query(sql, params)</code> ได้ทันที</li>
 </ul></div></details></div>
 
           <!-- server/src/app.js -->
@@ -301,10 +322,10 @@ app.use(errorHandler);
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`API running at http://localhost:${port}`));
 </code></pre>
-<details class="explain" open><summary>คำอธิบายไฟล์นี้</summary><div class="body"><ul class="mb-0">
+<details class="explain" open><summary>สิ่งสำคัญที่ควรรู้</summary><div class="body"><ul class="mb-0">
   <li>เปิด CORS ตาม <code>FRONTEND_ORIGIN</code> และรับ JSON body</li>
-  <li>เสิร์ฟรูปจาก <code>/teacher_image</code> (โฟลเดอร์ใน <code>public</code>)</li>
-  <li>ลง <code>notFound</code> และ <code>errorHandler</code> ท้ายสุดเสมอ</li>
+  <li>เสิร์ฟรูปจาก <code>/teacher_image</code> (อยู่ใน <code>public</code>)</li>
+  <li><code>notFound</code> และ <code>errorHandler</code> ต้องวางท้ายสุด</li>
 </ul></div></details></div>
 
           <!-- middlewares -->
@@ -312,8 +333,8 @@ app.listen(port, () => console.log(`API running at http://localhost:${port}`));
             <strong>server/src/middlewares/asyncHandler.js</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('srv-async', this)">คัดลอก</button></div>
 <pre class="m-0"><code id="srv-async" class="language-javascript">module.exports = (fn) => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
 </code></pre>
-<details class="explain" open><summary>คำอธิบาย</summary><div class="body">
-  <ul class="mb-0"><li>ครอบ controller เพื่อลด try/catch และส่ง error ไป middleware ถัดไป</li></ul>
+<details class="explain" open><summary>ทำไมต้องมีไฟล์นี้?</summary><div class="body">
+  <ul class="mb-0"><li>ลดการเขียน <code>try/catch</code> ซ้ำๆ ใน controller → โค้ดสั้นลง</li></ul>
 </div></details></div>
 
           <div class="card mb-3"><div class="card-header d-flex justify-content-between">
@@ -325,8 +346,8 @@ const errorHandler = (err,_req,res,_next)=>{ const status=err.status||500;
 };
 module.exports={ notFound, errorHandler };
 </code></pre>
-<details class="explain" open><summary>คำอธิบาย</summary><div class="body">
-  <ul class="mb-0"><li>บังคับรูปแบบ error เป็น JSON เดียวกันทุกจุด</li></ul>
+<details class="explain" open><summary>ผลลัพธ์เมื่อ error</summary><div class="body">
+  <ul class="mb-0"><li>ตอบกลับเป็น JSON รูปแบบเดียวกัน (คาดเดาได้ง่าย)</li></ul>
 </div></details></div>
 
           <div class="card mb-3"><div class="card-header d-flex justify-content-between">
@@ -341,10 +362,10 @@ const fileFilter=(_req,file,cb)=>{ const ok=['image/jpeg','image/jpg','image/png
 const uploadSingleImage=multer({ storage, fileFilter, limits:{ fileSize:2*1024*1024 } }).single('image');
 module.exports={ uploadSingleImage };
 </code></pre>
-<details class="explain" open><summary>คำอธิบาย</summary><div class="body">
+<details class="explain" open><summary>ข้อกำหนดไฟล์รูป</summary><div class="body">
   <ul class="mb-0">
-    <li>จำกัดชนิด/ขนาดรูป และตั้งชื่อไฟล์ไม่ซ้ำด้วย timestamp+random</li>
-    <li>ฟิลด์ไฟล์ที่รับคือ <code>image</code></li>
+    <li>รับเฉพาะ <code>jpeg/png/webp</code> และจำกัดขนาด 2MB</li>
+    <li>ฟิลด์ไฟล์ในฟอร์มชื่อ <code>image</code></li>
   </ul>
 </div></details></div>
 
@@ -364,8 +385,8 @@ function unlinkSafe(relativePath){
 }
 module.exports = { unlinkSafe };
 </code></pre>
-<details class="explain" open><summary>คำอธิบาย</summary><div class="body">
-  <ul class="mb-0"><li>ป้องกันลบไฟล์นอกโฟลเดอร์ด้วยการตรวจ <code>startsWith(base)</code></li></ul>
+<details class="explain" open><summary>เหตุผลที่ต้อง “safe”</summary><div class="body">
+  <ul class="mb-0"><li>กันการลบไฟล์นอกโฟลเดอร์ด้วยการตรวจ <code>startsWith(base)</code> (ป้องกัน path traversal)</li></ul>
 </div></details></div>
 
           <!-- routes -->
@@ -379,8 +400,8 @@ router.use('/teachers', teacherRoutes);
 router.use('/positions', positionRoutes);
 module.exports = router;
 </code></pre>
-<details class="explain" open><summary>คำอธิบาย</summary><div class="body">
-  <ul class="mb-0"><li>รวมเส้นทางทั้งหมดไว้ใต้ <code>/api</code> ที่ <code>app.js</code> ผูกเข้ามา</li></ul>
+<details class="explain" open><summary>รวม route ไว้จุดเดียว</summary><div class="body">
+  <ul class="mb-0"><li>ถูก mount ที่ <code>/api</code> ใน <code>app.js</code> → endpoint จริงเช่น <code>GET /api/teachers</code></li></ul>
 </div></details></div>
 
           <div class="card mb-3"><div class="card-header d-flex justify-content-between">
@@ -395,11 +416,8 @@ router.put('/:id', ctrl.update);
 router.delete('/:id', ctrl.remove);
 module.exports = router;
 </code></pre>
-<details class="explain" open><summary>คำอธิบาย</summary><div class="body">
-  <ul class="mb-0">
-    <li>REST ครบชุดสำหรับตำแหน่ง</li>
-    <li>ควบคุมสถานะ/ข้อความที่ controller</li>
-  </ul>
+<details class="explain" open><summary>ตำแหน่ง: CRUD ครบ</summary><div class="body">
+  <ul class="mb-0"><li>ควบคุมสถานะ HTTP ที่ controller (201/404/204 ฯลฯ)</li></ul>
 </div></details></div>
 
           <div class="card mb-3"><div class="card-header d-flex justify-content-between">
@@ -415,8 +433,8 @@ router.put('/:id', uploadSingleImage, ctrl.update);
 router.delete('/:id', ctrl.remove);
 module.exports = router;
 </code></pre>
-<details class="explain" open><summary>คำอธิบาย</summary><div class="body">
-  <ul class="mb-0"><li>สร้าง/แก้ไขรองรับอัปโหลดรูปผ่าน middleware ก่อนเข้าคอนโทรลเลอร์</li></ul>
+<details class="explain" open><summary>ครู: รองรับอัปโหลดรูป</summary><div class="body">
+  <ul class="mb-0"><li>ถ้ามีไฟล์แนบ จะผ่าน <code>uploadSingleImage</code> ก่อนถึง controller</li></ul>
 </div></details></div>
 
           <!-- controllers -->
@@ -449,10 +467,9 @@ exports.remove = asyncHandler(async (req, res) => {
   res.status(204).send();
 });
 </code></pre>
-<details class="explain" open><summary>คำอธิบาย</summary><div class="body">
+<details class="explain" open><summary>เหตุผลของสถานะ HTTP</summary><div class="body">
   <ul class="mb-0">
-    <li>ตรวจ input เบื้องต้นในชั้น controller (เช่น ชื่อว่าง)</li>
-    <li>ใช้สถานะ HTTP ให้เหมาะสม: 201 (create), 404 (ไม่พบ), 204 (ลบสำเร็จ)</li>
+    <li><code>201</code> สร้างสำเร็จ, <code>404</code> ไม่พบข้อมูล, <code>204</code> ลบสำเร็จ (ไม่ต้องมี body)</li>
   </ul>
 </div></details></div>
 
@@ -513,10 +530,10 @@ exports.remove = asyncHandler(async (req, res) => {
   res.status(204).send();
 });
 </code></pre>
-<details class="explain" open><summary>คำอธิบาย</summary><div class="body">
+<details class="explain" open><summary>แนวคิดการต่อ URL รูป</summary><div class="body">
   <ul class="mb-0">
-    <li>ประกอบ URL รูปด้วย host ปัจจุบันเพื่อให้ frontend แสดงได้ทันที</li>
-    <li>ถ้า validate ไม่ผ่านและมีไฟล์อัปโหลดมา จะลบไฟล์ชั่วคราวให้ด้วย</li>
+    <li>ต่อจาก host ปัจจุบัน เช่น <code>http://localhost:3000/teacher_image/xxxx.webp</code> → frontend เรียกดูได้ทันที</li>
+    <li>หาก validate ไม่ผ่านและมีไฟล์อัปโหลด จะลบไฟล์ทิ้งทันที (กันไฟล์ขยะ)</li>
   </ul>
 </div></details></div>
 
@@ -556,11 +573,11 @@ async function deletePosition(id){
 }
 module.exports = { listPositions, getPositionById, createPosition, updatePosition, deletePosition };
 </code></pre>
-<details class="explain" open><summary>คำอธิบายละเอียด</summary><div class="body">
+<details class="explain" open><summary>แนวทางออกแบบ service</summary><div class="body">
   <ul>
-    <li>Service ชั้นนี้ไม่ยุ่งกับ HTTP เลย → controller เป็นผู้ตัดสินใจสถานะ</li>
-    <li><code>getPositionById</code> คืน <code>null</code> เพื่อให้ controller ส่ง 404 ได้</li>
-    <li>อาศัย <code>affectedRows</code> เช็คผล <code>update/delete</code></li>
+    <li>ไม่ยุ่งกับ HTTP status → controller เป็นผู้ตัดสินใจ (ยืดหยุ่นกว่า)</li>
+    <li><code>null</code> เมื่อไม่พบข้อมูล เพื่อให้ controller ส่ง 404 ได้</li>
+    <li>เช็คผลด้วย <code>affectedRows</code> สำหรับ <code>UPDATE</code>/<code>DELETE</code></li>
   </ul>
 </div></details></div>
 
@@ -602,10 +619,10 @@ async function deleteTeacher(id){
 }
 module.exports={ listTeachers,getTeacherById,createTeacher,updateTeacher,deleteTeacher };
 </code></pre>
-<details class="explain" open><summary>คำอธิบาย</summary><div class="body">
+<details class="explain" open><summary>ประเด็นสำคัญ</summary><div class="body">
   <ul class="mb-0">
-    <li>JOIN กับ <code>position</code> เพื่อให้ได้ <code>position_name</code> สำหรับแสดงผล</li>
-    <li>อัปเดตรูปใหม่จะลบรูปเก่าผ่าน <code>unlinkSafe</code></li>
+    <li>JOIN กับตารางตำแหน่งเพื่อได้ <code>position_name</code> ไปแสดงผล</li>
+    <li>เวลาเปลี่ยนรูปใหม่ จะลบรูปเก่าออกจากดิสก์ (ผ่าน <code>unlinkSafe</code>)</li>
   </ul>
 </div></details></div>
 
@@ -634,8 +651,8 @@ module.exports={ listTeachers,getTeacherById,createTeacher,updateTeacher,deleteT
 |-- vite.config.js
 |-- package.json
 </code></pre>
-          <details class="explain" open><summary>คำอธิบาย</summary><div class="body">
-            <ul class="mb-0"><li>แยก <b>pages</b> (route-level) ออกจาก <b>components</b> (ชิ้นส่วน reuse)</li></ul>
+          <details class="explain" open><summary>สิ่งที่อยากให้จำ</summary><div class="body">
+            <ul class="mb-0"><li>แยก <b>pages</b> (ไฟล์ของ route) ออกจาก <b>components</b> (ชิ้นส่วนที่นำกลับมาใช้ซ้ำ)</li></ul>
           </div></details>
         </div>
 
@@ -648,16 +665,17 @@ module.exports={ listTeachers,getTeacherById,createTeacher,updateTeacher,deleteT
 cd client
 npm i
 npm i axios bootstrap bootstrap-icons pinia vue-router
-cd src 
-mkdir api pages router
+
+# โครงสร้างโฟลเดอร์
+cd src && mkdir api pages router
 
 # สร้างไฟล์ .env ตามตัวอย่าง
 npm run dev   # http://localhost:5173
 </code></pre>
-          <details class="explain" open><summary>คำอธิบาย</summary><div class="body">
+          <details class="explain" open><summary>เคล็ดลับให้ผ่านฉลุย</summary><div class="body">
             <ul class="mb-0">
-              <li>ตรวจชื่อโฟลเดอร์ให้ตรง: ถ้าใช้ <code>client</code> ตอนสร้าง โปรด <code>cd client</code></li>
-              <li>ติดตั้ง UI (Bootstrap) + สถานะ (Pinia) + Router</li>
+              <li>ชื่อโฟลเดอร์ตอนสร้าง Vite ต้องสอดคล้องกับคำสั่ง <code>cd</code> (เช่นใช้ <code>client</code> ให้ <code>cd client</code>)</li>
+              <li>ถ้าเปิดเว็บแล้ว CORS ขัด ให้เช็ค <code>FRONTEND_ORIGIN</code> ฝั่ง backend</li>
             </ul>
           </div></details>
         </div>
@@ -669,8 +687,8 @@ npm run dev   # http://localhost:5173
             <strong>client/.env</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('fe-env', this)">คัดลอก</button></div>
 <pre class="m-0"><code id="fe-env" class="language-bash">VITE_API_BASE=http://localhost:3000/api
 </code></pre>
-          <details class="explain" open><summary>คำอธิบาย</summary><div class="body">
-            <ul class="mb-0"><li>กำหนด base URL ให้ axios (สามารถเปลี่ยนเป็นของจริงตอน deploy)</li></ul>
+          <details class="explain" open><summary>สั้นๆ ได้ใจความ</summary><div class="body">
+            <ul class="mb-0"><li>กำหนด base URL ให้ axios (เปลี่ยนได้ตอน deploy)</li></ul>
           </div></details>
           </div>
 
@@ -700,8 +718,8 @@ npm run dev   # http://localhost:5173
   }
 }
 </code></pre>
-          <details class="explain" open><summary>คำอธิบาย</summary><div class="body">
-            <ul class="mb-0"><li><code>dev</code> สำหรับพัฒนา, <code>build</code> สร้างไฟล์ static, <code>preview</code> เปิดดูผล build</li></ul>
+          <details class="explain" open><summary>จำเฉพาะที่จำเป็น</summary><div class="body">
+            <ul class="mb-0"><li><code>dev</code> = พัฒนา, <code>build</code> = ผลิต, <code>preview</code> = ทดสอบไฟล์ build</li></ul>
           </div></details>
           </div>
 
@@ -715,8 +733,8 @@ export default defineConfig({
   resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } }
 })
 </code></pre>
-          <details class="explain" open><summary>คำอธิบาย</summary><div class="body">
-            <ul class="mb-0"><li>ตั้ง alias <code>@</code> ให้ import สั้นลง เช่น <code>@/pages/...</code></li></ul>
+          <details class="explain" open><summary>ทำไมต้อง alias @</summary><div class="body">
+            <ul class="mb-0"><li>ให้ import สั้นและอ่านง่าย เช่น <code>@/pages/TeachersPage.vue</code></li></ul>
           </div></details>
           </div>
 
@@ -731,8 +749,8 @@ import App from './App.vue';
 import router from './router';
 createApp(App).use(createPinia()).use(router).mount('#app');
 </code></pre>
-          <details class="explain" open><summary>คำอธิบาย</summary><div class="body">
-            <ul class="mb-0"><li>ประกอบแอป: Vue + Pinia + Router + Bootstrap แล้ว mount เข้ากับ <code>#app</code></li></ul>
+          <details class="explain" open><summary>บูตระบบ</summary><div class="body">
+            <ul class="mb-0"><li>ประกอบ Vue + Pinia + Router + Bootstrap แล้ว mount เข้ากับ <code>#app</code></li></ul>
           </div></details>
           </div>
 
@@ -749,8 +767,8 @@ const routes = [
 ];
 export default createRouter({ history: createWebHistory(), routes });
 </code></pre>
-          <details class="explain" open><summary>คำอธิบาย</summary><div class="body">
-            <ul class="mb-0"><li>กำหนดเส้นทางหลัก 3 หน้า: Dashboard / Positions / Teachers</li></ul>
+          <details class="explain" open><summary>เส้นทางหลัก 3 หน้า</summary><div class="body">
+            <ul class="mb-0"><li>Dashboard / Positions / Teachers</li></ul>
           </div></details>
           </div>
 
@@ -767,10 +785,10 @@ export function toFormData(obj){
   }); return fd;
 }
 </code></pre>
-          <details class="explain" open><summary>คำอธิบาย</summary><div class="body">
+          <details class="explain" open><summary>ชัดๆ 2 ฟังก์ชัน</summary><div class="body">
             <ul class="mb-0">
-              <li>ห่อ <code>axios</code> ให้พร้อมใช้งานทั่วแอป</li>
-              <li><code>toFormData</code> ทำ object → <code>FormData</code> สำหรับอัปโหลดไฟล์</li>
+              <li><code>api</code> = อินสแตนซ์ axios พร้อม baseURL</li>
+              <li><code>toFormData</code> = แปลง object เป็น <code>FormData</code> สำหรับอัปโหลดไฟล์</li>
             </ul>
           </div></details>
           </div>
@@ -798,8 +816,8 @@ export function toFormData(obj){
   &lt;/div&gt;
 &lt;/template&gt;
 </code></pre>
-          <details class="explain" open><summary>คำอธิบาย</summary><div class="body">
-            <ul class="mb-0"><li>วางโครง navbar + RouterView ในธีมขาวเรียบ</li></ul>
+          <details class="explain" open><summary>หน้าหลักของแอป</summary><div class="body">
+            <ul class="mb-0"><li>Navbar + <code>&lt;RouterView/&gt;</code> สำหรับสลับหน้า</li></ul>
           </div></details>
           </div>
 
@@ -827,8 +845,8 @@ defineProps({ open:Boolean, title:{type:String,default:'ยืนยันกา
 defineEmits(['confirm','cancel']);
 &lt;/script&gt;
 </code></pre>
-          <details class="explain" open><summary>คำอธิบาย</summary><div class="body">
-            <ul class="mb-0"><li>โมดอลยืนยันทั่วไป ใช้กับลบ/ทำรายการเสี่ยงพลาด</li></ul>
+          <details class="explain" open><summary>ใช้เมื่อไร?</summary><div class="body">
+            <ul class="mb-0"><li>ยืนยัน “ลบ/ทำรายการสำคัญ” เพื่อกันเผลอกด</li></ul>
           </div></details>
           </div>
 
@@ -858,8 +876,8 @@ function onFile(e){ const file = e.target.files?.[0]; if(file) emit('update:mode
 function clearFile(){ emit('update:modelValue', null); emit('remove'); preview.value=''; }
 &lt;/script&gt;
 </code></pre>
-          <details class="explain" open><summary>คำอธิบาย</summary><div class="body">
-            <ul class="mb-0"><li>แสดงตัวอย่างรูปทันที และส่งไฟล์กลับผ่าน <code>v-model</code></li></ul>
+          <details class="explain" open><summary>พฤติกรรม</summary><div class="body">
+            <ul class="mb-0"><li>แสดงภาพตัวอย่างทันทีเมื่อเลือกไฟล์ และกด “ลบรูป” เพื่อล้างค่าได้</li></ul>
           </div></details>
           </div>
 
@@ -926,8 +944,8 @@ function confirmDelete(p){ modal.value={ open:true, id:p.id, name:p.name }; }
 async function remove(id){ await api.delete(`/positions/${id}`); modal.value.open=false; await load(); }
 &lt;/script&gt;
 </code></pre>
-          <details class="explain" open><summary>คำอธิบาย</summary><div class="body">
-            <ul class="mb-0"><li>CRUD ตำแหน่งแบบง่าย ใช้ตาราง + inline edit</li></ul>
+          <details class="explain" open><summary>สรุป logic</summary><div class="body">
+            <ul class="mb-0"><li>โหลด → เพิ่ม → แก้ → ลบ แบบตรงไปตรงมา (inline edit)</li></ul>
           </div></details>
           </div>
 
@@ -1047,10 +1065,10 @@ function confirmDelete(t){ modal.value={ open:true, id:t.id, name:t.name }; }
 async function remove(id){ await api.delete(`/teachers/${id}`); modal.value.open=false; await loadTeachers(); }
 &lt;/script&gt;
 </code></pre>
-          <details class="explain" open><summary>คำอธิบาย</summary><div class="body">
+          <details class="explain" open><summary>ฟอร์มเดียวทำได้ทั้ง “เพิ่ม” และ “แก้ไข”</summary><div class="body">
             <ul class="mb-0">
-              <li>ใช้ฟอร์มเดียวรองรับทั้งเพิ่ม/แก้ไข (ควบคุมด้วย <code>form.mode</code>)</li>
-              <li>อัปโหลดรูปใช้ <code>multipart/form-data</code> เมื่อมีไฟล์</li>
+              <li>ควบคุมด้วย <code>form.mode</code> (create/edit)</li>
+              <li>มีไฟล์ → ใช้ <code>multipart/form-data</code>, ไม่มีไฟล์ → ส่ง JSON ปกติ</li>
             </ul>
           </div></details>
           </div>
@@ -1116,7 +1134,7 @@ const quickActions = [
   { title: 'การจัดการตำแหน่ง', description: 'จัดการข้อมูลตำแหน่งงานต่างๆ ในโรงเรียน',
     badges: [ { text:'CRUD Operations', color:'bg-primary text-white' }, { text:'Modal Forms', color:'bg-success text-white' } ] },
   { title: 'การจัดการครู', description: 'จัดการข้อมูลครูและบุคลากรในโรงเรียน',
-    badges: [ { text:'Profile Management', color:'bg-purple text-white' }, { text:'Image Upload', color:'bg-warning text-dark' } ] }
+    badges: [ { text:'Profile Management', color:'bg-dark text-white' }, { text:'Image Upload', color:'bg-warning text-dark' } ] }
 ];
 &lt;/script&gt;
 
@@ -1125,8 +1143,8 @@ const quickActions = [
 .hover-card:hover{transform:translateY(-5px);box-shadow:0 6px 15px rgba(0,0,0,.08)}
 &lt;/style&gt;
 </code></pre>
-          <details class="explain" open><summary>คำอธิบาย</summary><div class="body">
-            <ul class="mb-0"><li>หน้าแนะนำสแต็กและทางลัดไปยังฟีเจอร์หลัก</li></ul>
+          <details class="explain" open><summary>มีไว้ทำไม?</summary><div class="body">
+            <ul class="mb-0"><li>เป็นหน้า Landing อธิบายสแต็ก + ชุดคำสั่ง/ฟีเจอร์หลัก</li></ul>
           </div></details>
           </div>
 
