@@ -137,7 +137,6 @@ CREATE TABLE `teacher` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- แก้ตรงนี้
 INSERT INTO `position` (`name`) VALUES
 ('ผู้จัดการโรงเรียน'),
 ('อาจารย์ประจำ'),
@@ -148,7 +147,6 @@ INSERT INTO `position` (`name`) VALUES
 ('อาจารย์ดนตรี'),
 ('อาจารย์เทคโนโลยี');
 
--- แก้ตรงนี้
 INSERT INTO `teacher` (`name`, `address`, `telephone`, `img`, `position_id`) VALUES
 ('วิชัย สุวรรณ', '123/1 ม.1 ต.ในเมือง อ.เมือง จ.เพชรบูรณ์', '012-3456789', '', 1),
 ('ประสงค์ ไพรวัลย์', '123/3 ม.1 ต.ในเมือง อ.เมือง จ.เพชรบูรณ์', '012-3456789', '', 3),
