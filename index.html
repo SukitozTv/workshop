@@ -1666,7 +1666,7 @@ async function remove(id){ await api.delete(`/positions/${id}`); modal.value.ope
               &lt;input v-model="form.model.address" class="form-control" placeholder="ที่อยู่ (ไม่บังคับ)"&gt;
             &lt;/div&gt;
             &lt;div class="col-md-6"&gt;&lt;label class="form-label"&gt;โทรศัพท์&lt;/label&gt;
-              &lt;input v-model="form.model.telephone" class="form-control" placeholder="0xx-xxx-xxxx (ไม่บังคับ)"&gt;
+              &lt;input v-model="form.model.telephone" class="form-control" placeholder="0xx-xxx-xxxx (ไม่บังคับ)" maxlength="10"&gt;
             &lt;/div&gt;
             &lt;div class="col-12"&gt;
               &lt;ImageUploader label="รูปครู" v-model="form.file" :initialUrl="form.model.image_url" /&gt;
