@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SystemSchool — Full Docs</title>
+  <title>SystemSchool — Full Docs (with API explain)</title>
 
   <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -37,7 +37,7 @@
       border:1px solid var(--border);border-radius:10px;font-size:.93rem;line-height:1.5
     }
 
-    /* กล่องคำอธิบาย: เปิดค่าเริ่มต้น และเขียนให้อ่านง่าย */
+    /* กล่องคำอธิบาย */
     details.explain{background:#f8fafc;border:0;border-radius:12px;margin-top:.5rem;box-shadow: inset 0 1px 0 rgba(0,0,0,.03)}
     details.explain > summary{list-style:none;cursor:pointer;padding:.75rem .95rem;font-weight:700}
     details.explain > summary::marker, details.explain > summary::-webkit-details-marker{display:none}
@@ -46,6 +46,10 @@
     details.explain .body{padding:.1rem .95rem .9rem}
     details.explain .body p{margin-bottom:.4rem}
     details.explain .body ul{margin-bottom:0}
+    details.explain .body table{width:100%;font-size:.95rem}
+    details.explain .body th, details.explain .body td{padding:.35rem .5rem;border-bottom:1px solid var(--border)}
+    details.explain .body thead th{background:#eef2f7}
+    code.badge-inline{background:#eef2ff;border:1px solid #dbeafe;border-radius:8px;padding:.05rem .4rem}
   </style>
 </head>
 <body>
@@ -96,6 +100,7 @@
               <li><a href="#backend-structure">โครงสร้าง</a></li>
               <li><a href="#backend-run">สร้างโปรเจกต์ & วิธีรัน</a></li>
               <li><a href="#backend-code">โค้ดทุกไฟล์ + คำอธิบาย</a></li>
+              <li><a href="#api-spec">สรุป API (GET/POST/PUT/DELETE)</a></li>
             </ol>
             <h6>Frontend</h6>
             <ol class="mb-0">
@@ -137,6 +142,13 @@ CREATE TABLE `teacher` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+/* ถ้าต้องการบังคับ FK ให้ uncomment
+ALTER TABLE `teacher`
+ADD CONSTRAINT `teacher_position_fk`
+FOREIGN KEY (`position_id`) REFERENCES `position`(`id`)
+ON UPDATE CASCADE ON DELETE SET NULL;
+*/
+
 INSERT INTO `position` (`name`) VALUES
 ('ผู้จัดการโรงเรียน'),
 ('อาจารย์ประจำ'),
@@ -156,8 +168,8 @@ INSERT INTO `teacher` (`name`, `address`, `telephone`, `img`, `position_id`) VAL
           <details class="explain" open><summary>คำอธิบายสั้น กระชับ และตรงประเด็น</summary><div class="body">
             <ul class="mb-0">
               <li>สร้าง DB <code>workshop_3</code> + ตาราง <code>position</code> และ <code>teacher</code> พร้อม seed</li>
-              <li>คอลัมน์ <code>img</code> เก็บพาธแบบสัมพัทธ์ เช่น <code>teacher_image/xxx.png</code> เพื่อเสิร์ฟเป็น Static</li>
-              <li>ถ้าต้อง “บังคับ” ว่าครูต้องอ้างอิงตำแหน่งที่มีอยู่จริง ให้เพิ่ม Foreign Key (ดูคอมเมนต์ใน SQL)</li>
+              <li>คอลัมน์ <code>img</code> เก็บพาธสัมพัทธ์ เช่น <code>teacher_image/xxx.png</code> เพื่อเสิร์ฟเป็น Static</li>
+              <li>ต้องการบังคับความสัมพันธ์? เปิด Foreign Key ตามคอมเมนต์</li>
             </ul>
           </div></details>
         </div>
@@ -193,10 +205,10 @@ INSERT INTO `teacher` (`name`, `address`, `telephone`, `img`, `position_id`) VAL
 </code></pre>
           <details class="explain" open><summary>อธิบายภาพรวมแบบเข้าใจง่าย</summary><div class="body">
             <ul class="mb-0">
-              <li><b>controllers</b> ตรวจ/รับค่า <code>req</code> → เรียก <b>services</b> → ตอบ <code>res</code></li>
-              <li><b>services</b> คุย DB ล้วน (ไม่มี HTTP) → โค้ดสะอาด แก้ทีหลังง่าย</li>
-              <li><b>middlewares</b> ใช้ซ้ำได้ เช่น async/error, อัปโหลดรูป</li>
-              <li><b>public/teacher_image</b> ที่เก็บไฟล์รูปของครู (เสิร์ฟเป็น static)</li>
+              <li><b>controllers</b> อ่านค่า <code class="badge-inline">req.params</code> / <code class="badge-inline">req.query</code> / <code class="badge-inline">req.body</code> / <code class="badge-inline">req.file</code> → เรียก <b>services</b> → ตอบ <code>res</code></li>
+              <li><b>services</b> คุย DB อย่างเดียว (ไม่มี HTTP) → โค้ดสะอาด แก้ทีหลังง่าย</li>
+              <li><b>middlewares</b> ใช้ซ้ำได้ เช่น async/error, อัปโหลดรูป (อ่านไฟล์จาก <code>multipart/form-data</code>)</li>
+              <li><b>public/teacher_image</b> ที่เก็บไฟล์รูปของครู (เสิร์ฟเป็น static ผ่าน <code>GET /teacher_image/...</code>)</li>
             </ul>
           </div></details>
         </div>
@@ -213,14 +225,79 @@ npm i -D nodemon
 mkdir src\config src\routes src\controllers src\services src\middlewares src\utils public\teacher_image
 
 # วางไฟล์ทั้งหมดตามส่วน "โค้ดทุกไฟล์" ด้านล่าง
-npm start   # เริ่ม dev server ที่ http://localhost:3000
+npm run dev   # เริ่ม dev server ที่ http://localhost:3000
 </code></pre>
           <details class="explain" open><summary>จุดที่มักสับสน (เคลียร์ๆ)</summary><div class="body">
             <ul class="mb-0">
-              <li>ใช้ <code>npm dev</code> ในช่วงพัฒนา (มี <code>nodemon</code>) / ใช้ <code>npm start</code> ตอนรันจริง</li>
-              <li><code>FRONTEND_ORIGIN</code> ใน <code>.env</code> ต้องตรงกับพอร์ตของ Vite (ปกติ <code>5173</code>) เพื่อให้ CORS ผ่าน</li>
+              <li><code>npm run dev</code> = โหมดพัฒนา (มี <code>nodemon</code>) / <code>npm start</code> = โหมดจริง</li>
+              <li><code>FRONTEND_ORIGIN</code> ใน <code>.env</code> ต้องตรงพอร์ตของ Vite (ปกติ <code>5173</code>) เพื่อให้ CORS ผ่าน</li>
             </ul>
           </div></details>
+        </div>
+
+        <!-- รวมสรุป API ทั้งหมด -->
+        <div id="api-spec" class="mb-5">
+          <h3 class="h5 fw-bold mb-2">สรุป API Endpoints (Base: <code>/api</code>)</h3>
+          <details class="explain" open><summary>ตารางภาพรวม (ตำแหน่ง & ครู)</summary>
+            <div class="body">
+              <table class="mb-3">
+                <thead><tr><th>Method</th><th>Path</th><th>รับค่าอย่างไร</th><th>คืนค่า</th><th>หมายเหตุ</th></tr></thead>
+                <tbody>
+                  <tr><td>GET</td><td>/positions</td><td>—</td><td>รายการตำแหน่ง</td><td>200</td></tr>
+                  <tr><td>GET</td><td>/positions/:id</td><td><code>req.params.id</code></td><td>ตำแหน่งเดียว</td><td>404 ถ้าไม่พบ</td></tr>
+                  <tr><td>POST</td><td>/positions</td><td><code>req.body.name</code> (JSON)</td><td>ตำแหน่งที่สร้าง</td><td>201</td></tr>
+                  <tr><td>PUT</td><td>/positions/:id</td><td><code>req.params.id</code> + <code>req.body.name</code></td><td>ตำแหน่งหลังแก้</td><td>404 ถ้าไม่พบ</td></tr>
+                  <tr><td>DELETE</td><td>/positions/:id</td><td><code>req.params.id</code></td><td>—</td><td>204</td></tr>
+                  <tr><td>GET</td><td>/teachers</td><td>—</td><td>รายการครู (มี <code>position_name</code>)</td><td>200</td></tr>
+                  <tr><td>GET</td><td>/teachers/:id</td><td><code>req.params.id</code></td><td>ครูคนเดียว</td><td>404 ถ้าไม่พบ</td></tr>
+                  <tr><td>POST</td><td>/teachers</td><td><code>multipart/form-data</code>: <code>image</code>, และ fields JSON (ชื่อเดียวกัน)</td><td>ครูที่สร้าง</td><td>201</td></tr>
+                  <tr><td>PUT</td><td>/teachers/:id</td><td>รับได้ทั้ง <code>JSON</code> หรือ <code>multipart/form-data</code></td><td>ครูหลังแก้</td><td>404 ถ้าไม่พบ</td></tr>
+                  <tr><td>DELETE</td><td>/teachers/:id</td><td><code>req.params.id</code></td><td>—</td><td>204</td></tr>
+                </tbody>
+              </table>
+
+              <p class="mb-2"><b>ตัวอย่าง cURL ที่ใช้จริง</b></p>
+<pre><code class="language-bash"># 1) สร้างตำแหน่ง (POST /positions) — ส่ง JSON
+curl -X POST http://localhost:3000/api/positions \
+  -H "Content-Type: application/json" \
+  -d '{"name":"อาจารย์แนะแนว"}'
+
+# 2) แก้ไขตำแหน่ง (PUT /positions/:id)
+curl -X PUT http://localhost:3000/api/positions/1 \
+  -H "Content-Type: application/json" \
+  -d '{"name":"ผู้จัดการฝ่ายวิชาการ"}'
+
+# 3) สร้างครู (POST /teachers) — มีรูป: multipart/form-data (ฟิลด์ไฟล์ชื่อ image)
+curl -X POST http://localhost:3000/api/teachers \
+  -H "Accept: application/json" \
+  -F "name=สมชาย ใจดี" \
+  -F "address=99/1 เมือง" \
+  -F "telephone=0890000000" \
+  -F "position_id=2" \
+  -F "image=@/absolute/path/to/picture.jpg"
+
+# 4) แก้ครูแบบไม่เปลี่ยนรูป (PUT /teachers/:id) — ส่ง JSON ปกติ
+curl -X PUT http://localhost:3000/api/teachers/5 \
+  -H "Content-Type: application/json" \
+  -d '{"name":"สมชาย ใจดีมาก","position_id":3}'
+
+# 5) แก้ครูพร้อมเปลี่ยนรูป (multipart/form-data)
+curl -X PUT http://localhost:3000/api/teachers/5 \
+  -H "Accept: application/json" \
+  -F "name=สมชาย เวอร์ชันใหม่" \
+  -F "position_id=4" \
+  -F "image=@/absolute/path/to/new-picture.webp"
+
+# 6) ลบครู (DELETE /teachers/:id)
+curl -X DELETE http://localhost:3000/api/teachers/5
+</code></pre>
+              <ul class="mt-2">
+                <li><b>Content-Type</b>: JSON = <code>application/json</code>, อัปโหลดไฟล์ = <code>multipart/form-data</code></li>
+                <li>ชื่อฟิลด์ไฟล์ต้องเป็น <code>image</code> ตามที่กำหนดใน <code>uploadSingleImage</code></li>
+                <li>ไฟล์จะถูกบันทึกที่ <code>public/teacher_image/</code> และเข้าถึงผ่าน URL <code>/teacher_image/ชื่อไฟล์</code></li>
+              </ul>
+            </div>
+          </details>
         </div>
 
         <!-- BACKEND FILES -->
@@ -315,11 +392,14 @@ app.use(errorHandler);
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`API running at http://localhost:${port}`));
 </code></pre>
-<details class="explain" open><summary>สิ่งสำคัญที่ควรรู้</summary><div class="body"><ul class="mb-0">
-  <li>เปิด CORS ตาม <code>FRONTEND_ORIGIN</code> และรับ JSON body</li>
-  <li>เสิร์ฟรูปจาก <code>/teacher_image</code> (อยู่ใน <code>public</code>)</li>
-  <li><code>notFound</code> และ <code>errorHandler</code> ต้องวางท้ายสุด</li>
-</ul></div></details></div>
+<details class="explain" open><summary>สิ่งสำคัญที่ควรรู้ (อ่านค่า/ส่งค่า)</summary><div class="body">
+  <ul class="mb-0">
+    <li><b>รับ JSON</b> ทุก POST/PUT (ถ้าไม่ใช่ multipart) ผ่าน <code>express.json()</code> → อ่านใน <code>req.body</code></li>
+    <li><b>ไฟล์รูป</b> รับผ่าน <code>multipart/form-data</code> → อ่านใน <code>req.file</code> (ผ่าน middleware)</li>
+    <li><b>พารามิเตอร์ใน URL</b> เช่น <code>/teachers/:id</code> → อ่านใน <code>req.params.id</code></li>
+    <li><b>Static</b> เสิร์ฟไฟล์รูปจาก <code>/teacher_image</code></li>
+  </ul>
+</div></details></div>
 
           <!-- middlewares -->
           <div class="card mb-3"><div class="card-header d-flex justify-content-between">
@@ -340,7 +420,9 @@ const errorHandler = (err,_req,res,_next)=>{ const status=err.status||500;
 module.exports={ notFound, errorHandler };
 </code></pre>
 <details class="explain" open><summary>ผลลัพธ์เมื่อ error</summary><div class="body">
-  <ul class="mb-0"><li>ตอบกลับเป็น JSON รูปแบบเดียวกัน (คาดเดาได้ง่าย)</li></ul>
+  <ul class="mb-0">
+    <li><b>404</b> = path ผิด, <b>400</b> = validate ไม่ผ่าน (ตั้งจาก controller/service), <b>500</b> = โค้ดล้ม</li>
+  </ul>
 </div></details></div>
 
           <div class="card mb-3"><div class="card-header d-flex justify-content-between">
@@ -355,11 +437,18 @@ const fileFilter=(_req,file,cb)=>{ const ok=['image/jpeg','image/jpg','image/png
 const uploadSingleImage=multer({ storage, fileFilter, limits:{ fileSize:2*1024*1024 } }).single('image');
 module.exports={ uploadSingleImage };
 </code></pre>
-<details class="explain" open><summary>ข้อกำหนดไฟล์รูป</summary><div class="body">
-  <ul class="mb-0">
-    <li>รับเฉพาะ <code>jpeg/png/webp</code> และจำกัดขนาด 2MB</li>
-    <li>ฟิลด์ไฟล์ในฟอร์มชื่อ <code>image</code></li>
+<details class="explain" open><summary>ข้อกำหนดไฟล์รูป & วิธีส่ง</summary><div class="body">
+  <ul class="mb-2">
+    <li>ฟิลด์ไฟล์ในฟอร์มชื่อ <code>image</code> เท่านั้น</li>
+    <li>รองรับ mimetype: <code>jpeg/jpg/png/webp</code> และขนาด ≤ 2MB</li>
   </ul>
+<pre><code class="language-bash"># ตัวอย่าง form-data จาก frontend / Postman
+image: (File) picture.png
+name: "สมศรี พันธ์ดี"
+position_id: 2
+address: "ที่อยู่..."
+telephone: "0812345678"
+</code></pre>
 </div></details></div>
 
           <!-- utils/file.js -->
@@ -402,6 +491,14 @@ module.exports = router;
 <pre class="m-0"><code id="srv-pro" class="language-javascript">const express = require('express');
 const ctrl = require('../controllers/position.controller');
 const router = express.Router();
+
+/**
+ * GET /api/positions        → รายการทั้งหมด
+ * GET /api/positions/:id    → รายการเดียว โดย :id มาจาก req.params.id
+ * POST /api/positions       → สร้างใหม่, body(JSON): { name }
+ * PUT /api/positions/:id    → แก้ไข, body(JSON): { name }
+ * DELETE /api/positions/:id → ลบ
+ */
 router.get('/', ctrl.list);
 router.get('/:id', ctrl.getOne);
 router.post('/', ctrl.create);
@@ -409,8 +506,12 @@ router.put('/:id', ctrl.update);
 router.delete('/:id', ctrl.remove);
 module.exports = router;
 </code></pre>
-<details class="explain" open><summary>ตำแหน่ง: CRUD ครบ</summary><div class="body">
-  <ul class="mb-0"><li>ควบคุมสถานะ HTTP ที่ controller (201/404/204 ฯลฯ)</li></ul>
+<details class="explain" open><summary>ตำแหน่ง: รับค่า/คืนค่าอย่างไร</summary><div class="body">
+  <ul class="mb-0">
+    <li><b>POST/PUT</b> รับ <code>req.body.name</code> (JSON)</li>
+    <li><b>GET</b> รายการ/ชิ้นเดียว คืน JSON</li>
+    <li><b>DELETE</b> ถ้าสำเร็จคืน <code>204 No Content</code></li>
+  </ul>
 </div></details></div>
 
           <div class="card mb-3"><div class="card-header d-flex justify-content-between">
@@ -419,6 +520,15 @@ module.exports = router;
 const ctrl = require('../controllers/teacher.controller');
 const { uploadSingleImage } = require('../middlewares/uploadImage');
 const router = express.Router();
+
+/**
+ * GET /api/teachers         → รายการครูทั้งหมด
+ * GET /api/teachers/:id     → ครูหนึ่งคน
+ * POST /api/teachers        → multipart/form-data รองรับไฟล์: field 'image'
+ *                              fields: name, address, telephone, position_id
+ * PUT /api/teachers/:id     → แก้ได้ทั้ง JSON หรือ multipart/form-data (หากมีรูปใหม่)
+ * DELETE /api/teachers/:id  → ลบ
+ */
 router.get('/', ctrl.list);
 router.get('/:id', ctrl.getOne);
 router.post('/', uploadSingleImage, ctrl.create);
@@ -426,8 +536,11 @@ router.put('/:id', uploadSingleImage, ctrl.update);
 router.delete('/:id', ctrl.remove);
 module.exports = router;
 </code></pre>
-<details class="explain" open><summary>ครู: รองรับอัปโหลดรูป</summary><div class="body">
-  <ul class="mb-0"><li>ถ้ามีไฟล์แนบ จะผ่าน <code>uploadSingleImage</code> ก่อนถึง controller</li></ul>
+<details class="explain" open><summary>ครู: รับไฟล์ + ฟิลด์อย่างไร</summary><div class="body">
+  <ul class="mb-0">
+    <li><b>POST</b> ต้องส่ง <code>multipart/form-data</code> ถ้ามีรูป (ฟิลด์ไฟล์ชื่อ <code>image</code>)</li>
+    <li><b>PUT</b> ไม่มีรูป → JSON ปกติ / มีรูป → <code>multipart/form-data</code></li>
+  </ul>
 </div></details></div>
 
           <!-- controllers -->
@@ -435,18 +548,26 @@ module.exports = router;
             <strong>server/src/controllers/position.controller.js</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('srv-cp', this)">คัดลอก</button></div>
 <pre class="m-0"><code id="srv-cp" class="language-javascript">const asyncHandler = require('../middlewares/asyncHandler');
 const svc = require('../services/position.service');
+
+// GET /api/positions → 200
 exports.list = asyncHandler(async (_req, res) => { res.json(await svc.listPositions()); });
+
+// GET /api/positions/:id → 200 / 404
 exports.getOne = asyncHandler(async (req, res) => {
-  const found = await svc.getPositionById(req.params.id);
+  const found = await svc.getPositionById(req.params.id); // อ่านค่า :id จาก URL
   if (!found) return res.status(404).json({ message: 'Position not found' });
   res.json(found);
 });
+
+// POST /api/positions  body: { name } → 201 / 400
 exports.create = asyncHandler(async (req, res) => {
-  const name = (req.body?.name || '').trim();
+  const name = (req.body?.name || '').trim(); // อ่านค่า name จาก JSON body
   if (!name) return res.status(400).json({ message: 'กรุณากรอกชื่อตำแหน่ง' });
   const created = await svc.createPosition(name);
   res.status(201).json(created);
 });
+
+// PUT /api/positions/:id  body: { name } → 200 / 400 / 404
 exports.update = asyncHandler(async (req, res) => {
   const name = (req.body?.name || '').trim();
   if (!name) return res.status(400).json({ message: 'กรุณากรอกชื่อตำแหน่ง' });
@@ -454,6 +575,8 @@ exports.update = asyncHandler(async (req, res) => {
   if (!ok) return res.status(404).json({ message: 'Position not found' });
   res.json(await svc.getPositionById(req.params.id));
 });
+
+// DELETE /api/positions/:id → 204 / 404
 exports.remove = asyncHandler(async (req, res) => {
   const ok = await svc.deletePosition(req.params.id);
   if (!ok) return res.status(404).json({ message: 'Position not found or in use' });
@@ -462,7 +585,7 @@ exports.remove = asyncHandler(async (req, res) => {
 </code></pre>
 <details class="explain" open><summary>เหตุผลของสถานะ HTTP</summary><div class="body">
   <ul class="mb-0">
-    <li><code>201</code> สร้างสำเร็จ, <code>404</code> ไม่พบข้อมูล, <code>204</code> ลบสำเร็จ (ไม่ต้องมี body)</li>
+    <li><code>201</code> สร้างสำเร็จ, <code>404</code> ไม่พบข้อมูล, <code>204</code> ลบสำเร็จ (ไม่มี body)</li>
   </ul>
 </div></details></div>
 
@@ -472,25 +595,31 @@ exports.remove = asyncHandler(async (req, res) => {
 const svc = require('../services/teacher.service');
 const fs = require('fs'); const path = require('path');
 
+// GET /api/teachers → 200 (เพิ่ม image_url ให้พร้อมใช้หน้าบ้าน)
 exports.list = asyncHandler(async (req, res) => {
   const data = await svc.listTeachers();
-  const base = `${req.protocol}://${req.get('host')}`;
+  const base = `${req.protocol}://${req.get('host')}`; // เช่น http://localhost:3000
   res.json(data.map(t => ({ ...t, image_url: t.img ? `${base}/${t.img}`.replace(/\/\/teacher_image/, '/teacher_image') : null })));
 });
 
+// GET /api/teachers/:id → 200 / 404
 exports.getOne = asyncHandler(async (req, res) => {
-  const t = await svc.getTeacherById(req.params.id);
+  const t = await svc.getTeacherById(req.params.id); // :id
   if (!t) return res.status(404).json({ message: 'Teacher not found' });
   const base = `${req.protocol}://${req.get('host')}`;
   t.image_url = t.img ? `${base}/${t.img}`.replace(/\/\/teacher_image/, '/teacher_image') : null;
   res.json(t);
 });
 
+// POST /api/teachers  (multipart/form-data)
+// fields: name*, position_id*, address?, telephone?, image?
 exports.create = asyncHandler(async (req, res) => {
   const name = (req.body?.name || '').trim();
   const position_id = Number(req.body?.position_id || 0);
   const address = (req.body?.address || '').trim() || null;
   const telephone = (req.body?.telephone || '').trim() || null;
+
+  // ถ้าตัวบังคับไม่ครบและมีอัปโหลดรูป → ลบไฟล์ทิ้งกันไฟล์ขยะ
   if (!name || !position_id) {
     if (req.file) fs.unlink(path.join(__dirname, '..','..','public','teacher_image', req.file.filename), ()=>{});
     return res.status(400).json({ message: 'กรุณากรอก name และ position_id' });
@@ -502,6 +631,8 @@ exports.create = asyncHandler(async (req, res) => {
   res.status(201).json(created);
 });
 
+// PUT /api/teachers/:id  (JSON หรือ multipart/form-data)
+// อนุญาตแก้บางฟิลด์ และถ้ามีรูปใหม่จะลบรูปเก่าให้อัตโนมัติ (ใน service)
 exports.update = asyncHandler(async (req, res) => {
   const payload = {
     name: req.body?.name?.trim(),
@@ -510,23 +641,26 @@ exports.update = asyncHandler(async (req, res) => {
   };
   if (req.body?.position_id !== undefined) payload.position_id = Number(req.body.position_id);
   const relativeImagePath = req.file ? `teacher_image/${req.file.filename}` : undefined;
+
   const updated = await svc.updateTeacher(req.params.id, { ...payload, relativeImagePath });
   if (!updated) return res.status(404).json({ message: 'Teacher not found' });
+
   const base = `${req.protocol}://${req.get('host')}`;
   updated.image_url = updated.img ? `${base}/${updated.img}`.replace(/\/\/teacher_image/, '/teacher_image') : null;
   res.json(updated);
 });
 
+// DELETE /api/teachers/:id → 204 / 404
 exports.remove = asyncHandler(async (req, res) => {
   const ok = await svc.deleteTeacher(req.params.id);
   if (!ok) return res.status(404).json({ message: 'Teacher not found' });
   res.status(204).send();
 });
 </code></pre>
-<details class="explain" open><summary>แนวคิดการต่อ URL รูป</summary><div class="body">
+<details class="explain" open><summary>แนวคิดการต่อ URL รูป + รับค่า</summary><div class="body">
   <ul class="mb-0">
-    <li>ต่อจาก host ปัจจุบัน เช่น <code>http://localhost:3000/teacher_image/xxxx.webp</code> → frontend เรียกดูได้ทันที</li>
-    <li>หาก validate ไม่ผ่านและมีไฟล์อัปโหลด จะลบไฟล์ทิ้งทันที (กันไฟล์ขยะ)</li>
+    <li>คืน <code>image_url</code> ที่ฝั่งหน้าเว็บเรียกใช้ได้ทันที</li>
+    <li><code>req.params.id</code> มาจากพาธ <code>/teachers/:id</code>, <code>req.body.*</code> มาจาก JSON หรือ multipart fields, <code>req.file</code> มาจากรูป (field: <code>image</code>)</li>
   </ul>
 </div></details></div>
 
@@ -577,26 +711,35 @@ module.exports = { listPositions, getPositionById, createPosition, updatePositio
           <div class="card"><div class="card-header d-flex justify-content-between">
             <strong>server/src/services/teacher.service.js</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('srv-st', this)">คัดลอก</button></div>
 <pre class="m-0"><code id="srv-st" class="language-javascript">const { pool } = require('../config/db'); const { getPositionById } = require('./position.service'); const { unlinkSafe } = require('../utils/file');
+
 async function listTeachers(){
   const [rows]=await pool.query(
 `SELECT t.\`id\`,t.\`name\`,t.\`address\`,t.\`telephone\`,t.\`img\`,t.\`position_id\`,p.\`name\` AS position_name
  FROM \`teacher\` t LEFT JOIN \`position\` p ON p.\`id\`=t.\`position_id\` ORDER BY t.\`name\` ASC`);
   return rows;
 }
+
 async function getTeacherById(id){
   const [rows]=await pool.query(
 `SELECT t.\`id\`,t.\`name\`,t.\`address\`,t.\`telephone\`,t.\`img\`,t.\`position_id\`,p.\`name\` AS position_name
  FROM \`teacher\` t LEFT JOIN \`position\` p ON p.\`id\`=t.\`position_id\` WHERE t.\`id\`=?`,[id]); return rows[0]||null;
 }
+
 async function createTeacher({name,address=null,telephone=null,position_id,relativeImagePath=null}){
+  // ตรวจสอบ FK (position_id ต้องมีอยู่จริง)
   const pos=await getPositionById(position_id); if(!pos){ const e=new Error('position_id not found'); e.status=400; throw e; }
   const [r]=await pool.query(
 `INSERT INTO \`teacher\` (\`name\`,\`address\`,\`telephone\`,\`img\`,\`position_id\`) VALUES (?,?,?,?,?)`,
 [name,address,telephone,relativeImagePath,position_id]); return await getTeacherById(r.insertId);
 }
+
 async function updateTeacher(id,data){
+  // ถ้าจะเปลี่ยน position_id → ตรวจ FK
   if(data.position_id!==undefined&&data.position_id!==null){ const pos=await getPositionById(data.position_id); if(!pos){ const e=new Error('position_id not found'); e.status=400; throw e; } }
+  // ถ้ามีรูปใหม่ → ลบรูปเก่า
   if(data.relativeImagePath){ const current=await getTeacherById(id); if(current?.img) unlinkSafe(current.img); }
+
+  // สร้าง dynamic fields ตามที่ส่งมา
   const fields=[],values=[];
   if(data.name!==undefined){ fields.push('`name`=?'); values.push(data.name); }
   if(data.address!==undefined){ fields.push('`address`=?'); values.push(data.address); }
@@ -604,12 +747,19 @@ async function updateTeacher(id,data){
   if(data.position_id!==undefined){ fields.push('`position_id`=?'); values.push(data.position_id); }
   if(data.relativeImagePath!==undefined){ fields.push('`img`=?'); values.push(data.relativeImagePath); }
   if(!fields.length) return await getTeacherById(id);
-  values.push(id); await pool.query(`UPDATE \`teacher\` SET ${fields.join(', ')} WHERE \`id\`=?`, values); return await getTeacherById(id);
+
+  values.push(id);
+  await pool.query(`UPDATE \`teacher\` SET ${fields.join(', ')} WHERE \`id\`=?`, values);
+  return await getTeacherById(id);
 }
+
 async function deleteTeacher(id){
-  const current=await getTeacherById(id); const [r]=await pool.query('DELETE FROM `teacher` WHERE `id`=?',[id]);
-  if(r.affectedRows>0 && current?.img) unlinkSafe(current.img); return r.affectedRows>0;
+  const current=await getTeacherById(id);
+  const [r]=await pool.query('DELETE FROM `teacher` WHERE `id`=?',[id]);
+  if(r.affectedRows>0 && current?.img) unlinkSafe(current.img);
+  return r.affectedRows>0;
 }
+
 module.exports={ listTeachers,getTeacherById,createTeacher,updateTeacher,deleteTeacher };
 </code></pre>
 <details class="explain" open><summary>ประเด็นสำคัญ</summary><div class="body">
@@ -778,10 +928,10 @@ export function toFormData(obj){
   }); return fd;
 }
 </code></pre>
-          <details class="explain" open><summary>ชัดๆ 2 ฟังก์ชัน</summary><div class="body">
+          <details class="explain" open><summary>ชัดๆ 2 ฟังก์ชัน (เรียก API ยังไง)</summary><div class="body">
             <ul class="mb-0">
-              <li><code>api</code> = อินสแตนซ์ axios พร้อม baseURL</li>
-              <li><code>toFormData</code> = แปลง object เป็น <code>FormData</code> สำหรับอัปโหลดไฟล์</li>
+              <li><code>api</code> = อินสแตนซ์ axios พร้อม baseURL → ใช้ <code>api.get/post/put/delete(path, payload)</code></li>
+              <li><code>toFormData</code> = แปลง object เป็น <code>FormData</code> เมื่อจะส่ง <code>multipart/form-data</code> (อัปโหลดรูป)</li>
             </ul>
           </div></details>
           </div>
@@ -927,18 +1077,31 @@ import { api } from '@/api';
 import ConfirmModal from '@/components/ConfirmModal.vue';
 const positions = ref([]); const newName = ref(''); const editId = ref(null); const editName = ref('');
 const modal = ref({ open:false, id:null, name:'' });
+
+// โหลด: GET /positions
 async function load(){ const { data } = await api.get('/positions'); positions.value = data; }
 onMounted(load);
+
+// เพิ่ม: POST /positions  body JSON: { name }
 async function create(){ if(!newName.value.trim()) return; await api.post('/positions',{ name:newName.value.trim() }); newName.value=''; await load(); }
+
+// แก้ไข: PUT /positions/:id  body JSON: { name }
 function startEdit(p){ editId.value=p.id; editName.value=p.name; }
 function cancelEdit(){ editId.value=null; editName.value=''; }
 async function saveEdit(id){ if(!editName.value.trim()) return; await api.put(`/positions/${id}`,{ name:editName.value.trim() }); cancelEdit(); await load(); }
+
+// ลบ: DELETE /positions/:id
 function confirmDelete(p){ modal.value={ open:true, id:p.id, name:p.name }; }
 async function remove(id){ await api.delete(`/positions/${id}`); modal.value.open=false; await load(); }
 &lt;/script&gt;
 </code></pre>
-          <details class="explain" open><summary>สรุป logic</summary><div class="body">
-            <ul class="mb-0"><li>โหลด → เพิ่ม → แก้ → ลบ แบบตรงไปตรงมา (inline edit)</li></ul>
+          <details class="explain" open><summary>สรุปการเรียก API (หน้า Positions)</summary><div class="body">
+            <ul class="mb-0">
+              <li><b>GET</b> โหลดรายการ</li>
+              <li><b>POST</b> เพิ่ม (ส่ง JSON: <code>{ name }</code>)</li>
+              <li><b>PUT</b> บันทึกชื่อใหม่</li>
+              <li><b>DELETE</b> ลบทิ้ง</li>
+            </ul>
           </div></details>
           </div>
 
@@ -1038,22 +1201,31 @@ onMounted(async () => { await loadPositions(); await loadTeachers(); });
 
 function openCreate(){ form.open=true; form.mode='create';
   form.model={ id:null, name:'', address:'', telephone:'', position_id:0, image_url:'' }; form.file=null; }
+
 function openEdit(t){ form.open=true; form.mode='edit';
   form.model={ id:t.id, name:t.name, address:t.address, telephone:t.telephone, position_id:t.position_id||0, image_url:t.image_url||'' }; form.file=null; }
 
 async function save(){
+  // ตรวจฟิลด์บังคับก่อนยิง API
   if(!form.model.name.trim() || !form.model.position_id){ return alert('กรอกชื่อ และเลือกตำแหน่ง'); }
   const payload = { name:form.model.name.trim(), address:form.model.address||'', telephone:form.model.telephone||'', position_id:form.model.position_id };
+
   if(form.mode==='create'){
+    // POST /teachers: ถ้ามีไฟล์ → multipart/form-data
     const fd = toFormData(payload); if(form.file) fd.append('image', form.file);
     await api.post('/teachers', fd, { headers:{ 'Content-Type':'multipart/form-data' } });
   }else{
-    if(form.file){ const fd = toFormData(payload); fd.append('image', form.file);
-      await api.put(`/teachers/${form.model.id}`, fd, { headers:{ 'Content-Type':'multipart/form-data' } }); }
-    else{ await api.put(`/teachers/${form.model.id}`, payload); }
+    // PUT /teachers/:id: ถ้ามีไฟล์ → multipart/form-data, ถ้าไม่มี → JSON
+    if(form.file){
+      const fd = toFormData(payload); fd.append('image', form.file);
+      await api.put(`/teachers/${form.model.id}`, fd, { headers:{ 'Content-Type':'multipart/form-data' } });
+    }else{
+      await api.put(`/teachers/${form.model.id}`, payload);
+    }
   }
   form.open=false; await loadTeachers();
 }
+
 function confirmDelete(t){ modal.value={ open:true, id:t.id, name:t.name }; }
 async function remove(id){ await api.delete(`/teachers/${id}`); modal.value.open=false; await loadTeachers(); }
 &lt;/script&gt;
@@ -1062,6 +1234,7 @@ async function remove(id){ await api.delete(`/teachers/${id}`); modal.value.open
             <ul class="mb-0">
               <li>ควบคุมด้วย <code>form.mode</code> (create/edit)</li>
               <li>มีไฟล์ → ใช้ <code>multipart/form-data</code>, ไม่มีไฟล์ → ส่ง JSON ปกติ</li>
+              <li>ชื่อฟิลด์ไฟล์ต้องเป็น <code>image</code> ให้ตรงกับ backend</li>
             </ul>
           </div></details>
           </div>
