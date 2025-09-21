@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="th">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -13,41 +14,136 @@
   <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" rel="stylesheet">
 
   <style>
-    :root{
-      --bg:#ffffff; --text:#111827; --muted:#6b7280;
-      --border:#e5e7eb; --border-strong:#d1d5db;
-      --code-bg:#f6f6f6; --code-fg:#0f172a;
-      --chip:#eef2ff; --chip-text:#3730a3;
+    :root {
+      --bg: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --border-strong: #d1d5db;
+      --code-bg: #f6f6f6;
+      --code-fg: #0f172a;
+      --chip: #eef2ff;
+      --chip-text: #3730a3;
     }
-    html{scroll-behavior:smooth}
-    body{background:var(--bg);color:var(--text)}
 
-    .navbar{background:#fff;border-bottom:1px solid var(--border)}
-    .hero{background:#fff;padding:2rem 0;border-bottom:1px solid var(--border)}
-    .sidebar{position:sticky;top:76px;height:calc(100vh - 86px)}
-    .toc{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px}
-    .toc h6{font-size:.9rem;margin:.4rem 0}
-    .card{border:1px solid var(--border);border-radius:12px}
-    .card-header{background:#f8fafc;border-bottom:1px solid var(--border-strong)}
-    .copy-btn{border:1px solid var(--border-strong)!important}
-    .chip{display:inline-block;padding:.2rem .55rem;border-radius:999px;background:var(--chip);color:var(--chip-text);font-size:.75rem}
+    html {
+      scroll-behavior: smooth
+    }
 
-    pre[class*="language-"], code[class*="language-"]{
-      background:var(--code-bg)!important;color:var(--code-fg)!important;
-      border:1px solid var(--border);border-radius:10px;font-size:.93rem;line-height:1.5
+    body {
+      background: var(--bg);
+      color: var(--text)
+    }
+
+    .navbar {
+      background: #fff;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .hero {
+      background: #fff;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 76px;
+      height: calc(100vh - 86px)
+    }
+
+    .toc {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px
+    }
+
+    .toc h6 {
+      font-size: .9rem;
+      margin: .4rem 0
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 12px
+    }
+
+    .card-header {
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border-strong)
+    }
+
+    .copy-btn {
+      border: 1px solid var(--border-strong) !important
+    }
+
+    .chip {
+      display: inline-block;
+      padding: .2rem .55rem;
+      border-radius: 999px;
+      background: var(--chip);
+      color: var(--chip-text);
+      font-size: .75rem
+    }
+
+    pre[class*="language-"],
+    code[class*="language-"] {
+      background: var(--code-bg) !important;
+      color: var(--code-fg) !important;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: .93rem;
+      line-height: 1.5
     }
 
     /* กล่องคำอธิบาย: เปิดค่าเริ่มต้น และเขียนให้อ่านง่าย */
-    details.explain{background:#f8fafc;border:0;border-radius:12px;margin-top:.5rem;box-shadow: inset 0 1px 0 rgba(0,0,0,.03)}
-    details.explain > summary{list-style:none;cursor:pointer;padding:.75rem .95rem;font-weight:700}
-    details.explain > summary::marker, details.explain > summary::-webkit-details-marker{display:none}
-    details.explain > summary::before{content:'▾';display:inline-block;margin-right:.4rem;color:#64748b;transition:transform .2s}
-    details.explain[open] > summary::before{transform:rotate(180deg)}
-    details.explain .body{padding:.1rem .95rem .9rem}
-    details.explain .body p{margin-bottom:.4rem}
-    details.explain .body ul{margin-bottom:0}
+    details.explain {
+      background: #f8fafc;
+      border: 0;
+      border-radius: 12px;
+      margin-top: .5rem;
+      box-shadow: inset 0 1px 0 rgba(0, 0, 0, .03)
+    }
+
+    details.explain>summary {
+      list-style: none;
+      cursor: pointer;
+      padding: .75rem .95rem;
+      font-weight: 700
+    }
+
+    details.explain>summary::marker,
+    details.explain>summary::-webkit-details-marker {
+      display: none
+    }
+
+    details.explain>summary::before {
+      content: '▾';
+      display: inline-block;
+      margin-right: .4rem;
+      color: #64748b;
+      transition: transform .2s
+    }
+
+    details.explain[open]>summary::before {
+      transform: rotate(180deg)
+    }
+
+    details.explain .body {
+      padding: .1rem .95rem .9rem
+    }
+
+    details.explain .body p {
+      margin-bottom: .4rem
+    }
+
+    details.explain .body ul {
+      margin-bottom: 0
+    }
   </style>
 </head>
+
 <body>
   <!-- NAV -->
   <nav class="navbar navbar-expand-lg sticky-top">
@@ -90,7 +186,9 @@
         <div class="sidebar">
           <div class="toc">
             <h6>Database</h6>
-            <ol class="mb-3"><li><a href="#database">Schema & Seed</a></li></ol>
+            <ol class="mb-3">
+              <li><a href="#database">Schema & Seed</a></li>
+            </ol>
             <h6>Backend</h6>
             <ol class="mb-3">
               <li><a href="#backend-structure">โครงสร้าง</a></li>
@@ -116,13 +214,7 @@
             <h2 class="h4 fw-bold mb-0">Database (MySQL)</h2>
             <button class="btn btn-sm copy-btn" onclick="copyBlock('sql', this)">คัดลอก</button>
           </div>
-<pre><code id="sql" class="language-sql">/**
- * @file database.sql
- * @summary สร้างฐานข้อมูล workshop_3 + ตาราง position/teacher พร้อม seed เริ่มต้น
- * @note img เก็บ path แบบสัมพัทธ์ เช่น teacher_image/xxx.png (เสิร์ฟเป็น static)
- * @todo เพิ่ม FOREIGN KEY ของ teacher.position_id หากต้อง enforce ความถูกต้อง
- */
-CREATE DATABASE IF NOT EXISTS `workshop_3` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+          <pre><code id="sql" class="language-sql">CREATE DATABASE IF NOT EXISTS `workshop_3` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `workshop_3`;
 
 CREATE TABLE `position` (
@@ -159,20 +251,27 @@ INSERT INTO `teacher` (`name`, `address`, `telephone`, `img`, `position_id`) VAL
 ('จันทิมา ดวงเด่น', '123/4 ม.1 ต.ในเมือง อ.เมือง จ.เพชรบูรณ์', '0123456789', '', 2),
 ('สมพงษ์ สุขสวัสดิ์', '123/5 ม.1 ต.ในเมือง อ.เมือง จ.เพชรบูรณ์', '0123456789', '', 4);
 </code></pre>
-          <details class="explain" open><summary>คำอธิบายสั้น กระชับ และตรงประเด็น</summary><div class="body">
-            <ul class="mb-0">
-              <li>สร้าง DB <code>workshop_3</code> + ตาราง <code>position</code> และ <code>teacher</code> พร้อม seed</li>
-              <li>คอลัมน์ <code>img</code> เก็บพาธแบบสัมพัทธ์ เช่น <code>teacher_image/xxx.png</code> เพื่อเสิร์ฟเป็น Static</li>
-              <li>ถ้าต้อง “บังคับ” ว่าครูต้องอ้างอิงตำแหน่งที่มีอยู่จริง ให้เพิ่ม Foreign Key (ดูคอมเมนต์ใน SQL)</li>
-            </ul>
-          </div></details>
+          <details class="explain" open>
+            <summary>คำอธิบายสั้น กระชับ และตรงประเด็น</summary>
+            <div class="body">
+              <ul class="mb-0">
+                <li>สร้าง DB <code>workshop_3</code> + ตาราง <code>position</code> และ <code>teacher</code> พร้อม seed
+                </li>
+                <li>คอลัมน์ <code>img</code> เก็บพาธแบบสัมพัทธ์ เช่น <code>teacher_image/xxx.png</code> เพื่อเสิร์ฟเป็น
+                  Static</li>
+                <li>ถ้าต้อง “บังคับ” ว่าครูต้องอ้างอิงตำแหน่งที่มีอยู่จริง ให้เพิ่ม Foreign Key (ดูคอมเมนต์ใน SQL)</li>
+              </ul>
+            </div>
+          </details>
         </div>
 
         <!-- BACKEND -->
-        <div id="backend" class="mb-3"><h2 class="h4 fw-bold">Backend (Node.js + Express)</h2></div>
+        <div id="backend" class="mb-3">
+          <h2 class="h4 fw-bold">Backend (Node.js + Express)</h2>
+        </div>
 
         <div id="backend-structure" class="mb-4">
-<pre><code class="language-bash"># /**
+          <pre><code class="language-bash"># /**
 #  * @block โครงสร้างโฟลเดอร์ server/
 #  * @summary สรุปตำแหน่งไฟล์/หน้าที่หลักของแต่ละไดเรกทอรี
 #  */
@@ -202,14 +301,17 @@ server/
 |-- .env
 |-- package.json
 </code></pre>
-          <details class="explain" open><summary>อธิบายภาพรวมแบบเข้าใจง่าย</summary><div class="body">
-            <ul class="mb-0">
-              <li><b>controllers</b> ตรวจ/รับค่า <code>req</code> → เรียก <b>services</b> → ตอบ <code>res</code></li>
-              <li><b>services</b> คุย DB ล้วน (ไม่มี HTTP) → โค้ดสะอาด แก้ทีหลังง่าย</li>
-              <li><b>middlewares</b> ใช้ซ้ำได้ เช่น async/error, อัปโหลดรูป</li>
-              <li><b>public/teacher_image</b> ที่เก็บไฟล์รูปของครู (เสิร์ฟเป็น static)</li>
-            </ul>
-          </div></details>
+          <details class="explain" open>
+            <summary>อธิบายภาพรวมแบบเข้าใจง่าย</summary>
+            <div class="body">
+              <ul class="mb-0">
+                <li><b>controllers</b> ตรวจ/รับค่า <code>req</code> → เรียก <b>services</b> → ตอบ <code>res</code></li>
+                <li><b>services</b> คุย DB ล้วน (ไม่มี HTTP) → โค้ดสะอาด แก้ทีหลังง่าย</li>
+                <li><b>middlewares</b> ใช้ซ้ำได้ เช่น async/error, อัปโหลดรูป</li>
+                <li><b>public/teacher_image</b> ที่เก็บไฟล์รูปของครู (เสิร์ฟเป็น static)</li>
+              </ul>
+            </div>
+          </details>
         </div>
 
         <div id="backend-run" class="mb-5">
@@ -217,7 +319,7 @@ server/
             <h3 class="h5 fw-bold mb-0">สร้างโปรเจกต์ & วิธีรัน (Backend)</h3>
             <button class="btn btn-sm copy-btn" onclick="copyBlock('backend-setup', this)">คัดลอก</button>
           </div>
-<pre><code id="backend-setup" class="language-bash"># /**
+          <pre><code id="backend-setup" class="language-bash"># /**
 #  * @steps ตั้งค่า Backend (Express + MySQL)
 #  * @note dev ใช้ `npm run dev` (nodemon), run จริงใช้ `npm start`
 #  * @cors FRONTEND_ORIGIN ต้องตรงพอร์ต Vite (ปกติ 5173)
@@ -232,21 +334,29 @@ mkdir src\config src\routes src\controllers src\services src\middlewares src\uti
 # วางไฟล์ทั้งหมดตามส่วน "โค้ดทุกไฟล์" ด้านล่าง
 npm start   # เริ่ม dev server ที่ http://localhost:3000
 </code></pre>
-          <details class="explain" open><summary>จุดที่มักสับสน (เคลียร์ๆ)</summary><div class="body">
-            <ul class="mb-0">
-              <li>ใช้ <code>npm dev</code> ในช่วงพัฒนา (มี <code>nodemon</code>) / ใช้ <code>npm start</code> ตอนรันจริง</li>
-              <li><code>FRONTEND_ORIGIN</code> ใน <code>.env</code> ต้องตรงกับพอร์ตของ Vite (ปกติ <code>5173</code>) เพื่อให้ CORS ผ่าน</li>
-            </ul>
-          </div></details>
+          <details class="explain" open>
+            <summary>จุดที่มักสับสน (เคลียร์ๆ)</summary>
+            <div class="body">
+              <ul class="mb-0">
+                <li>ใช้ <code>npm dev</code> ในช่วงพัฒนา (มี <code>nodemon</code>) / ใช้ <code>npm start</code>
+                  ตอนรันจริง</li>
+                <li><code>FRONTEND_ORIGIN</code> ใน <code>.env</code> ต้องตรงกับพอร์ตของ Vite (ปกติ <code>5173</code>)
+                  เพื่อให้ CORS ผ่าน</li>
+              </ul>
+            </div>
+          </details>
         </div>
 
         <!-- BACKEND FILES -->
         <div id="backend-code" class="mb-5">
 
           <!-- server/.env -->
-          <div class="card mb-3"><div class="card-header d-flex justify-content-between align-items-center">
-            <strong>server/.env</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('srv-env', this)">คัดลอก</button></div>
-<pre class="m-0"><code id="srv-env" class="language-bash"># /**
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <strong>server/.env</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('srv-env', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="srv-env" class="language-bash"># /**
 #  * @file server/.env
 #  * @summary กำหนด PORT/DB และ FRONTEND_ORIGIN สำหรับ CORS
 #  */
@@ -258,45 +368,46 @@ DB_PASSWORD=
 DB_NAME=workshop_3
 FRONTEND_ORIGIN=http://localhost:5173
 </code></pre>
-<details class="explain" open><summary>อธิบาย .env แบบสั้นๆ</summary><div class="body">
-  <ul class="mb-0">
-    <li><code>FRONTEND_ORIGIN</code> เปิด CORS สำหรับเว็บฝั่ง Vite ขณะ dev</li>
-    <li>ปรับข้อมูล DB ให้ตรงเครื่องก่อนรัน</li>
-  </ul>
-</div></details></div>
+            <details class="explain" open>
+              <summary>อธิบาย .env แบบสั้นๆ</summary>
+              <div class="body">
+                <ul class="mb-0">
+                  <li><code>FRONTEND_ORIGIN</code> เปิด CORS สำหรับเว็บฝั่ง Vite ขณะ dev</li>
+                  <li>ปรับข้อมูล DB ให้ตรงเครื่องก่อนรัน</li>
+                </ul>
+              </div>
+            </details>
+          </div>
 
           <!-- server/package.json -->
-          <div class="card mb-3"><div class="card-header d-flex justify-content-between">
-            <strong>server/package.json</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('srv-pkg', this)">คัดลอก</button></div>
-<pre class="m-0"><code id="srv-pkg" class="language-json">/**
- * @file server/package.json
- * @type commonjs
- * @scripts dev: nodemon src/app.js, start: node src/app.js
- */
-{
-  "name": "server",
-  "version": "1.0.0",
-  "type": "commonjs",
-  "scripts": { "dev": "nodemon src/app.js", "start": "node src/app.js" },
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^17.2.1",
-    "express": "^5.1.0",
-    "multer": "^2.0.2",
-    "mysql2": "^3.14.4"
-  },
-  "devDependencies": { "nodemon": "^3.1.10" }
-}
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between">
+              <strong>server/package.json</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('srv-pkg', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="srv-pkg" class="language-json">"scripts": { 
+  "dev": "nodemon src/app.js", 
+  "start": "node src/app.js" 
+},
 </code></pre>
-<details class="explain" open><summary>สรุปให้ชัด</summary><div class="body"><ul class="mb-0">
-  <li><code>type: commonjs</code> → ใช้ <code>require()</code> ได้</li>
-  <li><code>dev</code> = โหมดพัฒนา (auto-restart), <code>start</code> = โหมดจริง</li>
-</ul></div></details></div>
+            <details class="explain" open>
+              <summary>สรุปให้ชัด</summary>
+              <div class="body">
+                <ul class="mb-0">
+                  <li><code>type: commonjs</code> → ใช้ <code>require()</code> ได้</li>
+                  <li><code>dev</code> = โหมดพัฒนา (auto-restart), <code>start</code> = โหมดจริง</li>
+                </ul>
+              </div>
+            </details>
+          </div>
 
           <!-- server/src/config/db.js -->
-          <div class="card mb-3"><div class="card-header d-flex justify-content-between">
-            <strong>server/src/config/db.js</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('srv-db', this)">คัดลอก</button></div>
-<pre class="m-0"><code id="srv-db" class="language-javascript">/**
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between">
+              <strong>server/src/config/db.js</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('srv-db', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="srv-db" class="language-javascript">/**
  * @file src/config/db.js
  * @summary ตั้งค่า MySQL connection pool (mysql2/promise)
  * @env DB_HOST, DB_USER, DB_PASSWORD, DB_NAME
@@ -313,15 +424,24 @@ const pool = mysql.createPool({
 });
 module.exports = { pool };
 </code></pre>
-<details class="explain" open><summary>เข้าใจใน 2 บรรทัด</summary><div class="body"><ul class="mb-0">
-  <li>ใช้ <b>connection pool</b> เพื่อประสิทธิภาพและความเสถียร</li>
-  <li>ทุก service เรียก <code>pool.query(sql, params)</code> ได้ทันที</li>
-</ul></div></details></div>
+            <details class="explain" open>
+              <summary>เข้าใจใน 2 บรรทัด</summary>
+              <div class="body">
+                <ul class="mb-0">
+                  <li>ใช้ <b>connection pool</b> เพื่อประสิทธิภาพและความเสถียร</li>
+                  <li>ทุก service เรียก <code>pool.query(sql, params)</code> ได้ทันที</li>
+                </ul>
+              </div>
+            </details>
+          </div>
 
           <!-- server/src/app.js -->
-          <div class="card mb-3"><div class="card-header d-flex justify-content-between">
-            <strong>server/src/app.js</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('srv-app', this)">คัดลอก</button></div>
-<pre class="m-0"><code id="srv-app" class="language-javascript">/**
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between">
+              <strong>server/src/app.js</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('srv-app', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="srv-app" class="language-javascript">/**
  * @file src/app.js
  * @summary บูต Express + CORS + JSON body + static images + mount routes + error handlers
  * @routes /api/**, /teacher_image/**
@@ -356,29 +476,47 @@ const port = process.env.PORT || 3000;
  */
 app.listen(port, () => console.log(`API running at http://localhost:${port}`));
 </code></pre>
-<details class="explain" open><summary>สิ่งสำคัญที่ควรรู้</summary><div class="body"><ul class="mb-0">
-  <li>เปิด CORS ตาม <code>FRONTEND_ORIGIN</code> และรับ JSON body</li>
-  <li>เสิร์ฟรูปจาก <code>/teacher_image</code> (อยู่ใน <code>public</code>)</li>
-  <li><code>notFound</code> และ <code>errorHandler</code> ต้องวางท้ายสุด</li>
-</ul></div></details></div>
+            <details class="explain" open>
+              <summary>สิ่งสำคัญที่ควรรู้</summary>
+              <div class="body">
+                <ul class="mb-0">
+                  <li>เปิด CORS ตาม <code>FRONTEND_ORIGIN</code> และรับ JSON body</li>
+                  <li>เสิร์ฟรูปจาก <code>/teacher_image</code> (อยู่ใน <code>public</code>)</li>
+                  <li><code>notFound</code> และ <code>errorHandler</code> ต้องวางท้ายสุด</li>
+                </ul>
+              </div>
+            </details>
+          </div>
 
           <!-- middlewares -->
-          <div class="card mb-3"><div class="card-header d-flex justify-content-between">
-            <strong>server/src/middlewares/asyncHandler.js</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('srv-async', this)">คัดลอก</button></div>
-<pre class="m-0"><code id="srv-async" class="language-javascript">/**
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between">
+              <strong>server/src/middlewares/asyncHandler.js</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('srv-async', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="srv-async" class="language-javascript">/**
  * ครอบฟังก์ชัน async ของ controller เพื่อลด try/catch
  * @param {Function} fn - ฟังก์ชัน async (req,res,next)
  * @returns {Function} middleware ที่จัดการ error ผ่าน next()
  */
 module.exports = (fn) => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
 </code></pre>
-<details class="explain" open><summary>ทำไมต้องมีไฟล์นี้?</summary><div class="body">
-  <ul class="mb-0"><li>ลดการเขียน <code>try/catch</code> ซ้ำๆ ใน controller → โค้ดสั้นลง</li></ul>
-</div></details></div>
+            <details class="explain" open>
+              <summary>ทำไมต้องมีไฟล์นี้?</summary>
+              <div class="body">
+                <ul class="mb-0">
+                  <li>ลดการเขียน <code>try/catch</code> ซ้ำๆ ใน controller → โค้ดสั้นลง</li>
+                </ul>
+              </div>
+            </details>
+          </div>
 
-          <div class="card mb-3"><div class="card-header d-flex justify-content-between">
-            <strong>server/src/middlewares/errorHandler.js</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('srv-err', this)">คัดลอก</button></div>
-<pre class="m-0"><code id="srv-err" class="language-javascript">/**
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between">
+              <strong>server/src/middlewares/errorHandler.js</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('srv-err', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="srv-err" class="language-javascript">/**
  * notFound: สร้าง Error 404 เมื่อไม่พบเส้นทาง
  * @param {import('express').Request} req
  * @param {import('express').Response} _res
@@ -399,13 +537,22 @@ const errorHandler = (err,_req,res,_next)=>{ const status=err.status||500;
 };
 module.exports={ notFound, errorHandler };
 </code></pre>
-<details class="explain" open><summary>ผลลัพธ์เมื่อ error</summary><div class="body">
-  <ul class="mb-0"><li>ตอบกลับเป็น JSON รูปแบบเดียวกัน (คาดเดาได้ง่าย)</li></ul>
-</div></details></div>
+            <details class="explain" open>
+              <summary>ผลลัพธ์เมื่อ error</summary>
+              <div class="body">
+                <ul class="mb-0">
+                  <li>ตอบกลับเป็น JSON รูปแบบเดียวกัน (คาดเดาได้ง่าย)</li>
+                </ul>
+              </div>
+            </details>
+          </div>
 
-          <div class="card mb-3"><div class="card-header d-flex justify-content-between">
-            <strong>server/src/middlewares/uploadImage.js</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('srv-up', this)">คัดลอก</button></div>
-<pre class="m-0"><code id="srv-up" class="language-javascript">/**
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between">
+              <strong>server/src/middlewares/uploadImage.js</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('srv-up', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="srv-up" class="language-javascript">/**
  * ตั้งค่า multer สำหรับอัปโหลดรูปครู
  * @constant uploadDir โฟลเดอร์เก็บรูป: public/teacher_image
  * @rule mimetype: jpeg|jpg|png|webp, size ≤ 2MB, field='image'
@@ -427,17 +574,24 @@ const fileFilter=(_req,file,cb)=>{ const ok=['image/jpeg','image/jpg','image/png
 const uploadSingleImage=multer({ storage, fileFilter, limits:{ fileSize:2*1024*1024 } }).single('image');
 module.exports={ uploadSingleImage };
 </code></pre>
-<details class="explain" open><summary>ข้อกำหนดไฟล์รูป</summary><div class="body">
-  <ul class="mb-0">
-    <li>รับเฉพาะ <code>jpeg/png/webp</code> และจำกัดขนาด 2MB</li>
-    <li>ฟิลด์ไฟล์ในฟอร์มชื่อ <code>image</code></li>
-  </ul>
-</div></details></div>
+            <details class="explain" open>
+              <summary>ข้อกำหนดไฟล์รูป</summary>
+              <div class="body">
+                <ul class="mb-0">
+                  <li>รับเฉพาะ <code>jpeg/png/webp</code> และจำกัดขนาด 2MB</li>
+                  <li>ฟิลด์ไฟล์ในฟอร์มชื่อ <code>image</code></li>
+                </ul>
+              </div>
+            </details>
+          </div>
 
           <!-- utils/file.js -->
-          <div class="card mb-3"><div class="card-header d-flex justify-content-between">
-            <strong>server/src/utils/file.js</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('srv-util', this)">คัดลอก</button></div>
-<pre class="m-0"><code id="srv-util" class="language-javascript">const fs = require('fs'); const path = require('path');
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between">
+              <strong>server/src/utils/file.js</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('srv-util', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="srv-util" class="language-javascript">const fs = require('fs'); const path = require('path');
 /**
  * ลบไฟล์จากโฟลเดอร์ public อย่างปลอดภัย (ไม่ throw)
  * @param {string} relativePath - พาธสัมพัทธ์จาก public เช่น teacher_image/xxx.png
@@ -454,14 +608,23 @@ function unlinkSafe(relativePath){
 }
 module.exports = { unlinkSafe };
 </code></pre>
-<details class="explain" open><summary>เหตุผลที่ต้อง “safe”</summary><div class="body">
-  <ul class="mb-0"><li>กันการลบไฟล์นอกโฟลเดอร์ด้วยการตรวจ <code>startsWith(base)</code> (ป้องกัน path traversal)</li></ul>
-</div></details></div>
+            <details class="explain" open>
+              <summary>เหตุผลที่ต้อง “safe”</summary>
+              <div class="body">
+                <ul class="mb-0">
+                  <li>กันการลบไฟล์นอกโฟลเดอร์ด้วยการตรวจ <code>startsWith(base)</code> (ป้องกัน path traversal)</li>
+                </ul>
+              </div>
+            </details>
+          </div>
 
           <!-- routes -->
-          <div class="card mb-3"><div class="card-header d-flex justify-content-between">
-            <strong>server/src/routes/index.js</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('srv-ridx', this)">คัดลอก</button></div>
-<pre class="m-0"><code id="srv-ridx" class="language-javascript">/**
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between">
+              <strong>server/src/routes/index.js</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('srv-ridx', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="srv-ridx" class="language-javascript">/**
  * รวม router ของ teachers และ positions
  * @mount /api ใน app.js
  */
@@ -473,13 +636,24 @@ router.use('/teachers', teacherRoutes);
 router.use('/positions', positionRoutes);
 module.exports = router;
 </code></pre>
-<details class="explain" open><summary>รวม route ไว้จุดเดียว</summary><div class="body">
-  <ul class="mb-0"><li>ถูก mount ที่ <code>/api</code> ใน <code>app.js</code> → endpoint จริงเช่น <code>GET /api/teachers</code></li></ul>
-</div></details></div>
+            <details class="explain" open>
+              <summary>รวม route ไว้จุดเดียว</summary>
+              <div class="body">
+                <ul class="mb-0">
+                  <li>ถูก mount ที่ <code>/api</code> ใน <code>app.js</code> → endpoint จริงเช่น
+                    <code>GET /api/teachers</code>
+                  </li>
+                </ul>
+              </div>
+            </details>
+          </div>
 
-          <div class="card mb-3"><div class="card-header d-flex justify-content-between">
-            <strong>server/src/routes/position.routes.js</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('srv-pro', this)">คัดลอก</button></div>
-<pre class="m-0"><code id="srv-pro" class="language-javascript">/**
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between">
+              <strong>server/src/routes/position.routes.js</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('srv-pro', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="srv-pro" class="language-javascript">/**
  * เส้นทางตำแหน่งงาน (positions)
  * @endpoints GET /, GET /:id, POST /, PUT /:id, DELETE /:id
  */
@@ -493,13 +667,22 @@ router.put('/:id', ctrl.update);
 router.delete('/:id', ctrl.remove);
 module.exports = router;
 </code></pre>
-<details class="explain" open><summary>ตำแหน่ง: CRUD ครบ</summary><div class="body">
-  <ul class="mb-0"><li>ควบคุมสถานะ HTTP ที่ controller (201/404/204 ฯลฯ)</li></ul>
-</div></details></div>
+            <details class="explain" open>
+              <summary>ตำแหน่ง: CRUD ครบ</summary>
+              <div class="body">
+                <ul class="mb-0">
+                  <li>ควบคุมสถานะ HTTP ที่ controller (201/404/204 ฯลฯ)</li>
+                </ul>
+              </div>
+            </details>
+          </div>
 
-          <div class="card mb-3"><div class="card-header d-flex justify-content-between">
-            <strong>server/src/routes/teacher.routes.js</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('srv-tr', this)">คัดลอก</button></div>
-<pre class="m-0"><code id="srv-tr" class="language-javascript">/**
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between">
+              <strong>server/src/routes/teacher.routes.js</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('srv-tr', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="srv-tr" class="language-javascript">/**
  * เส้นทางครู (teachers) รองรับอัปโหลดรูป
  * @middleware uploadSingleImage บน POST/PUT
  */
@@ -514,14 +697,23 @@ router.put('/:id', uploadSingleImage, ctrl.update);
 router.delete('/:id', ctrl.remove);
 module.exports = router;
 </code></pre>
-<details class="explain" open><summary>ครู: รองรับอัปโหลดรูป</summary><div class="body">
-  <ul class="mb-0"><li>ถ้ามีไฟล์แนบ จะผ่าน <code>uploadSingleImage</code> ก่อนถึง controller</li></ul>
-</div></details></div>
+            <details class="explain" open>
+              <summary>ครู: รองรับอัปโหลดรูป</summary>
+              <div class="body">
+                <ul class="mb-0">
+                  <li>ถ้ามีไฟล์แนบ จะผ่าน <code>uploadSingleImage</code> ก่อนถึง controller</li>
+                </ul>
+              </div>
+            </details>
+          </div>
 
           <!-- controllers -->
-          <div class="card mb-3"><div class="card-header d-flex justify-content-between">
-            <strong>server/src/controllers/position.controller.js</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('srv-cp', this)">คัดลอก</button></div>
-<pre class="m-0"><code id="srv-cp" class="language-javascript">const asyncHandler = require('../middlewares/asyncHandler');
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between">
+              <strong>server/src/controllers/position.controller.js</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('srv-cp', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="srv-cp" class="language-javascript">const asyncHandler = require('../middlewares/asyncHandler');
 const svc = require('../services/position.service');
 
 /** ดึงรายการตำแหน่งทั้งหมด */
@@ -564,15 +756,23 @@ exports.remove = asyncHandler(async (req, res) => {
   res.status(204).send();
 });
 </code></pre>
-<details class="explain" open><summary>เหตุผลของสถานะ HTTP</summary><div class="body">
-  <ul class="mb-0">
-    <li><code>201</code> สร้างสำเร็จ, <code>404</code> ไม่พบข้อมูล, <code>204</code> ลบสำเร็จ (ไม่ต้องมี body)</li>
-  </ul>
-</div></details></div>
+            <details class="explain" open>
+              <summary>เหตุผลของสถานะ HTTP</summary>
+              <div class="body">
+                <ul class="mb-0">
+                  <li><code>201</code> สร้างสำเร็จ, <code>404</code> ไม่พบข้อมูล, <code>204</code> ลบสำเร็จ (ไม่ต้องมี
+                    body)</li>
+                </ul>
+              </div>
+            </details>
+          </div>
 
-          <div class="card mb-3"><div class="card-header d-flex justify-content-between">
-            <strong>server/src/controllers/teacher.controller.js</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('srv-ct', this)">คัดลอก</button></div>
-<pre class="m-0"><code id="srv-ct" class="language-javascript">const asyncHandler = require('../middlewares/asyncHandler');
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between">
+              <strong>server/src/controllers/teacher.controller.js</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('srv-ct', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="srv-ct" class="language-javascript">const asyncHandler = require('../middlewares/asyncHandler');
 const svc = require('../services/teacher.service');
 const fs = require('fs'); const path = require('path');
 
@@ -635,113 +835,197 @@ exports.remove = asyncHandler(async (req, res) => {
   res.status(204).send();
 });
 </code></pre>
-<details class="explain" open><summary>แนวคิดการต่อ URL รูป</summary><div class="body">
-  <ul class="mb-0">
-    <li>ต่อจาก host ปัจจุบัน เช่น <code>http://localhost:3000/teacher_image/xxxx.webp</code> → frontend เรียกดูได้ทันที</li>
-    <li>หาก validate ไม่ผ่านและมีไฟล์อัปโหลด จะลบไฟล์ทิ้งทันที (กันไฟล์ขยะ)</li>
-  </ul>
-</div></details></div>
+            <details class="explain" open>
+              <summary>แนวคิดการต่อ URL รูป</summary>
+              <div class="body">
+                <ul class="mb-0">
+                  <li>ต่อจาก host ปัจจุบัน เช่น <code>http://localhost:3000/teacher_image/xxxx.webp</code> → frontend
+                    เรียกดูได้ทันที</li>
+                  <li>หาก validate ไม่ผ่านและมีไฟล์อัปโหลด จะลบไฟล์ทิ้งทันที (กันไฟล์ขยะ)</li>
+                </ul>
+              </div>
+            </details>
+          </div>
 
           <!-- services -->
-          <div class="card mb-3"><div class="card-header d-flex justify-content-between">
-            <strong>server/src/services/position.service.js</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('srv-sp', this)">คัดลอก</button></div>
-<pre class="m-0"><code id="srv-sp" class="language-javascript">const { pool } = require('../config/db');
-
-/** ดึงรายการตำแหน่งทั้งหมด (เรียงจาก id น้อยไปมาก)
- * @returns {Promise<Array<{id:number,name:string}>>}
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between">
+              <strong>server/src/services/position.service.js</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('srv-sp', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="srv-sp" class="language-javascript">/**
+ * @file src/services/position.service.js
+ * @summary ฟังก์ชันคุยกับฐานข้อมูลสำหรับตาราง `position`
+ * @exports listPositions, getPositionById, createPosition, updatePosition, deletePosition
  */
-async function listPositions(){
-  const [rows] = await pool.query('SELECT id,name FROM `position` ORDER BY id ASC');
+const { pool } = require('../config/db');
+
+/**
+ * ดึงรายการตำแหน่งทั้งหมด (เรียงจาก id น้อยไปมาก)
+ * @returns {Promise&lt;Array&lt;{id:number,name:string}&gt;&gt;}
+ */
+async function listPositions() {
+  const [rows] = await pool.query(
+    'SELECT `id`, `name` FROM `position` ORDER BY `id` ASC'
+  );
   return rows;
 }
 
-/** ดึงตำแหน่งตาม id — ถ้าไม่เจอจะคืน null
+/**
+ * ดึงตำแหน่งตาม id — ถ้าไม่เจอจะคืน null
  * @param {number|string} id
- * @returns {Promise<{id:number,name:string}|null>}
+ * @returns {Promise&lt;{id:number,name:string}|null&gt;}
  */
-async function getPositionById(id){
-  const [rows] = await pool.query('SELECT id,name FROM `position` WHERE id=?', [id]);
+async function getPositionById(id) {
+  const [rows] = await pool.query(
+    'SELECT `id`, `name` FROM `position` WHERE `id` = ?',
+    [id]
+  );
   return rows[0] || null;
 }
 
-/** สร้างตำแหน่งใหม่ — คืน object {id, name} ของแถวที่เพิ่งสร้าง
+/**
+ * สร้างตำแหน่งใหม่ — คืน object ของแถวที่เพิ่งสร้าง
  * @param {string} name - ชื่อตำแหน่ง
- * @returns {Promise<{id:number,name:string}>}
+ * @returns {Promise&lt;{id:number,name:string}&gt;}
  */
-async function createPosition(name){
-  const [r] = await pool.query('INSERT INTO `position` (name) VALUES (?)', [name]);
+async function createPosition(name) {
+  const [r] = await pool.query(
+    'INSERT INTO `position` (`name`) VALUES (?)',
+    [name]
+  );
   return { id: r.insertId, name };
 }
 
-/** แก้ไขชื่อตำแหน่ง — คืน true ถ้ามีแถวถูกแก้ไข
+/**
+ * แก้ไขชื่อตำแหน่ง — คืน true ถ้ามีแถวถูกแก้ไข
  * @param {number|string} id
  * @param {string} name
- * @returns {Promise<boolean>}
+ * @returns {Promise&lt;boolean&gt;}
  */
-async function updatePosition(id, name){
-  const [r] = await pool.query('UPDATE `position` SET name=? WHERE id=?', [name, id]);
+async function updatePosition(id, name) {
+  const [r] = await pool.query(
+    'UPDATE `position` SET `name` = ? WHERE `id` = ?',
+    [name, id]
+  );
   return r.affectedRows > 0;
 }
 
-/** ลบตำแหน่ง — คืน true ถ้าลบได้
+/**
+ * ลบตำแหน่ง — คืน true ถ้าลบได้
  * @param {number|string} id
- * @returns {Promise<boolean>}
+ * @returns {Promise&lt;boolean&gt;}
  */
-async function deletePosition(id){
-  const [r] = await pool.query('DELETE FROM `position` WHERE id=?', [id]);
+async function deletePosition(id) {
+  const [r] = await pool.query(
+    'DELETE FROM `position` WHERE `id` = ?',
+    [id]
+  );
   return r.affectedRows > 0;
 }
-module.exports = { listPositions, getPositionById, createPosition, updatePosition, deletePosition };
+
+module.exports = {
+  listPositions,
+  getPositionById,
+  createPosition,
+  updatePosition,
+  deletePosition,
+};
 </code></pre>
-<details class="explain" open><summary>แนวทางออกแบบ service</summary><div class="body">
-  <ul>
-    <li>ไม่ยุ่งกับ HTTP status → controller เป็นผู้ตัดสินใจ (ยืดหยุ่นกว่า)</li>
-    <li><code>null</code> เมื่อไม่พบข้อมูล เพื่อให้ controller ส่ง 404 ได้</li>
-    <li>เช็คผลด้วย <code>affectedRows</code> สำหรับ <code>UPDATE</code>/<code>DELETE</code></li>
-  </ul>
-</div></details></div>
+            <details class="explain" open>
+              <summary>แนวทางออกแบบ service</summary>
+              <div class="body">
+                <ul>
+                  <li>ไม่ยุ่งกับ HTTP status → controller เป็นผู้ตัดสินใจ (ยืดหยุ่นกว่า)</li>
+                  <li><code>null</code> เมื่อไม่พบข้อมูล เพื่อให้ controller ส่ง 404 ได้</li>
+                  <li>เช็คผลด้วย <code>affectedRows</code> สำหรับ <code>UPDATE</code>/<code>DELETE</code></li>
+                </ul>
+              </div>
+            </details>
+          </div>
 
-          <div class="card"><div class="card-header d-flex justify-content-between">
-            <strong>server/src/services/teacher.service.js</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('srv-st', this)">คัดลอก</button></div>
-<pre class="m-0"><code id="srv-st" class="language-javascript">const { pool } = require('../config/db'); const { getPositionById } = require('./position.service'); const { unlinkSafe } = require('../utils/file');
-
-/** รายการครู (JOIN position เพื่อได้ position_name)
- * @returns {Promise<Array<object>>}
+          <div class="card">
+            <div class="card-header d-flex justify-content-between">
+              <strong>server/src/services/teacher.service.js</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('srv-st', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="srv-st" class="language-javascript">/**
+ * @file src/services/teacher.service.js
+ * @summary ฟังก์ชันคุยกับฐานข้อมูลสำหรับตาราง `teacher` (JOIN `position` เมื่อจำเป็น)
+ * @exports listTeachers, getTeacherById, createTeacher, updateTeacher, deleteTeacher
  */
-async function listTeachers(){
-  const [rows]=await pool.query(
-`SELECT t.\`id\`,t.\`name\`,t.\`address\`,t.\`telephone\`,t.\`img\`,t.\`position_id\`,p.\`name\` AS position_name
- FROM \`teacher\` t LEFT JOIN \`position\` p ON p.\`id\`=t.\`position_id\` ORDER BY t.\`name\` ASC`);
+const { pool } = require('../config/db');
+const { getPositionById } = require('./position.service');
+const { unlinkSafe } = require('../utils/file');
+
+/**
+ * ดึงรายการครูทั้งหมด (เรียงตามชื่อ) พร้อมชื่อชื่อตำแหน่ง (position_name)
+ * @returns {Promise&lt;Array&lt;Object&gt;&gt;}
+ */
+async function listTeachers() {
+  const [rows] = await pool.query(
+    `SELECT
+       t.\`id\`, t.\`name\`, t.\`address\`, t.\`telephone\`, t.\`img\`,
+       t.\`position_id\`, p.\`name\` AS position_name
+     FROM \`teacher\` t
+     LEFT JOIN \`position\` p ON p.\`id\` = t.\`position_id\`
+     ORDER BY t.\`name\` ASC`
+  );
   return rows;
 }
 
-/** ค้นหาครูตาม id (รวม position_name)
+/**
+ * ค้นหาครูตาม id (รวม position_name)
  * @param {number|string} id
- * @returns {Promise<object|null>}
+ * @returns {Promise&lt;Object|null&gt;}
  */
-async function getTeacherById(id){
-  const [rows]=await pool.query(
-`SELECT t.\`id\`,t.\`name\`,t.\`address\`,t.\`telephone\`,t.\`img\`,t.\`position_id\`,p.\`name\` AS position_name
- FROM \`teacher\` t LEFT JOIN \`position\` p ON p.\`id\`=t.\`position_id\` WHERE t.\`id\`=?`,[id]); return rows[0]||null;
+async function getTeacherById(id) {
+  const [rows] = await pool.query(
+    `SELECT
+       t.\`id\`, t.\`name\`, t.\`address\`, t.\`telephone\`, t.\`img\`,
+       t.\`position_id\`, p.\`name\` AS position_name
+     FROM \`teacher\` t
+     LEFT JOIN \`position\` p ON p.\`id\` = t.\`position_id\`
+     WHERE t.\`id\` = ?`,
+    [id]
+  );
+  return rows[0] || null;
 }
 
-/** สร้างครูใหม่
+/**
+ * สร้างครูใหม่
  * @param {Object} data - ข้อมูลครู
  * @param {string} data.name - ชื่อ
  * @param {number} data.position_id - รหัสตำแหน่ง (ต้องมีอยู่จริง)
  * @param {string=} data.address
  * @param {string=} data.telephone
  * @param {string|null=} data.relativeImagePath - พาธรูปแบบสัมพัทธ์
- * @returns {Promise<object>} รายการครูที่ถูกสร้าง
+ * @returns {Promise&lt;Object&gt;} แถวที่ถูกสร้าง (JOIN แล้ว)
  */
-async function createTeacher({name,address=null,telephone=null,position_id,relativeImagePath=null}){
-  const pos=await getPositionById(position_id); if(!pos){ const e=new Error('position_id not found'); e.status=400; throw e; }
-  const [r]=await pool.query(
-`INSERT INTO \`teacher\` (\`name\`,\`address\`,\`telephone\`,\`img\`,\`position_id\`) VALUES (?,?,?,?,?)`,
-[name,address,telephone,relativeImagePath,position_id]); return await getTeacherById(r.insertId);
+async function createTeacher({
+  name,
+  address = null,
+  telephone = null,
+  position_id,
+  relativeImagePath = null,
+}) {
+  const pos = await getPositionById(position_id);
+  if (!pos) {
+    const e = new Error('position_id not found');
+    e.status = 400;
+    throw e;
+  }
+  const [r] = await pool.query(
+    `INSERT INTO \`teacher\`
+      (\`name\`, \`address\`, \`telephone\`, \`img\`, \`position_id\`)
+     VALUES (?, ?, ?, ?, ?)`,
+    [name, address, telephone, relativeImagePath, position_id]
+  );
+  return await getTeacherById(r.insertId);
 }
 
-/** ปรับปรุงข้อมูลครู (อัปเดตรูปจะลบไฟล์เก่าให้อัตโนมัติ)
+/**
+ * ปรับปรุงข้อมูลครู (อัปเดตรูปจะลบไฟล์เก่าให้อัตโนมัติ)
  * @param {number|string} id
  * @param {Object} data
  * @param {number=} data.position_id
@@ -749,45 +1033,83 @@ async function createTeacher({name,address=null,telephone=null,position_id,relat
  * @param {string=} data.address
  * @param {string=} data.telephone
  * @param {string|undefined=} data.relativeImagePath
- * @returns {Promise<object|null>}
+ * @returns {Promise&lt;Object|null&gt;}
  */
-async function updateTeacher(id,data){
-  if(data.position_id!==undefined&&data.position_id!==null){ const pos=await getPositionById(data.position_id); if(!pos){ const e=new Error('position_id not found'); e.status=400; throw e; } }
-  if(data.relativeImagePath){ const current=await getTeacherById(id); if(current?.img) unlinkSafe(current.img); }
-  const fields=[],values=[];
-  if(data.name!==undefined){ fields.push('`name`=?'); values.push(data.name); }
-  if(data.address!==undefined){ fields.push('`address`=?'); values.push(data.address); }
-  if(data.telephone!==undefined){ fields.push('`telephone`=?'); values.push(data.telephone); }
-  if(data.position_id!==undefined){ fields.push('`position_id`=?'); values.push(data.position_id); }
-  if(data.relativeImagePath!==undefined){ fields.push('`img`=?'); values.push(data.relativeImagePath); }
-  if(!fields.length) return await getTeacherById(id);
-  values.push(id); await pool.query(`UPDATE \`teacher\` SET ${fields.join(', ')} WHERE \`id\`=?`, values); return await getTeacherById(id);
+async function updateTeacher(id, data) {
+  if (data.position_id !== undefined && data.position_id !== null) {
+    const pos = await getPositionById(data.position_id);
+    if (!pos) {
+      const e = new Error('position_id not found');
+      e.status = 400;
+      throw e;
+    }
+  }
+
+  // ถ้ามีรูปใหม่ → ลบรูปเก่า
+  if (data.relativeImagePath) {
+    const current = await getTeacherById(id);
+    if (current?.img) unlinkSafe(current.img);
+  }
+
+  // สร้างชุด field แบบ dynamic
+  const fields = [];
+  const values = [];
+  if (data.name !== undefined) { fields.push('`name` = ?'); values.push(data.name); }
+  if (data.address !== undefined) { fields.push('`address` = ?'); values.push(data.address); }
+  if (data.telephone !== undefined) { fields.push('`telephone` = ?'); values.push(data.telephone); }
+  if (data.position_id !== undefined) { fields.push('`position_id` = ?'); values.push(data.position_id); }
+  if (data.relativeImagePath !== undefined) { fields.push('`img` = ?'); values.push(data.relativeImagePath); }
+
+  if (!fields.length) return await getTeacherById(id);
+
+  values.push(id);
+  await pool.query(
+    `UPDATE \`teacher\` SET ${fields.join(', ')} WHERE \`id\` = ?`,
+    values
+  );
+  return await getTeacherById(id);
 }
 
-/** ลบครู
+/**
+ * ลบครู (ลบไฟล์รูปเดิมด้วยหากมี)
  * @param {number|string} id
- * @returns {Promise<boolean>} true ถ้าลบสำเร็จ (จะลบไฟล์รูปเดิมด้วยหากมี)
+ * @returns {Promise&lt;boolean&gt;} true ถ้าลบสำเร็จ
  */
-async function deleteTeacher(id){
-  const current=await getTeacherById(id); const [r]=await pool.query('DELETE FROM `teacher` WHERE `id`=?',[id]);
-  if(r.affectedRows>0 && current?.img) unlinkSafe(current.img); return r.affectedRows>0;
+async function deleteTeacher(id) {
+  const current = await getTeacherById(id);
+  const [r] = await pool.query('DELETE FROM `teacher` WHERE `id` = ?', [id]);
+  if (r.affectedRows > 0 && current?.img) unlinkSafe(current.img);
+  return r.affectedRows > 0;
 }
-module.exports={ listTeachers,getTeacherById,createTeacher,updateTeacher,deleteTeacher };
+
+module.exports = {
+  listTeachers,
+  getTeacherById,
+  createTeacher,
+  updateTeacher,
+  deleteTeacher,
+};
 </code></pre>
-<details class="explain" open><summary>ประเด็นสำคัญ</summary><div class="body">
-  <ul class="mb-0">
-    <li>JOIN กับตารางตำแหน่งเพื่อได้ <code>position_name</code> ไปแสดงผล</li>
-    <li>เวลาเปลี่ยนรูปใหม่ จะลบรูปเก่าออกจากดิสก์ (ผ่าน <code>unlinkSafe</code>)</li>
-  </ul>
-</div></details></div>
+            <details class="explain" open>
+              <summary>ประเด็นสำคัญ</summary>
+              <div class="body">
+                <ul class="mb-0">
+                  <li>JOIN กับตารางตำแหน่งเพื่อได้ <code>position_name</code> ไปแสดงผล</li>
+                  <li>เวลาเปลี่ยนรูปใหม่ จะลบรูปเก่าออกจากดิสก์ (ผ่าน <code>unlinkSafe</code>)</li>
+                </ul>
+              </div>
+            </details>
+          </div>
 
         </div> <!-- /backend-code -->
 
         <!-- FRONTEND -->
-        <div id="frontend" class="mb-3"><h2 class="h4 fw-bold">Frontend (Vite + Vue 3 + Bootstrap)</h2></div>
+        <div id="frontend" class="mb-3">
+          <h2 class="h4 fw-bold">Frontend (Vite + Vue 3 + Bootstrap)</h2>
+        </div>
 
         <div id="frontend-structure" class="mb-4">
-<pre><code class="language-bash"># /**
+          <pre><code class="language-bash"># /**
 #  * @block โครงสร้างโปรเจกต์ client/ (Vite + Vue 3)
 #  * @note pages = ไฟล์ route, components = ชิ้นส่วนใช้ซ้ำ
 #  */
@@ -811,9 +1133,14 @@ client/
 |-- vite.config.js
 |-- package.json
 </code></pre>
-          <details class="explain" open><summary>สิ่งที่อยากให้จำ</summary><div class="body">
-            <ul class="mb-0"><li>แยก <b>pages</b> (ไฟล์ของ route) ออกจาก <b>components</b> (ชิ้นส่วนที่นำกลับมาใช้ซ้ำ)</li></ul>
-          </div></details>
+          <details class="explain" open>
+            <summary>สิ่งที่อยากให้จำ</summary>
+            <div class="body">
+              <ul class="mb-0">
+                <li>แยก <b>pages</b> (ไฟล์ของ route) ออกจาก <b>components</b> (ชิ้นส่วนที่นำกลับมาใช้ซ้ำ)</li>
+              </ul>
+            </div>
+          </details>
         </div>
 
         <div id="frontend-run" class="mb-5">
@@ -821,7 +1148,7 @@ client/
             <h3 class="h5 fw-bold mb-0">สร้างโปรเจกต์ & วิธีรัน (Frontend)</h3>
             <button class="btn btn-sm copy-btn" onclick="copyBlock('fe-setup', this)">คัดลอก</button>
           </div>
-<pre><code id="fe-setup" class="language-bash"># /**
+          <pre><code id="fe-setup" class="language-bash"># /**
 #  * @steps ตั้งค่า Frontend (Vite + Vue)
 #  * 1) npm create vite@latest client -- --template vue
 #  * 2) cd client && npm i
@@ -841,20 +1168,28 @@ cd src && mkdir api pages router
 # สร้างไฟล์ .env ตามตัวอย่าง
 npm run dev   # http://localhost:5173
 </code></pre>
-          <details class="explain" open><summary>เคล็ดลับให้ผ่านฉลุย</summary><div class="body">
-            <ul class="mb-0">
-              <li>ชื่อโฟลเดอร์ตอนสร้าง Vite ต้องสอดคล้องกับคำสั่ง <code>cd</code> (เช่นใช้ <code>client</code> ให้ <code>cd client</code>)</li>
-              <li>ถ้าเปิดเว็บแล้ว CORS ขัด ให้เช็ค <code>FRONTEND_ORIGIN</code> ฝั่ง backend</li>
-            </ul>
-          </div></details>
+          <details class="explain" open>
+            <summary>เคล็ดลับให้ผ่านฉลุย</summary>
+            <div class="body">
+              <ul class="mb-0">
+                <li>ชื่อโฟลเดอร์ตอนสร้าง Vite ต้องสอดคล้องกับคำสั่ง <code>cd</code> (เช่นใช้ <code>client</code> ให้
+                  <code>cd client</code>)
+                </li>
+                <li>ถ้าเปิดเว็บแล้ว CORS ขัด ให้เช็ค <code>FRONTEND_ORIGIN</code> ฝั่ง backend</li>
+              </ul>
+            </div>
+          </details>
         </div>
 
         <!-- FRONTEND FILES -->
         <div id="frontend-code" class="mb-5">
 
-          <div class="card mb-3"><div class="card-header d-flex justify-content-between">
-            <strong>client/.env</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('fe-env', this)">คัดลอก</button></div>
-<pre class="m-0"><code id="fe-env" class="language-bash"># /**
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between">
+              <strong>client/.env</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('fe-env', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="fe-env" class="language-bash"># /**
 #  * @file client/.env
 #  * @var  VITE_API_BASE=http://localhost:3000/api
 #  * @summary base URL สำหรับ axios
@@ -862,19 +1197,23 @@ npm run dev   # http://localhost:5173
 
 VITE_API_BASE=http://localhost:3000/api
 </code></pre>
-          <details class="explain" open><summary>สั้นๆ ได้ใจความ</summary><div class="body">
-            <ul class="mb-0"><li>กำหนด base URL ให้ axios (เปลี่ยนได้ตอน deploy)</li></ul>
-          </div></details>
+            <details class="explain" open>
+              <summary>สั้นๆ ได้ใจความ</summary>
+              <div class="body">
+                <ul class="mb-0">
+                  <li>กำหนด base URL ให้ axios (เปลี่ยนได้ตอน deploy)</li>
+                </ul>
+              </div>
+            </details>
           </div>
 
-          <div class="card mb-3"><div class="card-header d-flex justify-content-between">
-            <strong>client/package.json</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('fe-pkg', this)">คัดลอก</button></div>
-<pre class="m-0"><code id="fe-pkg" class="language-json">/**
- * @file client/package.json
- * @summary สคริปต์ Vite (dev/build/preview) และ dependencies ฝั่งหน้าเว็บ
- */
-{
-  "name": "frontend",
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between">
+              <strong>client/package.json</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('fe-pkg', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="fe-pkg" class="language-json">{
+  "name": "client",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -897,14 +1236,22 @@ VITE_API_BASE=http://localhost:3000/api
   }
 }
 </code></pre>
-          <details class="explain" open><summary>จำเฉพาะที่จำเป็น</summary><div class="body">
-            <ul class="mb-0"><li><code>dev</code> = พัฒนา, <code>build</code> = ผลิต, <code>preview</code> = ทดสอบไฟล์ build</li></ul>
-          </div></details>
+            <details class="explain" open>
+              <summary>จำเฉพาะที่จำเป็น</summary>
+              <div class="body">
+                <ul class="mb-0">
+                  <li><code>dev</code> = พัฒนา, <code>build</code> = ผลิต, <code>preview</code> = ทดสอบไฟล์ build</li>
+                </ul>
+              </div>
+            </details>
           </div>
 
-          <div class="card mb-3"><div class="card-header d-flex justify-content-between">
-            <strong>client/vite.config.js</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('fe-vite', this)">คัดลอก</button></div>
-<pre class="m-0"><code id="fe-vite" class="language-javascript">/**
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between">
+              <strong>client/vite.config.js</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('fe-vite', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="fe-vite" class="language-javascript">/**
  * @file client/vite.config.js
  * @summary เปิดปลั๊กอิน Vue และตั้ง alias '@' → ./src
  */
@@ -916,14 +1263,22 @@ export default defineConfig({
   resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } }
 })
 </code></pre>
-          <details class="explain" open><summary>ทำไมต้อง alias @</summary><div class="body">
-            <ul class="mb-0"><li>ให้ import สั้นและอ่านง่าย เช่น <code>@/pages/TeachersPage.vue</code></li></ul>
-          </div></details>
+            <details class="explain" open>
+              <summary>ทำไมต้อง alias @</summary>
+              <div class="body">
+                <ul class="mb-0">
+                  <li>ให้ import สั้นและอ่านง่าย เช่น <code>@/pages/TeachersPage.vue</code></li>
+                </ul>
+              </div>
+            </details>
           </div>
 
-          <div class="card mb-3"><div class="card-header d-flex justify-content-between">
-            <strong>client/src/main.js</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('fe-main', this)">คัดลอก</button></div>
-<pre class="m-0"><code id="fe-main" class="language-javascript">/**
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between">
+              <strong>client/src/main.js</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('fe-main', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="fe-main" class="language-javascript">/**
  * @file src/main.js
  * @summary บูต Vue + Pinia + Router และโหลด Bootstrap
  */
@@ -936,14 +1291,22 @@ import App from './App.vue';
 import router from './router';
 createApp(App).use(createPinia()).use(router).mount('#app');
 </code></pre>
-          <details class="explain" open><summary>บูตระบบ</summary><div class="body">
-            <ul class="mb-0"><li>ประกอบ Vue + Pinia + Router + Bootstrap แล้ว mount เข้ากับ <code>#app</code></li></ul>
-          </div></details>
+            <details class="explain" open>
+              <summary>บูตระบบ</summary>
+              <div class="body">
+                <ul class="mb-0">
+                  <li>ประกอบ Vue + Pinia + Router + Bootstrap แล้ว mount เข้ากับ <code>#app</code></li>
+                </ul>
+              </div>
+            </details>
           </div>
 
-          <div class="card mb-3"><div class="card-header d-flex justify-content-between">
-            <strong>client/src/router/index.js</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('fe-router', this)">คัดลอก</button></div>
-<pre class="m-0"><code id="fe-router" class="language-javascript">/**
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between">
+              <strong>client/src/router/index.js</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('fe-router', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="fe-router" class="language-javascript">/**
  * @file src/router/index.js
  * @routes '/', '/positions', '/teachers'
  */
@@ -958,14 +1321,22 @@ const routes = [
 ];
 export default createRouter({ history: createWebHistory(), routes });
 </code></pre>
-          <details class="explain" open><summary>เส้นทางหลัก 3 หน้า</summary><div class="body">
-            <ul class="mb-0"><li>Dashboard / Positions / Teachers</li></ul>
-          </div></details>
+            <details class="explain" open>
+              <summary>เส้นทางหลัก 3 หน้า</summary>
+              <div class="body">
+                <ul class="mb-0">
+                  <li>Dashboard / Positions / Teachers</li>
+                </ul>
+              </div>
+            </details>
           </div>
 
-          <div class="card mb-3"><div class="card-header d-flex justify-content-between">
-            <strong>client/src/api/index.js</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('fe-api', this)">คัดลอก</button></div>
-<pre class="m-0"><code id="fe-api" class="language-javascript">/**
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between">
+              <strong>client/src/api/index.js</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('fe-api', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="fe-api" class="language-javascript">/**
  * @file src/api/index.js
  * @summary สร้าง axios instance และ helper แปลงเป็น FormData
  * @returns {import('axios').AxiosInstance} api
@@ -986,17 +1357,23 @@ export function toFormData(obj){
   }); return fd;
 }
 </code></pre>
-          <details class="explain" open><summary>ชัดๆ 2 ฟังก์ชัน</summary><div class="body">
-            <ul class="mb-0">
-              <li><code>api</code> = อินสแตนซ์ axios พร้อม baseURL</li>
-              <li><code>toFormData</code> = แปลง object เป็น <code>FormData</code> สำหรับอัปโหลดไฟล์</li>
-            </ul>
-          </div></details>
+            <details class="explain" open>
+              <summary>ชัดๆ 2 ฟังก์ชัน</summary>
+              <div class="body">
+                <ul class="mb-0">
+                  <li><code>api</code> = อินสแตนซ์ axios พร้อม baseURL</li>
+                  <li><code>toFormData</code> = แปลง object เป็น <code>FormData</code> สำหรับอัปโหลดไฟล์</li>
+                </ul>
+              </div>
+            </details>
           </div>
 
-          <div class="card mb-3"><div class="card-header d-flex justify-content-between">
-            <strong>client/src/App.vue</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('fe-app', this)">คัดลอก</button></div>
-<pre class="m-0"><code id="fe-app" class="language-markup"><!--
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between">
+              <strong>client/src/App.vue</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('fe-app', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="fe-app" class="language-markup"><!--
 /**
  * @file src/App.vue
  * @summary Shell หลักของแอป: Navbar + RouterView
@@ -1023,15 +1400,23 @@ export function toFormData(obj){
   &lt;/div&gt;
 &lt;/template&gt;
 </code></pre>
-          <details class="explain" open><summary>หน้าหลักของแอป</summary><div class="body">
-            <ul class="mb-0"><li>Navbar + <code>&lt;RouterView/&gt;</code> สำหรับสลับหน้า</li></ul>
-          </div></details>
+            <details class="explain" open>
+              <summary>หน้าหลักของแอป</summary>
+              <div class="body">
+                <ul class="mb-0">
+                  <li>Navbar + <code>&lt;RouterView/&gt;</code> สำหรับสลับหน้า</li>
+                </ul>
+              </div>
+            </details>
           </div>
 
           <!-- Components -->
-          <div class="card mb-3"><div class="card-header d-flex justify-content-between">
-            <strong>client/src/components/ConfirmModal.vue</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('fe-modal', this)">คัดลอก</button></div>
-<pre class="m-0"><code id="fe-modal" class="language-markup"><!--
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between">
+              <strong>client/src/components/ConfirmModal.vue</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('fe-modal', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="fe-modal" class="language-markup"><!--
 /**
  * @file src/components/ConfirmModal.vue
  * @props open:Boolean, title:String='ยืนยันการทำรายการ', message:String
@@ -1060,14 +1445,22 @@ defineProps({ open:Boolean, title:{type:String,default:'ยืนยันกา
 defineEmits(['confirm','cancel']);
 &lt;/script&gt;
 </code></pre>
-          <details class="explain" open><summary>ใช้เมื่อไร?</summary><div class="body">
-            <ul class="mb-0"><li>ยืนยัน “ลบ/ทำรายการสำคัญ” เพื่อกันเผลอกด</li></ul>
-          </div></details>
+            <details class="explain" open>
+              <summary>ใช้เมื่อไร?</summary>
+              <div class="body">
+                <ul class="mb-0">
+                  <li>ยืนยัน “ลบ/ทำรายการสำคัญ” เพื่อกันเผลอกด</li>
+                </ul>
+              </div>
+            </details>
           </div>
 
-          <div class="card mb-3"><div class="card-header d-flex justify-content-between">
-            <strong>client/src/components/ImageUploader.vue</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('fe-up', this)">คัดลอก</button></div>
-<pre class="m-0"><code id="fe-up" class="language-markup"><!--
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between">
+              <strong>client/src/components/ImageUploader.vue</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('fe-up', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="fe-up" class="language-markup"><!--
 /**
  * @file src/components/ImageUploader.vue
  * @props label, modelValue(File), initialUrl, error
@@ -1102,15 +1495,23 @@ function onFile(e){ const file = e.target.files?.[0]; if(file) emit('update:mode
 function clearFile(){ emit('update:modelValue', null); emit('remove'); preview.value=''; }
 &lt;/script&gt;
 </code></pre>
-          <details class="explain" open><summary>พฤติกรรม</summary><div class="body">
-            <ul class="mb-0"><li>แสดงภาพตัวอย่างทันทีเมื่อเลือกไฟล์ และกด “ลบรูป” เพื่อล้างค่าได้</li></ul>
-          </div></details>
+            <details class="explain" open>
+              <summary>พฤติกรรม</summary>
+              <div class="body">
+                <ul class="mb-0">
+                  <li>แสดงภาพตัวอย่างทันทีเมื่อเลือกไฟล์ และกด “ลบรูป” เพื่อล้างค่าได้</li>
+                </ul>
+              </div>
+            </details>
           </div>
 
           <!-- Pages -->
-          <div class="card mb-3"><div class="card-header d-flex justify-content-between">
-            <strong>client/src/pages/PositionsPage.vue</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('fe-pos', this)">คัดลอก</button></div>
-<pre class="m-0"><code id="fe-pos" class="language-markup"><!--
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between">
+              <strong>client/src/pages/PositionsPage.vue</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('fe-pos', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="fe-pos" class="language-markup"><!--
 /**
  * @file src/pages/PositionsPage.vue
  * @summary ตารางตำแหน่ง + inline edit + modal ยืนยันลบ
@@ -1184,14 +1585,22 @@ function confirmDelete(p){ modal.value={ open:true, id:p.id, name:p.name }; }
 async function remove(id){ await api.delete(`/positions/${id}`); modal.value.open=false; await load(); }
 &lt;/script&gt;
 </code></pre>
-          <details class="explain" open><summary>สรุป logic</summary><div class="body">
-            <ul class="mb-0"><li>โหลด → เพิ่ม → แก้ → ลบ แบบตรงไปตรงมา (inline edit)</li></ul>
-          </div></details>
+            <details class="explain" open>
+              <summary>สรุป logic</summary>
+              <div class="body">
+                <ul class="mb-0">
+                  <li>โหลด → เพิ่ม → แก้ → ลบ แบบตรงไปตรงมา (inline edit)</li>
+                </ul>
+              </div>
+            </details>
           </div>
 
-          <div class="card mb-3"><div class="card-header d-flex justify-content-between">
-            <strong>client/src/pages/TeachersPage.vue</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('fe-tea', this)">คัดลอก</button></div>
-<pre class="m-0"><code id="fe-tea" class="language-markup"><!--
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between">
+              <strong>client/src/pages/TeachersPage.vue</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('fe-tea', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="fe-tea" class="language-markup"><!--
 /**
  * @file src/pages/TeachersPage.vue
  * @summary จัดการข้อมูลครู: ตาราง + ฟอร์มใน modal + อัปโหลดรูป
@@ -1215,7 +1624,8 @@ async function remove(id){ await api.delete(`/positions/${id}`); modal.value.ope
             &lt;tr v-for="t in teachers" :key="t.id"&gt;
               &lt;td style="width:72px"&gt;
                 &lt;img v-if="t.image_url" :src="t.image_url" style="width:56px;height:56px;object-fit:cover" class="rounded"&gt;
-                &lt;span v-else class="text-muted"&gt;-&lt;/span&gt;
+                
+                &lt;img v-else src="/default-avatar.svg" style="width:56px;height:56px;object-fit:cover" class="rounded"&gt;
               &lt;/td&gt;
               &lt;td&gt;
                 &lt;div class="fw-semibold"&gt;{{ t.name }}&lt;/div&gt;
@@ -1319,17 +1729,23 @@ function confirmDelete(t){ modal.value={ open:true, id:t.id, name:t.name }; }
 async function remove(id){ await api.delete(`/teachers/${id}`); modal.value.open=false; await loadTeachers(); }
 &lt;/script&gt;
 </code></pre>
-          <details class="explain" open><summary>ฟอร์มเดียวทำได้ทั้ง “เพิ่ม” และ “แก้ไข”</summary><div class="body">
-            <ul class="mb-0">
-              <li>ควบคุมด้วย <code>form.mode</code> (create/edit)</li>
-              <li>มีไฟล์ → ใช้ <code>multipart/form-data</code>, ไม่มีไฟล์ → ส่ง JSON ปกติ</li>
-            </ul>
-          </div></details>
+            <details class="explain" open>
+              <summary>ฟอร์มเดียวทำได้ทั้ง “เพิ่ม” และ “แก้ไข”</summary>
+              <div class="body">
+                <ul class="mb-0">
+                  <li>ควบคุมด้วย <code>form.mode</code> (create/edit)</li>
+                  <li>มีไฟล์ → ใช้ <code>multipart/form-data</code>, ไม่มีไฟล์ → ส่ง JSON ปกติ</li>
+                </ul>
+              </div>
+            </details>
           </div>
 
-          <div class="card"><div class="card-header d-flex justify-content-between">
-            <strong>client/src/pages/DashboardPage.vue</strong><button class="btn btn-sm copy-btn" onclick="copyBlock('fe-dash', this)">คัดลอก</button></div>
-<pre class="m-0"><code id="fe-dash" class="language-markup"><!--
+          <div class="card">
+            <div class="card-header d-flex justify-content-between">
+              <strong>client/src/pages/DashboardPage.vue</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('fe-dash', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="fe-dash" class="language-markup"><!--
 /**
  * @file src/pages/DashboardPage.vue
  * @summary Landing แสดง Tech Stack และ Quick Actions
@@ -1404,9 +1820,40 @@ const quickActions = [
 .hover-card:hover{transform:translateY(-5px);box-shadow:0 6px 15px rgba(0,0,0,.08)}
 &lt;/style&gt;
 </code></pre>
-          <details class="explain" open><summary>มีไว้ทำไม?</summary><div class="body">
-            <ul class="mb-0"><li>เป็นหน้า Landing อธิบายสแต็ก + ชุดคำสั่ง/ฟีเจอร์หลัก</li></ul>
-          </div></details>
+            <details class="explain" open>
+              <summary>มีไว้ทำไม?</summary>
+              <div class="body">
+                <ul class="mb-0">
+                  <li>เป็นหน้า Landing อธิบายสแต็ก + ชุดคำสั่ง/ฟีเจอร์หลัก</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between">
+              <strong>public/default-avatar.svg</strong><button class="btn btn-sm copy-btn"
+                onclick="copyBlock('svg-app', this)">คัดลอก</button>
+            </div>
+            <pre class="m-0"><code id="svg-app" class="language-markup">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+            fill="currentColor" width="28" height="28"&gt;
+            &lt;path fill-rule="evenodd"
+              d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751
+                 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683
+                 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75
+                 0 01-.437-.695z"
+              clip-rule="evenodd" /&gt;
+          &lt;/svg&gt; 
+</code></pre>
+
+            <details class="explain" open>
+              <summary>default-avatar.svg</summary>
+              <div class="body">
+                <ul class="mb-0">
+                  <li>Icon + <code>&lt;default-avatar/&gt;</code> สำหรับหน้าครู</li>
+                </ul>
+              </div>
+            </details>
           </div>
 
         </div> <!-- /frontend-code -->
@@ -1423,10 +1870,10 @@ const quickActions = [
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-sql.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
   <script>
-    function copyBlock(id, btn){
-      const el = document.getElementById(id); if(!el) return;
-      navigator.clipboard.writeText(el.innerText).then(()=>{
-        const keep = btn.innerHTML; btn.innerHTML = 'คัดลอกแล้ว'; setTimeout(()=>btn.innerHTML = keep, 1200);
+    function copyBlock(id, btn) {
+      const el = document.getElementById(id); if (!el) return;
+      navigator.clipboard.writeText(el.innerText).then(() => {
+        const keep = btn.innerHTML; btn.innerHTML = 'คัดลอกแล้ว'; setTimeout(() => btn.innerHTML = keep, 1200);
       });
     }
     // เปิดคำอธิบายทั้งหมดเป็นค่าเริ่มต้น
@@ -1435,4 +1882,5 @@ const quickActions = [
     });
   </script>
 </body>
+
 </html>
